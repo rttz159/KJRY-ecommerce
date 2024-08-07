@@ -1,0 +1,79 @@
+.table-view{
+    -fx-border-radius: 7px 7px 0px 0px;
+    -fx-background-color: transparent;
+    -fx-border-size:1px;
+    -fx-border-style:solid;
+    -fx-border-color: -secondary-color;
+}
+
+.table-view .column-header-background .filler {
+    -fx-background-color: transparent;
+}
+
+.table-view .corner {
+    -fx-background-color: transparent;
+}
+
+.table-view .column-header-background{
+    -fx-background-radius: 7px 7px 0px 0px;
+    -fx-padding: 0 0 5px 0;
+    -fx-background-color:transparent;
+}
+
+.table-view .column-header {
+    -fx-background-color: -secondary-color;
+}
+
+.table-view .column-header .text {
+    -fx-fill: -primary-color;
+}
+
+.table-view .column-header .label{
+    -fx-border-size:1px;
+    -fx-border-style:solid;
+    -fx-border-color: transparent -primary-color transparent transparent;
+}
+
+.table-view .column-header:last-of-type  .label{
+    -fx-border-size:0px;
+    -fx-border-style:solid;
+    -fx-border-color: transparent;
+}
+
+.table-row-cell:odd{
+    -fx-background-color: #FFFFFF;
+    -fx-padding: 0.0em;
+    
+}
+
+.table-row-cell:even{
+    -fx-background-color: #F2F2F2;
+    -fx-padding: 0.0em;
+}
+
+.table-view .table-cell{
+    -fx-border-color: transparent;
+    -fx-padding: 2 0 2 10px;
+    -fx-alignment: CENTER_LEFT;
+}
+
+
+.table-row-cell:hover, .table-row-cell:selected{
+    -fx-background-color: #BABABD;
+    -fx-text-background-color: black;
+}
+
+.table-view .virtual-flow .scroll-bar:vertical,
+.table-view .virtual-flow .scroll-bar:vertical .track,
+.table-view .virtual-flow .scroll-bar:vertical .track-background,
+.table-view .virtual-flow .scroll-bar:horizontal,
+.table-view .virtual-flow .scroll-bar:horizontal .track,
+.table-view .virtual-flow .scroll-bar:horizontal .track-background {
+    -fx-background-color: transparent;
+}
+
+.table-view .virtual-flow .scroll-bar .increment-button,
+.table-view .virtual-flow .scroll-bar .decrement-button {
+    -fx-opacity: 0;
+    -fx-padding: 2;
+}

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="148.0" prefWidth="346.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Label alignment="CENTER" contentDisplay="CENTER" layoutY="65.0" prefHeight="17.0" prefWidth="156.0" text="Account Number" />
+      <Label alignment="CENTER" layoutX="4.0" layoutY="111.0" prefHeight="17.0" prefWidth="109.0" text="Password" />
+      <PasswordField fx:id="passwordField" layoutX="149.0" layoutY="107.0" />
+      <TextField fx:id="accountNumberField" layoutX="149.0" layoutY="61.0" prefHeight="25.0" prefWidth="149.0" />
+      <Label layoutX="14.0" layoutY="23.0" prefHeight="17.0" prefWidth="318.0" text="Warning!! By clicking OK you have agree with our T&amp;C.">
+         <font>
+            <Font name="System Bold Italic" size="12.0" />
+         </font></Label>
+   </children>
+</AnchorPane>

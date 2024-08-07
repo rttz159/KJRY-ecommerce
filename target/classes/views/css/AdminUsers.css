@@ -1,0 +1,40 @@
+#AdminUserParentVBox{
+    -fx-background-color:-primary-color;
+}
+
+#AdminUserParentVBox .label{
+    -fx-text-fill: -secondary-color;
+}
+
+#AdminUserParentVBox  .button {
+    -fx-background-color: -secondary-color;
+    -fx-text-fill: -primary-color;
+    -fx-font-size: 14px;
+    -fx-font-style: bold;
+    -fx-text-alignment: left;
+    -fx-padding: 10 20px 10 20px;
+    -fx-border-size:1px;
+    -fx-border-style:solid;
+    -fx-border-color:-secondary-color;
+    -fx-border-radius:6px;
+}
+
+#AdminUserParentVBox .button:hover {
+    -fx-cursor:hand;
+    -fx-background-color: -primary-color;
+    -fx-text-fill: -secondary-color;
+}
+
+#AdminUserParentVBox .table-view .table-cell .button{
+    -fx-background-color: transparent;
+    -fx-padding: 2 8px 2 8px;
+    -fx-border-size: 0px;
+    -fx-border-color: transparent;
+    -fx-text-fill: #A020F0;
+    -fx-underline: true;
+}
+
+#AdminUserParentVBox .table-view .table-cell .button:hover {
+    -fx-cursor:hand;
+    -fx-text-fill: #f01e2c;
+}

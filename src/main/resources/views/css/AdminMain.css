@@ -1,0 +1,67 @@
+#parentHBox{
+    -fx-background-color:-primary-color;
+    -fx-border-style:solid;
+    -fx-border-width:1;
+}
+
+#sidePanelParentVBox .vbox {
+    -fx-alignment: center;
+}
+
+#sidePanelParentVBox{
+    -fx-background-color:-secondary-color;
+}
+
+#sidePanelParentVBox .label {
+    -fx-text-fill:-primary-color;
+}
+
+#sidePanelVBox  .button {
+    -fx-background-color: -secondary-color;
+    -fx-text-fill: -primary-color;
+    -fx-font-size: 14px;
+    -fx-font-style: bold;
+    -fx-text-alignment: left;
+    -fx-background-size: 25px 25px;
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: 10px center;
+    -fx-padding: 15 10px 15 10px; 
+}
+
+#sidePanelVBox .button:hover {
+    -fx-cursor:hand;
+    -fx-background-color: -primary-color;
+    -fx-text-fill: black;
+}
+
+#sidePanelVBox #dashBoardButton{
+    -fx-background-image: url("/views/css/image/home_white.png");
+}
+
+#sidePanelVBox #dashBoardButton:hover{
+    -fx-background-image: url("/views/css/image/home_black.png");    
+}
+
+#sidePanelVBox #UsersButton{
+    -fx-background-image: url("/views/css/image/user_white.png");
+}
+
+#sidePanelVBox #UsersButton:hover{
+    -fx-background-image: url("/views/css/image/user_black.png");    
+}
+
+#sidePanelVBox #ProductsButton{
+    -fx-background-image: url("/views/css/image/box_white.png");
+}
+
+#sidePanelVBox #ProductsButton:hover{
+    -fx-background-image: url("/views/css/image/box_black.png");    
+}
+
+#sidePanelVBox #OrdersButton{
+    -fx-background-image: url("/views/css/image/shopping-list_white.png");
+}
+
+#sidePanelVBox #OrdersButton:hover{
+    -fx-background-image: url("/views/css/image/shopping-list_black.png");
+}

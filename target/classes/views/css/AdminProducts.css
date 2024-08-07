@@ -1,0 +1,29 @@
+#AdminProductParentVBox{
+    -fx-background-color:-primary-color;
+}
+
+#AdminProductParentVBox .label{
+    -fx-text-fill: -secondary-color;
+}
+
+#AdminProductParentVBox  .button {
+    -fx-background-color: -secondary-color;
+    -fx-text-fill: -primary-color;
+    -fx-font-size: 14px;
+    -fx-font-style: bold;
+    -fx-text-alignment: left;
+    -fx-background-size: 25px 25px;
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: 10px center;
+    -fx-padding: 10 20px 10 20px;
+    -fx-border-size:1px;
+    -fx-border-style:solid;
+    -fx-border-color:-secondary-color;
+    -fx-border-radius:6px;
+}
+
+#AdminProductParentVBox .button:hover {
+    -fx-cursor:hand;
+    -fx-background-color: -primary-color;
+    -fx-text-fill: -secondary-color;
+}

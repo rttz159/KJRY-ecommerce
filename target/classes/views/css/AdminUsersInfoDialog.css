@@ -1,0 +1,91 @@
+.dialog-title {
+    font-size: 18px;
+    font-weight: bold;
+    -fx-text-fill: #28282B;
+}
+
+.scrollPane{
+    -fx-background-color: transparent;
+    -fx-border-color: #28282B;
+    -fx-border-width: 0px;
+}
+
+.scroll-bar:vertical .thumb{
+    -fx-color:#D3D3D3;
+    -fx-background-radius: 5px;
+    -fx-padding: 2px;
+}
+
+.scrollPane .scroll-bar:vertical,
+.scrollPane .scroll-bar:vertical .track,
+.scrollPane .scroll-bar:vertical .track-background,
+.scrollPane .scroll-bar:horizontal,
+.scrollPane .scroll-bar:horizontal .track,
+.scrollPane .scroll-bar:horizontal .track-background {
+    -fx-background-color: transparent;
+}
+
+.scrollPane .scroll-bar .increment-button,
+.scrollPane .scroll-bar .decrement-button {
+    -fx-opacity: 0;
+    -fx-padding: 2;
+}
+
+.wrapper {
+    -fx-padding: 5px;
+    -fx-background-color: #D3D3D3;
+    -fx-border-color: #28282B;
+    -fx-border-width: 1px;
+    -fx-border-radius: 5px;
+    -fx-background-radius: 5px;
+    -fx-alignment: center;
+}
+
+.label {
+    -fx-text-fill: #28282B;
+    -fx-font-size: 14px;
+}
+
+.text-field {
+    -fx-background-color: white;
+    -fx-border-color: #28282B;
+    -fx-border-radius: 5px;
+    -fx-background-radius: 5px;
+}
+
+.choice-box {
+    -fx-background-color: white;
+    -fx-border-color: #28282B;
+    -fx-border-radius: 5px;
+    -fx-background-radius: 5px;
+}
+
+.choice-box:disabled {
+    -fx-opacity:0.9;
+}
+
+.list-view {
+    -fx-background-color: white;
+    -fx-border-color: #28282B;
+    -fx-border-radius: 5px;
+    -fx-background-radius: 5px;
+}
+
+#saveButton {
+    -fx-background-color: #28282B;
+    -fx-text-fill: #D3D3D3;
+    -fx-font-size: 14px;
+    -fx-font-style: bold;
+    -fx-text-alignment: left;
+    -fx-padding: 5 15px 5 15px;
+    -fx-border-size:1px;
+    -fx-border-style:solid;
+    -fx-border-color: #28282B;
+    -fx-border-radius:6px;
+}
+
+#saveButton:hover {
+    -fx-cursor:hand;
+    -fx-background-color: #D3D3D3;
+    -fx-text-fill: #28282B;
+}

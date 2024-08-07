@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" stylesheets="@css/AdminMain.css,@css/Parent.css" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="kjry.ecommerce.controller.AdminMainController">
+   <children>
+      <HBox fx:id="parentHBox" layoutY="1.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0">
+         <children>
+            <VBox fx:id="sidePanelParentVBox" alignment="TOP_CENTER" prefHeight="600.0" prefWidth="270.0">
+               <children>
+                  <Label fx:id="AdminLabel" text="Admin">
+                     <VBox.margin>
+                        <Insets top="25.0" />
+                     </VBox.margin>
+                     <font>
+                        <Font name="Calibri Bold" size="20.0" />
+                     </font>
+                     <padding>
+                        <Insets bottom="20.0" left="70.0" right="70.0" top="20.0" />
+                     </padding></Label>
+                  <VBox fx:id="sidePanelVBox" alignment="CENTER" prefHeight="115.0" prefWidth="140.0">
+                     <children>
+                        <Button fx:id="dashBoardButton" mnemonicParsing="false" onAction="#saySomething" prefHeight="50.0" prefWidth="250.0" text="DashBoard">
+                           <font>
+                              <Font size="14.0" />
+                           </font></Button>
+                        <Button fx:id="UsersButton" mnemonicParsing="false" prefHeight="50.0" prefWidth="250.0" text="Users" />
+                        <Button fx:id="ProductsButton" mnemonicParsing="false" prefHeight="50.0" prefWidth="250.0" text="Products" />
+                        <Button fx:id="OrdersButton" mnemonicParsing="false" prefHeight="50.0" prefWidth="250.0" text="Orders" />
+                     </children>
+                     <VBox.margin>
+                        <Insets top="25.0" />
+                     </VBox.margin>
+                  </VBox>
+               </children>
+               <padding>
+                  <Insets top="5.0" />
+               </padding>
+            </VBox>
+         </children>
+      </HBox>
+   </children>
+</AnchorPane>
