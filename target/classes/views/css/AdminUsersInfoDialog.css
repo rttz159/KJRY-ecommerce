@@ -89,3 +89,21 @@
     -fx-background-color: #D3D3D3;
     -fx-text-fill: #28282B;
 }
+
+.text-field.invalid {
+    -fx-border-color: red;
+    -fx-border-width: 2px;
+    -fx-background-color: #fdd; 
+}
+
+.choice-box.invalid {
+    -fx-border-color: red;
+    -fx-border-width: 2px;
+    -fx-background-color: #fdd; 
+}
+
+.list-view.invalid {
+    -fx-border-color: red;
+    -fx-border-width: 2px;
+    -fx-background-color: #fdd;
+}

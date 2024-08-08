@@ -74,6 +74,8 @@ public class AdminUserInfoDialogController {
 
     private Stage parentStage;
 
+    private boolean viewOnly;
+
     public void setParentStage(Stage parentStage) {
         this.parentStage = parentStage;
     }
@@ -88,28 +90,46 @@ public class AdminUserInfoDialogController {
 
     public void setUser(UsersDTO user, boolean viewOnly) {
         this.user = user;
+        this.viewOnly = viewOnly;
 
-        if (viewOnly) {
+        if (user.getId() != null) {
             populateFields();
-            setEditable(false);
-            saveButton.setVisible(false);
-            saveButton.setManaged(false);
-            notificationTypeHBox1.setVisible(true);
-            notificationTypeTextField.setEditable(false);
-            notificationTypeHBox.setVisible(false);
-            notificationTypeHBox.setManaged(false);
         } else {
-            if (user != null) {
-                populateFields();
-                setEditable(true);
-                saveButton.setVisible(true);
-                notificationTypeHBox1.setVisible(false);
-                notificationTypeHBox1.setManaged(false);
-                notificationTypeHBox.setVisible(true);
+            if (user instanceof CustomersDTO) {
                 shoppingCartVBox.setVisible(false);
                 shoppingCartVBox.setManaged(false);
+                shoppingCartListView.setVisible(false);
+                notificationTypeHBox1.setVisible(false);
+                notificationTypeTextField.setEditable(false);
+                notificationTypeHBox1.setManaged(false);
+                notificationTypeHBox.setVisible(true);
+                notificationTypeHBox.setManaged(true);
+                jobRoleHBox.setManaged(false);
+                jobRoleHBox.setVisible(false);
+                jobRoleChoiceBox.setVisible(false);
+                jobRoleChoiceBox.setManaged(false);
+                notificationTypeCheckComboBox.getCheckModel().check(CustomersDTO.NotificationTypeDTO.APP);
+            } else {
+                notificationTypeTextField.setVisible(false);
+                shoppingCartListView.setVisible(false);
+                notificationTypeHBox.setVisible(false);
+                notificationTypeHBox.setManaged(false);
+                notificationTypeHBox1.setVisible(false);
+                notificationTypeHBox1.setManaged(false);
+                shoppingCartVBox.setVisible(false);
+                shoppingCartVBox.setManaged(false);
+                jobRoleHBox.setManaged(true);
+                jobRoleHBox.setVisible(true);
+                jobRoleChoiceBox.setVisible(true);
+                jobRoleChoiceBox.setManaged(true);
             }
         }
+
+        boolean isEditable = !viewOnly;
+        setEditable(isEditable);
+        birthDateTextField.setPromptText("DD-MM-YYYY");
+        saveButton.setVisible(isEditable);
+        saveButton.setManaged(isEditable);
     }
 
     private void clearFields() {
@@ -123,80 +143,106 @@ public class AdminUserInfoDialogController {
         birthDateTextField.clear();
         shoppingCartListView.getItems().clear();
         notificationTypeCheckComboBox.getCheckModel().clearChecks();
+        notificationTypeCheckComboBox.getCheckModel().check(CustomersDTO.NotificationTypeDTO.APP);
     }
 
-    //TODO fix the bug where the fxml is not loaded when Clicking the Add Button
     private void populateFields() {
         if (user instanceof CustomersDTO) {
-            CustomersDTO customer = (CustomersDTO) user;
-            jobRoleHBox.setManaged(false);
-            jobRoleHBox.setVisible(false);
-            jobRoleChoiceBox.setVisible(false);
-            notificationTypeHBox1.setVisible(true);
-            iDTextField.setText(customer.getId());
-            passwordTextField.setText(customer.getPassword());
-            nameTextField.setText(customer.getName());
-            emailTextField.setText(customer.getEmail());
-            phoneTextField.setText(customer.getPhoneNo());
-            if (customer.getGender() == 'F') {
-                genderChoiceBox.getSelectionModel().select(0);
-            } else {
-                genderChoiceBox.getSelectionModel().select(1);
-            }
-            birthDateTextField.setText(new SimpleDateFormat("dd-MM-yyyy").format(customer.getBirthDate()));
-            StringBuilder ss = new StringBuilder();
-            for (CustomersDTO.NotificationTypeDTO x : customer.getNotificationTypes()) {
-                ss.append(x.name());
-                ss.append(", ");
-            }
-            notificationTypeTextField.setText(ss.substring(0, ss.length() - 2));
-            notificationTypeCheckComboBox.getCheckModel().check(CustomersDTO.NotificationTypeDTO.APP);
-            for (CustomersDTO.NotificationTypeDTO x : customer.getNotificationTypes()) {
-                notificationTypeCheckComboBox.getCheckModel().check(x);
-            }
-            ArrayList<String> shoppingCartList = new ArrayList<>();
-            ss.delete(0, ss.length());
-            for (Pair<ProductsDTO, Integer> x : customer.getShoppingCart()) {
-                ss.append(String.format("ID: %s   Name: %s   Price: %.2f   Qty: %d", x.getKey().getId(), x.getKey().getName(), x.getKey().getSellingPrice(), x.getValue()));
-                shoppingCartList.add(ss.toString());
-                ss.delete(0, ss.length());
-            }
-            if (shoppingCartList.isEmpty()) {
-                shoppingCartListView.getItems().add("No item.");
-            } else {
-                for (int i = 0; i < shoppingCartList.size(); i++) {
-                    System.out.println(shoppingCartList.get(i));
-                    shoppingCartListView.getItems().add(shoppingCartList.get(i));
-                }
-            }
-            birthDateTextField.setPromptText("dd-MM-yyyy");
-
+            populateCustomerFields((CustomersDTO) user);
         } else if (user instanceof EmployeesDTO) {
-            EmployeesDTO employee = (EmployeesDTO) user;
-            notificationTypeTextField.setVisible(false);
-            shoppingCartListView.setVisible(false);
+            populateEmployeeFields((EmployeesDTO) user);
+        }
+    }
+
+    private void populateCustomerFields(CustomersDTO customer) {
+        jobRoleHBox.setManaged(false);
+        jobRoleHBox.setVisible(false);
+        jobRoleChoiceBox.setVisible(false);
+        jobRoleChoiceBox.setManaged(false);
+
+        if (viewOnly) {
+            notificationTypeHBox1.setVisible(true);
+            notificationTypeTextField.setEditable(false);
             notificationTypeHBox.setVisible(false);
             notificationTypeHBox.setManaged(false);
+        } else {
             notificationTypeHBox1.setVisible(false);
             notificationTypeHBox1.setManaged(false);
-            jobRoleHBox.setVisible(true);
-            notificationTypeCheckComboBox.setVisible(false);
-            shoppingCartVBox.setVisible(false);
-            shoppingCartVBox.setManaged(false);
-            iDTextField.setText(employee.getId());
-            passwordTextField.setText(employee.getPassword());
-            nameTextField.setText(employee.getName());
-            emailTextField.setText(employee.getEmail());
-            phoneTextField.setText(employee.getPhoneNo());
-            if (employee.getGender() == 'F') {
-                genderChoiceBox.getSelectionModel().select(0);
-            } else {
-                genderChoiceBox.getSelectionModel().select(1);
-            }
-            birthDateTextField.setText(new SimpleDateFormat("dd-MM-yyyy").format(employee.getBirthDate()));
-            jobRoleChoiceBox.getSelectionModel().select(employee.getJobRole());
-            birthDateTextField.setPromptText("dd-MM-yyyy");
+            notificationTypeHBox.setVisible(true);
+            notificationTypeHBox.setManaged(true);
         }
+
+        iDTextField.setText(customer.getId());
+        passwordTextField.setText(customer.getPassword());
+        nameTextField.setText(customer.getName());
+        emailTextField.setText(customer.getEmail());
+        phoneTextField.setText(customer.getPhoneNo());
+
+        genderChoiceBox.getSelectionModel().select(customer.getGender() == 'F' ? 0 : 1);
+        birthDateTextField.setText(new SimpleDateFormat("dd-MM-yyyy").format(customer.getBirthDate()));
+
+        updateNotificationTypeFields(customer);
+        updateShoppingCartFields(customer);
+    }
+
+    private void updateNotificationTypeFields(CustomersDTO customer) {
+        notificationTypeCheckComboBox.getItems().setAll(CustomersDTO.NotificationTypeDTO.values());
+        notificationTypeCheckComboBox.getCheckModel().clearChecks();
+
+        for (CustomersDTO.NotificationTypeDTO type : customer.getNotificationTypes()) {
+            notificationTypeCheckComboBox.getCheckModel().check(type);
+        }
+
+        StringBuilder sb = new StringBuilder();
+        for (CustomersDTO.NotificationTypeDTO type : customer.getNotificationTypes()) {
+            sb.append(type.name()).append(", ");
+        }
+        if (sb.length() > 0) {
+            sb.setLength(sb.length() - 2);
+        }
+        notificationTypeTextField.setText(sb.toString());
+    }
+
+    private void updateShoppingCartFields(CustomersDTO customer) {
+        shoppingCartListView.getItems().clear();
+        if (customer.getShoppingCart().isEmpty()) {
+            shoppingCartListView.getItems().add("No item.");
+        } else {
+            for (Pair<ProductsDTO, Integer> item : customer.getShoppingCart()) {
+                ProductsDTO product = item.getKey();
+                String text = String.format("ID: %s   Name: %s   Price: %.2f   Qty: %d",
+                        product.getId(), product.getName(), product.getSellingPrice(), item.getValue());
+                shoppingCartListView.getItems().add(text);
+            }
+        }
+    }
+
+    private void populateEmployeeFields(EmployeesDTO employee) {
+        notificationTypeTextField.setVisible(false);
+        shoppingCartListView.setVisible(false);
+        notificationTypeHBox.setVisible(false);
+        notificationTypeHBox.setManaged(false);
+        notificationTypeHBox1.setVisible(false);
+        notificationTypeHBox1.setManaged(false);
+        shoppingCartVBox.setVisible(false);
+        shoppingCartVBox.setManaged(false);
+
+        jobRoleHBox.setVisible(true);
+        notificationTypeCheckComboBox.setVisible(false);
+        shoppingCartVBox.setVisible(false);
+        shoppingCartVBox.setManaged(false);
+
+        iDTextField.setText(employee.getId());
+        passwordTextField.setText(employee.getPassword());
+        nameTextField.setText(employee.getName());
+        emailTextField.setText(employee.getEmail());
+        phoneTextField.setText(employee.getPhoneNo());
+
+        genderChoiceBox.getSelectionModel().select(employee.getGender() == 'F' ? 0 : 1);
+        birthDateTextField.setText(new SimpleDateFormat("dd-MM-yyyy").format(employee.getBirthDate()));
+
+        jobRoleChoiceBox.getItems().setAll(EmployeesDTO.JobRoleDTO.values());
+        jobRoleChoiceBox.getSelectionModel().select(employee.getJobRole());
     }
 
     private void setEditable(boolean editable) {
@@ -216,7 +262,60 @@ public class AdminUserInfoDialogController {
         if (user == null) {
             return;
         }
+        validateFields();
+    }
 
+    private void validateFields() {
+        boolean valid = true;
+
+        boolean idValid = ValidationUtils.isNotEmpty(iDTextField.getText());
+        setFieldValidity(iDTextField, idValid);
+        valid &= idValid;
+
+        boolean nameValid = ValidationUtils.isNotEmpty(nameTextField.getText());
+        setFieldValidity(nameTextField, nameValid);
+        valid &= nameValid;
+
+        boolean passwordValid = ValidationUtils.isValidPassword(passwordTextField.getText());
+        setFieldValidity(passwordTextField, passwordValid);
+        valid &= passwordValid;
+
+        boolean emailValid = ValidationUtils.isValidEmail(emailTextField.getText());
+        setFieldValidity(emailTextField, emailValid);
+        valid &= emailValid;
+
+        boolean phoneValid = ValidationUtils.isValidPhone(phoneTextField.getText());
+        setFieldValidity(phoneTextField, phoneValid);
+        valid &= phoneValid;
+
+        boolean dateValid = ValidationUtils.isValidDate(birthDateTextField.getText());
+        setFieldValidity(birthDateTextField, dateValid);
+        valid &= dateValid;
+
+        boolean genderValid = genderChoiceBox.getSelectionModel().getSelectedItem() != null;
+        setFieldValidity(genderChoiceBox, genderValid);
+        valid &= genderValid;
+
+        if (user instanceof EmployeesDTO) {
+            boolean jobRoleValid = jobRoleChoiceBox.getSelectionModel().getSelectedItem() != null;
+            setFieldValidity(jobRoleChoiceBox, jobRoleValid);
+            valid &= jobRoleValid;
+        }
+
+        if (valid) {
+            saveUserData();
+        }
+    }
+
+    private void setFieldValidity(Control control, boolean isValid) {
+        if (isValid) {
+            control.getStyleClass().remove("invalid");
+        } else {
+            control.getStyleClass().add("invalid");
+        }
+    }
+
+    private void saveUserData() {
         if (user instanceof CustomersDTO) {
             CustomersDTO customer = (CustomersDTO) user;
             customer.setId(iDTextField.getText());
@@ -251,4 +350,5 @@ public class AdminUserInfoDialogController {
 
         this.parentStage.close();
     }
+
 }

@@ -167,6 +167,7 @@ public class AdminUserController implements Initializable {
         );
 
         addButton.setOnAction(event -> {
+            final boolean[] buttonClicked = {false};
             final UsersDTO[] user = new UsersDTO[1];
             Stage dialogStage1 = new Stage();
             Button customerBtn = new Button("Customer");
@@ -180,28 +181,31 @@ public class AdminUserController implements Initializable {
             scene.getStylesheets().add(getClass().getResource("/views/css/AddButton.css").toExternalForm());
             dialogStage1.setScene(scene);
             dialogStage1.initModality(Modality.APPLICATION_MODAL);
-            customerBtn.setOnAction(ev2 -> {
-                user[0] = new CustomersDTO();
-                dialogStage1.close();
-                userPromptDialog(user[0], true);
-            });
-            employeeBtn.setOnAction(ev2 -> {
-                user[0] = new EmployeesDTO();
-                dialogStage1.close();
-                userPromptDialog(user[0], true);
-            });
             hbox.setStyle("-fx-spacing: 10px;");
             vbox.getChildren().add(title);
             vbox.setStyle("-fx-alignment: center;-fx-padding: 20px; -fx-background-color: white;-fx-spacing: 10px;");
             vbox.getChildren().add(hbox);
+            customerBtn.setOnAction(ev2 -> {
+                user[0] = new CustomersDTO();
+                buttonClicked[0] = true;
+                dialogStage1.close();
+            });
+            employeeBtn.setOnAction(ev2 -> {
+                user[0] = new EmployeesDTO();
+                buttonClicked[0] = true;
+                dialogStage1.close();
+            });
+
             dialogStage1.showAndWait();
 
-            //list.add(user[0]);
-            //this.adminUserTableview.refresh();
-
-            /*UserService.createUser(user[0]);
-            list = FXCollections.observableArrayList(UserService.getAllUsers());
-            adminUserTableview.refresh();*/
+            if (buttonClicked[0]) {
+                userPromptDialog(user[0], true);
+            }
+            
+            list.add(user[0]);
+            //UserService.createUser(user[0]);
+            this.adminUserTableview.refresh();
+            
         });
 
         removeButton.setOnAction(event -> {
@@ -210,9 +214,10 @@ public class AdminUserController implements Initializable {
             warningAlert.setHeaderText("User will be PERMANENTLY DELETED.");
             warningAlert.showAndWait().ifPresent(result -> {
                 if (result == ButtonType.OK) {
-                    UserService service = new UserService(user);
-                    service.deleteUser();
-                    list = FXCollections.observableArrayList(UserService.getAllUsers());
+                    //UserService service = new UserService(user);
+                    //service.deleteUser();
+                    //list = FXCollections.observableArrayList(UserService.getAllUsers());
+                    list.remove(user);
                     this.adminUserTableview.refresh();
                 }
             });
@@ -220,19 +225,19 @@ public class AdminUserController implements Initializable {
 
     }
 
-    private void userPromptDialog(UsersDTO user, boolean Editable) {
+    private void userPromptDialog(UsersDTO user, boolean editable) {
         try {
-            FXMLLoader loader = new FXMLLoader(AdminUserController.class.getResource("/views/AdminUserInfoAlert.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/AdminUserInfoAlert.fxml"));
             VBox dialogContent = loader.load();
 
-            AdminUserInfoDialogController controller = (AdminUserInfoDialogController) loader.getController();
-            controller.setUser(user, !Editable);
+            AdminUserInfoDialogController controller = loader.getController();
+            controller.setUser(user, !editable);
+
             Stage dialogStage = new Stage();
             controller.setParentStage(dialogStage);
             dialogStage.initModality(Modality.APPLICATION_MODAL);
             dialogStage.setTitle("User Information");
             dialogStage.setResizable(false);
-            dialogStage.setMaximized(false);
             dialogStage.setScene(new Scene(dialogContent));
             dialogStage.showAndWait();
         } catch (IOException ex) {
@@ -240,4 +245,5 @@ public class AdminUserController implements Initializable {
             ex.printStackTrace();
         }
     }
+
 }
