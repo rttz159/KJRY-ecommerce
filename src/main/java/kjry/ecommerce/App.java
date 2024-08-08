@@ -15,10 +15,11 @@ public class App extends Application {
 
     @Override
     public void start(Stage stage) throws IOException {
-        Parent root = loadFXML("/views/AdminUsers");
+        Parent root = loadFXML("/views/AdminMain");
         scene = new Scene(root);
         stage.setScene(scene);
         stage.setTitle("KJRY ECOMMERCE");
+        stage.centerOnScreen();
         stage.show();
     }
 

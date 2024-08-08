@@ -42,26 +42,26 @@
     -fx-background-image: url("/views/css/image/home_black.png");    
 }
 
-#sidePanelVBox #UsersButton{
+#sidePanelVBox #usersButton{
     -fx-background-image: url("/views/css/image/user_white.png");
 }
 
-#sidePanelVBox #UsersButton:hover{
+#sidePanelVBox #usersButton:hover{
     -fx-background-image: url("/views/css/image/user_black.png");    
 }
 
-#sidePanelVBox #ProductsButton{
+#sidePanelVBox #productsButton{
     -fx-background-image: url("/views/css/image/box_white.png");
 }
 
-#sidePanelVBox #ProductsButton:hover{
+#sidePanelVBox #productsButton:hover{
     -fx-background-image: url("/views/css/image/box_black.png");    
 }
 
-#sidePanelVBox #OrdersButton{
+#sidePanelVBox #ordersButton{
     -fx-background-image: url("/views/css/image/shopping-list_white.png");
 }
 
-#sidePanelVBox #OrdersButton:hover{
+#sidePanelVBox #ordersButton:hover{
     -fx-background-image: url("/views/css/image/shopping-list_black.png");
 }

@@ -14,7 +14,7 @@
          <children>
             <VBox fx:id="sidePanelParentVBox" alignment="TOP_CENTER" prefHeight="600.0" prefWidth="270.0">
                <children>
-                  <Label fx:id="AdminLabel" text="Admin">
+                  <Label fx:id="adminLabel" text="Admin">
                      <VBox.margin>
                         <Insets top="25.0" />
                      </VBox.margin>
@@ -26,13 +26,13 @@
                      </padding></Label>
                   <VBox fx:id="sidePanelVBox" alignment="CENTER" prefHeight="115.0" prefWidth="140.0">
                      <children>
-                        <Button fx:id="dashBoardButton" mnemonicParsing="false" onAction="#saySomething" prefHeight="50.0" prefWidth="250.0" text="DashBoard">
+                        <Button fx:id="dashBoardButton" mnemonicParsing="false" prefHeight="50.0" prefWidth="250.0" text="DashBoard">
                            <font>
                               <Font size="14.0" />
                            </font></Button>
-                        <Button fx:id="UsersButton" mnemonicParsing="false" prefHeight="50.0" prefWidth="250.0" text="Users" />
-                        <Button fx:id="ProductsButton" mnemonicParsing="false" prefHeight="50.0" prefWidth="250.0" text="Products" />
-                        <Button fx:id="OrdersButton" mnemonicParsing="false" prefHeight="50.0" prefWidth="250.0" text="Orders" />
+                        <Button fx:id="usersButton" mnemonicParsing="false" prefHeight="50.0" prefWidth="250.0" text="Users" />
+                        <Button fx:id="productsButton" mnemonicParsing="false" prefHeight="50.0" prefWidth="250.0" text="Products" />
+                        <Button fx:id="ordersButton" mnemonicParsing="false" prefHeight="50.0" prefWidth="250.0" text="Orders" />
                      </children>
                      <VBox.margin>
                         <Insets top="25.0" />

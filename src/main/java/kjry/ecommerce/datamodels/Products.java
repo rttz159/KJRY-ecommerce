@@ -21,6 +21,8 @@ public abstract class Products {
         this.sellingPrice = sellingPrice;
     }
 
+    public Products(){}
+    
     public String getId() {
         return id;
     }
