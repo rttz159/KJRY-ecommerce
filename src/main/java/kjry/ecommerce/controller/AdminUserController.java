@@ -65,7 +65,7 @@ public class AdminUserController implements Initializable {
     @FXML
     private Button addButton;
 
-    ObservableList<UsersDTO> list = FXCollections.observableArrayList(
+    private ObservableList<UsersDTO> list = FXCollections.observableArrayList(
             new EmployeesDTO("E01", "pass123", "Alice", "alice@example.com", "1234567890", 'F', new Date(90, 0, 1), JobRoleDTO.MANAGER),
             new EmployeesDTO("E02", "pass456", "Bob", "bob@example.com", "2345678901", 'M', new Date(92, 4, 15), JobRoleDTO.MARKETING),
             new EmployeesDTO("E03", "pass789", "Charlie", "charlie@example.com", "3456789012", 'M', new Date(85, 10, 20), JobRoleDTO.STOCK),
@@ -159,7 +159,7 @@ public class AdminUserController implements Initializable {
                         adminUserTableview.refresh();
                     } catch (NullPointerException x) {
                         Alert warningAlert = new Alert(Alert.AlertType.WARNING);
-                        warningAlert.setContentText("Please select a user before proceed.");
+                        warningAlert.setContentText("Please select an user before proceed.");
                         warningAlert.setHeaderText("No User Selected");
                         warningAlert.showAndWait();
                     }

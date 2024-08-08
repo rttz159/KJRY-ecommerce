@@ -1,3 +1,4 @@
+D:\Study\Degree\Y1S3\OOP\ecommerce\src\main\java\kjry\ecommerce\controller\AdminOrderController.java
 D:\Study\Degree\Y1S3\OOP\ecommerce\src\main\java\kjry\ecommerce\services\ProductService.java
 D:\Study\Degree\Y1S3\OOP\ecommerce\src\main\java\kjry\ecommerce\dtos\CustomersDTO.java
 D:\Study\Degree\Y1S3\OOP\ecommerce\src\main\java\kjry\ecommerce\datamodels\Users.java
@@ -23,6 +24,7 @@ D:\Study\Degree\Y1S3\OOP\ecommerce\src\main\java\module-info.java
 D:\Study\Degree\Y1S3\OOP\ecommerce\src\main\java\kjry\ecommerce\App.java
 D:\Study\Degree\Y1S3\OOP\ecommerce\src\main\java\kjry\ecommerce\services\UserService.java
 D:\Study\Degree\Y1S3\OOP\ecommerce\src\main\java\kjry\ecommerce\dataaccess\Database.java
+D:\Study\Degree\Y1S3\OOP\ecommerce\src\main\java\kjry\ecommerce\controller\AdminOrderInfoDialogController.java
 D:\Study\Degree\Y1S3\OOP\ecommerce\src\main\java\kjry\ecommerce\dtos\OrdersDTO.java
 D:\Study\Degree\Y1S3\OOP\ecommerce\src\main\java\kjry\ecommerce\datamodels\Orders.java
 D:\Study\Degree\Y1S3\OOP\ecommerce\src\main\java\kjry\ecommerce\controller\ValidationUtils.java

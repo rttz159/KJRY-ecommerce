@@ -28,3 +28,16 @@
     -fx-text-fill: -secondary-color;
 }
 
+#AdminOrderParentVBox .table-view .table-cell .button{
+    -fx-background-color: transparent;
+    -fx-padding: 2 8px 2 8px;
+    -fx-border-size: 0px;
+    -fx-border-color: transparent;
+    -fx-text-fill: #A020F0;
+    -fx-underline: true;
+}
+
+#AdminOrderParentVBox .table-view .table-cell .button:hover {
+    -fx-cursor:hand;
+    -fx-text-fill: #f01e2c;
+}

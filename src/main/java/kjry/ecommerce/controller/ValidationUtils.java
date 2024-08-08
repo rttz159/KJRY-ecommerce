@@ -2,6 +2,7 @@ package kjry.ecommerce.controller;
 
 import java.text.SimpleDateFormat;
 import java.util.regex.Pattern;
+import javafx.scene.control.Control;
 
 public class ValidationUtils {
 
@@ -33,5 +34,13 @@ public class ValidationUtils {
     
     public static boolean isNotEmpty(String value) {
         return value != null && !value.trim().isEmpty();
+    }
+    
+    public static void setFieldValidity(Control control, boolean isValid) {
+        if (isValid) {
+            control.getStyleClass().remove("invalid");
+        } else {
+            control.getStyleClass().add("invalid");
+        }
     }
 }
