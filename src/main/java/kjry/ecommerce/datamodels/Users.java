@@ -20,6 +20,8 @@ public abstract class Users {
         this.gender = gender;
         this.birthDate = birthDate;
     }
+    
+    protected Users(){}
 
     public String getId() {
         return id;

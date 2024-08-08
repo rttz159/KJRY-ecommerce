@@ -3,14 +3,14 @@ package kjry.ecommerce.dtos;
 import java.io.File;
 
 public abstract class ProductsDTO {
-    protected String id;
-    protected String name;
-    protected int stockQty;
-    protected double costPrice;
-    protected double sellingPrice;
-    protected File imageFile;
+    public String id;
+    public String name;
+    public int stockQty;
+    public double costPrice;
+    public double sellingPrice;
+    public File imageFile;
 
-    public ProductsDTO(String id, String name, double costPrice, double sellingPrice, File imageFile) {
+    protected ProductsDTO(String id, String name, double costPrice, double sellingPrice, File imageFile) {
         this.id = id;
         this.name = name;
         this.costPrice = costPrice;
@@ -18,12 +18,14 @@ public abstract class ProductsDTO {
         this.imageFile = imageFile;
     }
 
-    public ProductsDTO(String id, String name, double costPrice, double sellingPrice) {
+    protected ProductsDTO(String id, String name, double costPrice, double sellingPrice) {
         this.id = id;
         this.name = name;
         this.costPrice = costPrice;
         this.sellingPrice = sellingPrice;
     }
+    
+    protected ProductsDTO(){}
     
     public String getId() {
         return id;

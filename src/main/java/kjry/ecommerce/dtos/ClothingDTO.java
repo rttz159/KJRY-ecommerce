@@ -32,6 +32,8 @@ public class ClothingDTO extends ProductsDTO{
         this.size = size;
     }
     
+    public ClothingDTO(){}
+    
     public void setSize(SizeDTO size){
         this.size = size;
     }

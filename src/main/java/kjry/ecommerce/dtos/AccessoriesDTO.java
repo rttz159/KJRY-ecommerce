@@ -5,6 +5,8 @@ import java.io.File;
 public class AccessoriesDTO extends ProductsDTO{
     private boolean washable;
 
+    public AccessoriesDTO(){}
+    
     public AccessoriesDTO(String id, String name, double costPrice, double sellingPrice, File imageFile,boolean washable) {
         super(id, name, costPrice, sellingPrice, imageFile);
         this.washable = washable;

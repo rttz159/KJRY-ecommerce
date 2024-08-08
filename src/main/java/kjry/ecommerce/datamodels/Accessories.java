@@ -7,6 +7,8 @@ public class Accessories extends Products{
         super(id, name, costPrice, sellingPrice);
         this.washable = washable;
     }
+    
+    public Accessories(){}
 
     public boolean isWashable() {
         return washable;
