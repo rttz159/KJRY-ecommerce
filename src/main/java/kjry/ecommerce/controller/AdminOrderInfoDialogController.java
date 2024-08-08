@@ -100,10 +100,8 @@ public class AdminOrderInfoDialogController implements Initializable {
         boolean valid = true;
 
         boolean addressValid = ValidationUtils.isNotEmpty(addressTextField.getText());
-                System.out.println(addressValid);
         ValidationUtils.setFieldValidity(addressTextField, addressValid);
         valid &= addressValid;
-        System.out.println(valid);
 
         if(valid){
             saveOrder();
