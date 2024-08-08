@@ -10,7 +10,6 @@ import kjry.ecommerce.dtos.EmployeesDTO;
 import kjry.ecommerce.dtos.UsersDTO;
 
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.stage.Stage;
@@ -269,36 +268,36 @@ public class AdminUserInfoDialogController {
         boolean valid = true;
 
         boolean idValid = ValidationUtils.isNotEmpty(iDTextField.getText());
-        setFieldValidity(iDTextField, idValid);
+        ValidationUtils.setFieldValidity(iDTextField, idValid);
         valid &= idValid;
 
         boolean nameValid = ValidationUtils.isNotEmpty(nameTextField.getText());
-        setFieldValidity(nameTextField, nameValid);
+        ValidationUtils.setFieldValidity(nameTextField, nameValid);
         valid &= nameValid;
 
         boolean passwordValid = ValidationUtils.isValidPassword(passwordTextField.getText());
-        setFieldValidity(passwordTextField, passwordValid);
+        ValidationUtils.setFieldValidity(passwordTextField, passwordValid);
         valid &= passwordValid;
 
         boolean emailValid = ValidationUtils.isValidEmail(emailTextField.getText());
-        setFieldValidity(emailTextField, emailValid);
+        ValidationUtils.setFieldValidity(emailTextField, emailValid);
         valid &= emailValid;
 
         boolean phoneValid = ValidationUtils.isValidPhone(phoneTextField.getText());
-        setFieldValidity(phoneTextField, phoneValid);
+        ValidationUtils.setFieldValidity(phoneTextField, phoneValid);
         valid &= phoneValid;
 
         boolean dateValid = ValidationUtils.isValidDate(birthDateTextField.getText());
-        setFieldValidity(birthDateTextField, dateValid);
+        ValidationUtils.setFieldValidity(birthDateTextField, dateValid);
         valid &= dateValid;
 
         boolean genderValid = genderChoiceBox.getSelectionModel().getSelectedItem() != null;
-        setFieldValidity(genderChoiceBox, genderValid);
+        ValidationUtils.setFieldValidity(genderChoiceBox, genderValid);
         valid &= genderValid;
 
         if (user instanceof EmployeesDTO) {
             boolean jobRoleValid = jobRoleChoiceBox.getSelectionModel().getSelectedItem() != null;
-            setFieldValidity(jobRoleChoiceBox, jobRoleValid);
+            ValidationUtils.setFieldValidity(jobRoleChoiceBox, jobRoleValid);
             valid &= jobRoleValid;
         }
 
@@ -307,13 +306,6 @@ public class AdminUserInfoDialogController {
         }
     }
 
-    private void setFieldValidity(Control control, boolean isValid) {
-        if (isValid) {
-            control.getStyleClass().remove("invalid");
-        } else {
-            control.getStyleClass().add("invalid");
-        }
-    }
 
     private void saveUserData() {
         if (user instanceof CustomersDTO) {

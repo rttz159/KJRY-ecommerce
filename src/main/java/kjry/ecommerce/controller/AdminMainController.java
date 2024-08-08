@@ -41,11 +41,11 @@ public class AdminMainController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        
-        if(content != null){
+
+        if (content != null) {
             parentHBox.getChildren().add(content);
         }
-        
+
         usersButton.setOnAction(ev -> {
             try {
                 clearContentVBox();
@@ -56,10 +56,22 @@ public class AdminMainController implements Initializable {
                 System.out.println("Error occurs when loading the fxml file");
             }
         });
+
+        ordersButton.setOnAction(ev -> {
+            try {
+                clearContentVBox();
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/AdminOrders.fxml"));
+                content = loader.load();
+                parentHBox.getChildren().add(content);
+            } catch (IOException ex) {
+                System.out.println("Error occurs when loading the fxml file");
+            }
+        });
+
     }
-    
-    private void clearContentVBox(){
-        if(parentHBox.getChildren().size() == 2){
+
+    private void clearContentVBox() {
+        if (parentHBox.getChildren().size() == 2) {
             parentHBox.getChildren().remove(1);
             parentHBox.layout();
         }

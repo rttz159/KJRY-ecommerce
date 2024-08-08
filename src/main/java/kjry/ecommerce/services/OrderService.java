@@ -10,11 +10,6 @@ public class OrderService {
     
     private static DatabaseController dbController = new OrderController();
     
-    private static boolean updateOrderStatus(OrdersDTO dto){
-        dto.setStatus(OrdersDTO.StatusDTO.DONE);
-        return dbController.update(dto);
-    }
-    
     public static boolean createOrder(OrdersDTO dto){
         if(dto != null){
             return dbController.create(dto);
@@ -34,6 +29,14 @@ public class OrderService {
     
     public static OrdersDTO[] getAllOrder(){
         return (OrdersDTO[]) dbController.getAll();
+    }
+    
+    public static boolean updateOrder(OrdersDTO dto){
+        if(dto != null){
+            return dbController.update(dto);
+        }else{
+            return false;
+        }
     }
     
     public static double calculateBill(OrdersDTO dto){
