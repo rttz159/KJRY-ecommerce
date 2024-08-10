@@ -1,3 +1,4 @@
+kjry\ecommerce\controller\AdminProductController.class
 kjry\ecommerce\datamodels\Customers$1.class
 kjry\ecommerce\dataaccess\OrderController.class
 kjry\ecommerce\controller\AdminOrderController$8.class
@@ -19,6 +20,7 @@ kjry\ecommerce\controller\AdminOrderController$17.class
 kjry\ecommerce\dtos\OrdersDTO$StatusDTO.class
 kjry\ecommerce\dataaccess\GsonDatabase$12.class
 kjry\ecommerce\services\OnlineBankingPaymentMethod.class
+kjry\ecommerce\controller\AdminProductInfoDialogController.class
 kjry\ecommerce\dataaccess\EntityDTOConverter.class
 kjry\ecommerce\controller\AdminOrderController$11.class
 kjry\ecommerce\controller\AdminOrderController$3.class
@@ -43,7 +45,9 @@ kjry\ecommerce\dtos\OrdersDTO.class
 kjry\ecommerce\controller\AdminOrderController$16.class
 kjry\ecommerce\dtos\EmployeesDTO.class
 kjry\ecommerce\dataaccess\GsonDatabase$11.class
+kjry\ecommerce\controller\AdminProductController$1.class
 kjry\ecommerce\dtos\EmployeesDTO$JobRoleDTO.class
+kjry\ecommerce\services\ValidationUtils.class
 kjry\ecommerce\dataaccess\UserController.class
 kjry\ecommerce\dtos\CustomersDTO$1.class
 kjry\ecommerce\dataaccess\GsonDatabase$2.class
@@ -71,7 +75,6 @@ kjry\ecommerce\controller\AdminUserController$6.class
 kjry\ecommerce\dataaccess\GsonDatabase$UsersListAdapter.class
 kjry\ecommerce\controller\AdminOrderController$1.class
 kjry\ecommerce\controller\AdminUserController$3.class
-kjry\ecommerce\controller\ValidationUtils.class
 kjry\ecommerce\services\PaymentMethod.class
 kjry\ecommerce\dataaccess\GsonDatabase$ProductsListAdapter.class
 kjry\ecommerce\datamodels\Clothing.class

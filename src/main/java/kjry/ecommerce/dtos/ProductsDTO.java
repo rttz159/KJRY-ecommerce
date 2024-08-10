@@ -1,21 +1,27 @@
 package kjry.ecommerce.dtos;
 
-import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
 
 public abstract class ProductsDTO {
+
     public String id;
     public String name;
-    public int stockQty;
+    public int stockQty = -1;
     public double costPrice;
     public double sellingPrice;
-    public File imageFile;
+    public String imagePath;
 
-    protected ProductsDTO(String id, String name, double costPrice, double sellingPrice, File imageFile) {
+    protected ProductsDTO(String id, String name, double costPrice, double sellingPrice, String imagePath, int stockQty) {
         this.id = id;
         this.name = name;
         this.costPrice = costPrice;
         this.sellingPrice = sellingPrice;
-        this.imageFile = imageFile;
+        this.imagePath = imagePath;
+        this.stockQty = stockQty;
     }
 
     protected ProductsDTO(String id, String name, double costPrice, double sellingPrice) {
@@ -24,9 +30,11 @@ public abstract class ProductsDTO {
         this.costPrice = costPrice;
         this.sellingPrice = sellingPrice;
     }
-    
-    protected ProductsDTO(){}
-    
+
+    protected ProductsDTO() {
+        this.imagePath = "image/unavailable.png";
+    }
+
     public String getId() {
         return id;
     }
@@ -67,13 +75,41 @@ public abstract class ProductsDTO {
         this.sellingPrice = sellingPrice;
     }
 
-    public File getImageFile() {
-        return imageFile;
+    public String getImagePath() {
+        return imagePath;
     }
 
-    public void setImageFile(File imageFile) {
-        this.imageFile = imageFile;
+    public void setImagePath(String imageFilePath) {
+        String path = null;
+        Path sourcePath = Paths.get(imageFilePath);
+        Path destinationFolder = Paths.get("/image");
+        try {
+            if (Files.notExists(destinationFolder)) {
+                Files.createDirectories(destinationFolder);
+            }
+
+            Path destinationPath = destinationFolder.resolve(sourcePath.getFileName());
+
+            Files.copy(sourcePath, destinationPath, StandardCopyOption.REPLACE_EXISTING);
+
+            String copiedFilePath = destinationPath.toAbsolutePath().toString();
+
+            System.out.println("File copied to: " + copiedFilePath);
+
+            path = String.format("image/%s", sourcePath.getFileName());
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        this.imagePath = path;
     }
-    
-    
+
+    public String getType() {
+        if (this instanceof ClothingDTO) {
+            return "Clothing";
+        } else {
+            return "Accesories";
+        }
+    }
+
 }

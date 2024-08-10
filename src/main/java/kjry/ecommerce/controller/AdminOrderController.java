@@ -27,40 +27,36 @@ import kjry.ecommerce.dtos.CustomersDTO;
 import kjry.ecommerce.dtos.OrdersDTO;
 import kjry.ecommerce.dtos.ProductsDTO;
 import kjry.ecommerce.dtos.UsersDTO;
-import kjry.ecommerce.services.OrderService;
 
 public class AdminOrderController implements Initializable {
-    
+
     @FXML
     private VBox AdminOrderParentVBox;
-    
+
     @FXML
     private TableView<OrdersDTO> orderTableView;
-    
+
     @FXML
     private TableColumn<OrdersDTO, Button> actionTableColumn;
-    
+
     @FXML
     private TableColumn<OrdersDTO, Date> dateTableColumn;
-    
+
     @FXML
     private Button editButton;
-    
+
     @FXML
     private TableColumn<OrdersDTO, String> orderIdTableColumn;
-    
-    @FXML
-    private Button removeButton;
-    
+
     @FXML
     private TableColumn<OrdersDTO, OrdersDTO.StatusDTO> statusTableColumn;
-    
+
     @FXML
     private TableColumn<OrdersDTO, UsersDTO> userIdTableColumn;
-    
+
     @FXML
     private TableColumn<OrdersDTO, UsersDTO> usernameTableColumn;
-    
+
     private ObservableList<OrdersDTO> list = FXCollections.observableArrayList(
             new OrdersDTO("1", "123 Main St", new CustomersDTO("C01", "cust123", "Dave", "dave@example.com", "4567890123", 'M', new Date(95, 6, 7), new ArrayList<>(), new ArrayList<>()), OrdersDTO.StatusDTO.PENDING, new ArrayList<Pair<ProductsDTO, Integer>>() {
                 {
@@ -126,7 +122,7 @@ public class AdminOrderController implements Initializable {
                 }
             }, new Date())
     );
-    
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         orderIdTableColumn.setCellValueFactory(new PropertyValueFactory<>("id"));
@@ -171,7 +167,7 @@ public class AdminOrderController implements Initializable {
                 }
             }
         });
-        
+
         actionTableColumn.setCellFactory(column -> new TableCell<OrdersDTO, Button>() {
             private final Button button = new Button("Details");
 
@@ -190,25 +186,26 @@ public class AdminOrderController implements Initializable {
             }
         });
         orderTableView.setItems(list);
-        
-        editButton.setOnAction(ev->{
+
+        editButton.setOnAction(ev -> {
             OrdersDTO order = orderTableView.getSelectionModel().getSelectedItem();
-                    try {
-                        System.out.println("Edit button clicked for order: " + order.getId());
-                        orderPromptDialog(order, true);
-                        //OrderService.updateOrder(order);
-                        //list = FXCollections.observableArrayList(OrderService.getAllOrder());
-                        orderTableView.refresh();
-                    } catch (NullPointerException x) {
-                        Alert warningAlert = new Alert(Alert.AlertType.WARNING);
-                        warningAlert.setContentText("Please select an order before proceed.");
-                        warningAlert.setHeaderText("No Order Selected");
-                        warningAlert.showAndWait();
-                    }
+            try {
+                System.out.println("Edit button clicked for order: " + order.getId());
+                orderPromptDialog(order, true);
+                //OrderService.updateOrder(order);
+                //list = FXCollections.observableArrayList(OrderService.getAllOrder());
+                //orderTableView.setItems(list);
+                orderTableView.refresh();
+            } catch (NullPointerException x) {
+                Alert warningAlert = new Alert(Alert.AlertType.WARNING);
+                warningAlert.setContentText("Please select an order before proceed.");
+                warningAlert.setHeaderText("No Order Selected");
+                warningAlert.showAndWait();
+            }
         });
-        
+
     }
-    
+
     private void orderPromptDialog(OrdersDTO order, boolean editable) {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/AdminOrderInfoAlert.fxml"));
@@ -229,5 +226,5 @@ public class AdminOrderController implements Initializable {
             ex.printStackTrace();
         }
     }
-    
+
 }

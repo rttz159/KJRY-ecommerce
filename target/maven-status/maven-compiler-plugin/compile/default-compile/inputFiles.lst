@@ -1,4 +1,5 @@
 D:\Study\Degree\Y1S3\OOP\ecommerce\src\main\java\kjry\ecommerce\controller\AdminOrderController.java
+D:\Study\Degree\Y1S3\OOP\ecommerce\src\main\java\kjry\ecommerce\controller\AdminProductInfoDialogController.java
 D:\Study\Degree\Y1S3\OOP\ecommerce\src\main\java\kjry\ecommerce\services\ProductService.java
 D:\Study\Degree\Y1S3\OOP\ecommerce\src\main\java\kjry\ecommerce\dtos\CustomersDTO.java
 D:\Study\Degree\Y1S3\OOP\ecommerce\src\main\java\kjry\ecommerce\datamodels\Users.java
@@ -16,6 +17,7 @@ D:\Study\Degree\Y1S3\OOP\ecommerce\src\main\java\kjry\ecommerce\services\Payment
 D:\Study\Degree\Y1S3\OOP\ecommerce\src\main\java\kjry\ecommerce\dataaccess\DatabaseController.java
 D:\Study\Degree\Y1S3\OOP\ecommerce\src\main\java\kjry\ecommerce\dataaccess\DatabaseWrapper.java
 D:\Study\Degree\Y1S3\OOP\ecommerce\src\main\java\kjry\ecommerce\dtos\EmployeesDTO.java
+D:\Study\Degree\Y1S3\OOP\ecommerce\src\main\java\kjry\ecommerce\services\ValidationUtils.java
 D:\Study\Degree\Y1S3\OOP\ecommerce\src\main\java\kjry\ecommerce\datamodels\Customers.java
 D:\Study\Degree\Y1S3\OOP\ecommerce\src\main\java\kjry\ecommerce\datamodels\Products.java
 D:\Study\Degree\Y1S3\OOP\ecommerce\src\main\java\kjry\ecommerce\dtos\ClothingDTO.java
@@ -27,7 +29,6 @@ D:\Study\Degree\Y1S3\OOP\ecommerce\src\main\java\kjry\ecommerce\dataaccess\Datab
 D:\Study\Degree\Y1S3\OOP\ecommerce\src\main\java\kjry\ecommerce\controller\AdminOrderInfoDialogController.java
 D:\Study\Degree\Y1S3\OOP\ecommerce\src\main\java\kjry\ecommerce\dtos\OrdersDTO.java
 D:\Study\Degree\Y1S3\OOP\ecommerce\src\main\java\kjry\ecommerce\datamodels\Orders.java
-D:\Study\Degree\Y1S3\OOP\ecommerce\src\main\java\kjry\ecommerce\controller\ValidationUtils.java
 D:\Study\Degree\Y1S3\OOP\ecommerce\src\main\java\kjry\ecommerce\services\NotificationService.java
 D:\Study\Degree\Y1S3\OOP\ecommerce\src\main\java\kjry\ecommerce\dtos\UsersDTO.java
 D:\Study\Degree\Y1S3\OOP\ecommerce\src\main\java\kjry\ecommerce\datamodels\Clothing.java
@@ -35,5 +36,6 @@ D:\Study\Degree\Y1S3\OOP\ecommerce\src\main\java\kjry\ecommerce\services\DataUpd
 D:\Study\Degree\Y1S3\OOP\ecommerce\src\main\java\kjry\ecommerce\services\CardPaymentMethod.java
 D:\Study\Degree\Y1S3\OOP\ecommerce\src\main\java\kjry\ecommerce\services\OrderService.java
 D:\Study\Degree\Y1S3\OOP\ecommerce\src\main\java\kjry\ecommerce\controller\AdminUserInfoDialogController.java
+D:\Study\Degree\Y1S3\OOP\ecommerce\src\main\java\kjry\ecommerce\controller\AdminProductController.java
 D:\Study\Degree\Y1S3\OOP\ecommerce\src\main\java\kjry\ecommerce\dataaccess\GsonDatabase.java
 D:\Study\Degree\Y1S3\OOP\ecommerce\src\main\java\kjry\ecommerce\services\OnlineBankingPaymentMethod.java

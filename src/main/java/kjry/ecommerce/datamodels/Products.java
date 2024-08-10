@@ -1,28 +1,31 @@
 package kjry.ecommerce.datamodels;
 
-import java.io.File;
-import java.io.FileOutputStream;
 import java.io.IOException;
 import java.nio.file.Files;
+import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.Base64;
+import java.nio.file.StandardCopyOption;
 
 public abstract class Products {
+
     protected String id;
     protected String name;
     protected double costPrice;
     protected double sellingPrice;
-    protected String imageFile;
+    protected String imagePath;
 
     public Products(String id, String name, double costPrice, double sellingPrice) {
         this.id = id;
         this.name = name;
         this.costPrice = costPrice;
         this.sellingPrice = sellingPrice;
+        this.imagePath = "image/unavailable.png";
     }
 
-    public Products(){}
-    
+    public Products() {
+        this.imagePath = "image/unavailable.png";
+    }
+
     public String getId() {
         return id;
     }
@@ -55,37 +58,33 @@ public abstract class Products {
         this.sellingPrice = sellingPrice;
     }
 
-    public File getImageFile() {
-        byte[] decodedBytes = Base64.getDecoder().decode(this.imageFile);
-        String filePath = String.format("temp/%sImage", name);
-        File file = new File(filePath);
-        try (FileOutputStream fos = new FileOutputStream(file)) {
-            fos.write(decodedBytes);
+    public String getImagePath() {
+        return imagePath;
+    }
+
+    public void setImagePath(String imageFilePath) {
+        String path = null;
+        Path sourcePath = Paths.get(imageFilePath);
+        Path destinationFolder = Paths.get("/image");
+        try {
+            if (Files.notExists(destinationFolder)) {
+                Files.createDirectories(destinationFolder);
+            }
+
+            Path destinationPath = destinationFolder.resolve(sourcePath.getFileName());
+
+            Files.copy(sourcePath, destinationPath, StandardCopyOption.REPLACE_EXISTING);
+
+            String copiedFilePath = destinationPath.toAbsolutePath().toString();
+
+            System.out.println("File copied to: " + copiedFilePath);
+
+            path = String.format("image/%s", sourcePath.getFileName());
+
         } catch (IOException e) {
             e.printStackTrace();
         }
-        return file;
+        this.imagePath = path;
     }
 
-    public void setImageFile(String imageFilePath){
-        byte[] imageBytes;
-        try {
-            imageBytes = Files.readAllBytes(Paths.get(imageFilePath));
-            this.imageFile = Base64.getEncoder().encodeToString(imageBytes);
-        } catch (IOException ex) {
-            System.out.println("Error when setting imageFile to the Product");
-        }
-    }
-    
-    public void setImageFile(File imageFile){
-        byte[] imageBytes;
-        try {
-            imageBytes = Files.readAllBytes(Paths.get(imageFile.getPath()));
-            this.imageFile = Base64.getEncoder().encodeToString(imageBytes);
-        } catch (IOException ex) {
-            System.out.println("Error when getting imageFile from the Product");
-        }  
-    }
-    
-    
 }

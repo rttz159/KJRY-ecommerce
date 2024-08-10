@@ -1,5 +1,6 @@
 package kjry.ecommerce.controller;
 
+import kjry.ecommerce.services.ValidationUtils;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.layout.HBox;
@@ -15,6 +16,7 @@ import javafx.event.ActionEvent;
 import javafx.stage.Stage;
 import javafx.util.Pair;
 import kjry.ecommerce.dtos.ProductsDTO;
+import kjry.ecommerce.services.UserService;
 
 public class AdminUserInfoDialogController {
 
@@ -74,6 +76,8 @@ public class AdminUserInfoDialogController {
     private Stage parentStage;
 
     private boolean viewOnly;
+
+    private boolean isCreate = false;
 
     public void setParentStage(Stage parentStage) {
         this.parentStage = parentStage;
@@ -267,7 +271,14 @@ public class AdminUserInfoDialogController {
     private void validateFields() {
         boolean valid = true;
 
-        boolean idValid = ValidationUtils.isNotEmpty(iDTextField.getText());
+        String[] ids = new String[UserService.getAllUsers().length];
+        int i = 0;
+        for (UsersDTO x : UserService.getAllUsers()) {
+            ids[i] = x.getId();
+            i++;
+        }
+
+        boolean idValid = ValidationUtils.isUnqiue(iDTextField.getText(), ids);
         ValidationUtils.setFieldValidity(iDTextField, idValid);
         valid &= idValid;
 
@@ -303,9 +314,10 @@ public class AdminUserInfoDialogController {
 
         if (valid) {
             saveUserData();
+            this.isCreate = true;
+            this.parentStage.close();
         }
     }
-
 
     private void saveUserData() {
         if (user instanceof CustomersDTO) {
@@ -339,8 +351,10 @@ public class AdminUserInfoDialogController {
             }
             employee.setJobRole(jobRoleChoiceBox.getSelectionModel().getSelectedItem());
         }
+    }
 
-        this.parentStage.close();
+    public boolean isCreate() {
+        return isCreate;
     }
 
 }

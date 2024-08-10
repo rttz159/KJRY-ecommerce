@@ -1,4 +1,4 @@
-package kjry.ecommerce.controller;
+package kjry.ecommerce.services;
 
 import java.text.SimpleDateFormat;
 import java.util.regex.Pattern;
@@ -27,20 +27,53 @@ public class ValidationUtils {
             return false;
         }
     }
-    
-    public static boolean isValidPassword(String password){
+
+    public static boolean isValidPassword(String password) {
         return password != null && !password.trim().isEmpty() && password.length() >= 6;
     }
-    
+
     public static boolean isNotEmpty(String value) {
         return value != null && !value.trim().isEmpty();
     }
-    
+
+    public static boolean isUnqiue(String value, String[] values) {
+        if (!isNotEmpty(value)) {
+            return false;
+        }
+        boolean valid = true;
+        for (int i = 0; i < values.length; i++) {
+            if (values[i].equals(value)) {
+                valid = false;
+            }
+        }
+        return valid;
+    }
+
     public static void setFieldValidity(Control control, boolean isValid) {
         if (isValid) {
             control.getStyleClass().remove("invalid");
         } else {
             control.getStyleClass().add("invalid");
         }
+    }
+
+    public static boolean isValidDouble(String str) {
+        if (str == null || str.isEmpty()) {
+            return false;
+        }
+        try {
+            Double.parseDouble(str);
+            return true;
+        } catch (NumberFormatException e) {
+            return false;
+        }
+    }
+
+    public static boolean isValidPositiveInteger(String str) {
+        return str != null && str.matches("\\d+");
+    }
+
+    public static boolean isValidNull(Object object){
+        return object != null;
     }
 }
