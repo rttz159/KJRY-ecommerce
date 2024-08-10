@@ -1,7 +1,5 @@
 package kjry.ecommerce.datamodels;
 
-import java.io.File;
-
 public class Clothing extends Products {
 
     private Type type;

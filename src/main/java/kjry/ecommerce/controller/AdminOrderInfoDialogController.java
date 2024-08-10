@@ -14,7 +14,7 @@ import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
-import javafx.util.Pair;
+import kjry.ecommerce.datamodels.Pair;
 import kjry.ecommerce.dtos.OrdersDTO;
 import kjry.ecommerce.dtos.ProductsDTO;
 
@@ -50,6 +50,7 @@ public class AdminOrderInfoDialogController implements Initializable {
     private OrdersDTO order;
     private boolean viewOnly;
     private Stage parent;
+    private boolean isCreate = false;
 
     public void setOrder(OrdersDTO order, boolean viewOnly) {
         this.order = order;
@@ -94,7 +95,7 @@ public class AdminOrderInfoDialogController implements Initializable {
 
     @FXML
     void handleSaveButtonAction(ActionEvent event) {
-        validateFields();   
+        validateFields();
     }
 
     private void validateFields() {
@@ -104,8 +105,9 @@ public class AdminOrderInfoDialogController implements Initializable {
         ValidationUtils.setFieldValidity(addressTextField, addressValid);
         valid &= addressValid;
 
-        if(valid){
+        if (valid) {
             saveOrder();
+            isCreate = true;
             this.parent.close();
         }
     }
@@ -115,4 +117,7 @@ public class AdminOrderInfoDialogController implements Initializable {
         order.setAddress(addressTextField.getText());
     }
 
+    public boolean isCreate() {
+        return isCreate;
+    }
 }

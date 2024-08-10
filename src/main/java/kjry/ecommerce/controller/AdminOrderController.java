@@ -3,7 +3,6 @@ package kjry.ecommerce.controller;
 import java.io.IOException;
 import java.net.URL;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
@@ -21,12 +20,9 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
-import javafx.util.Pair;
-import kjry.ecommerce.dtos.ClothingDTO;
-import kjry.ecommerce.dtos.CustomersDTO;
 import kjry.ecommerce.dtos.OrdersDTO;
-import kjry.ecommerce.dtos.ProductsDTO;
 import kjry.ecommerce.dtos.UsersDTO;
+import kjry.ecommerce.services.OrderService;
 
 public class AdminOrderController implements Initializable {
 
@@ -57,71 +53,7 @@ public class AdminOrderController implements Initializable {
     @FXML
     private TableColumn<OrdersDTO, UsersDTO> usernameTableColumn;
 
-    private ObservableList<OrdersDTO> list = FXCollections.observableArrayList(
-            new OrdersDTO("1", "123 Main St", new CustomersDTO("C01", "cust123", "Dave", "dave@example.com", "4567890123", 'M', new Date(95, 6, 7), new ArrayList<>(), new ArrayList<>()), OrdersDTO.StatusDTO.PENDING, new ArrayList<Pair<ProductsDTO, Integer>>() {
-                {
-                    add(new Pair(new ClothingDTO("1", "Shirt A", 10.0, 20.0, ClothingDTO.SizeDTO.M, ClothingDTO.TypeDTO.SHIRT), 2));
-                    add(new Pair(new ClothingDTO("2", "Pants B", 15.0, 30.0, ClothingDTO.SizeDTO.L, ClothingDTO.TypeDTO.PANTS), 1));
-                    add(new Pair(new ClothingDTO("2", "Pants B", 15.0, 30.0, ClothingDTO.SizeDTO.L, ClothingDTO.TypeDTO.PANTS), 1));
-                    add(new Pair(new ClothingDTO("2", "Pants B", 15.0, 30.0, ClothingDTO.SizeDTO.L, ClothingDTO.TypeDTO.PANTS), 1));
-                }
-            }, new Date()),
-            new OrdersDTO("2", "456 Oak St", new CustomersDTO("C02", "cust456", "Eve", "eve@example.com", "5678901234", 'F', new Date(89, 2, 3), new ArrayList<>() {
-                {
-                    add(CustomersDTO.NotificationTypeDTO.EMAIL);
-                    add(CustomersDTO.NotificationTypeDTO.APP);
-                }
-            }, new ArrayList<>() {
-                {
-                    add(new Pair(new ClothingDTO("3", "Skirt C", 12.0, 25.0, ClothingDTO.SizeDTO.S, ClothingDTO.TypeDTO.SKIRT), 1));
-                }
-            }), OrdersDTO.StatusDTO.DONE, new ArrayList<Pair<ProductsDTO, Integer>>() {
-                {
-                    add(new Pair(new ClothingDTO("4", "Shirt D", 10.0, 20.0, ClothingDTO.SizeDTO.M, ClothingDTO.TypeDTO.SHIRT), 3));
-                }
-            }, new Date()),
-            new OrdersDTO("3", "789 Pine St", new CustomersDTO("C03", "cust789", "Fay", "fay@example.com", "6789012345", 'F', new Date(91, 9, 13), new ArrayList<>() {
-                {
-                    add(CustomersDTO.NotificationTypeDTO.SMS);
-                    add(CustomersDTO.NotificationTypeDTO.APP);
-                }
-            }, new ArrayList<>() {
-                {
-                    add(new Pair(new ClothingDTO("5", "Shirt E", 11.0, 22.0, ClothingDTO.SizeDTO.L, ClothingDTO.TypeDTO.SHIRT), 2));
-                }
-            }), OrdersDTO.StatusDTO.CANCELLED, new ArrayList<Pair<ProductsDTO, Integer>>() {
-                {
-                    add(new Pair(new ClothingDTO("6", "Pants F", 16.0, 32.0, ClothingDTO.SizeDTO.M, ClothingDTO.TypeDTO.PANTS), 1));
-                }
-            }, new Date()),
-            new OrdersDTO("4", "321 Elm St", new CustomersDTO("C04", "cust012", "George", "george@example.com", "7890123456", 'M', new Date(90, 1, 25), new ArrayList<>() {
-                {
-                    add(CustomersDTO.NotificationTypeDTO.APP);
-                }
-            }, new ArrayList<>() {
-                {
-                    add(new Pair(new ClothingDTO("7", "Skirt G", 13.0, 27.0, ClothingDTO.SizeDTO.S, ClothingDTO.TypeDTO.SKIRT), 1));
-                }
-            }), OrdersDTO.StatusDTO.PROCESSING, new ArrayList<Pair<ProductsDTO, Integer>>() {
-                {
-                    add(new Pair(new ClothingDTO("8", "Shirt H", 14.0, 28.0, ClothingDTO.SizeDTO.M, ClothingDTO.TypeDTO.SHIRT), 1));
-                }
-            }, new Date()),
-            new OrdersDTO("5", "654 Maple St", new CustomersDTO("C05", "cust345", "Hannah", "hannah@example.com", "8901234567", 'F', new Date(88, 11, 12), new ArrayList<>() {
-                {
-                    add(CustomersDTO.NotificationTypeDTO.SMS);
-                    add(CustomersDTO.NotificationTypeDTO.EMAIL);
-                }
-            }, new ArrayList<>() {
-                {
-                    add(new Pair(new ClothingDTO("9", "Pants I", 17.0, 34.0, ClothingDTO.SizeDTO.L, ClothingDTO.TypeDTO.PANTS), 2));
-                }
-            }), OrdersDTO.StatusDTO.PENDING, new ArrayList<Pair<ProductsDTO, Integer>>() {
-                {
-                    add(new Pair(new ClothingDTO("10", "Skirt J", 18.0, 36.0, ClothingDTO.SizeDTO.S, ClothingDTO.TypeDTO.SKIRT), 1));
-                }
-            }, new Date())
-    );
+    private ObservableList<OrdersDTO> list = FXCollections.observableArrayList(OrderService.getAllOrder());
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -191,11 +123,12 @@ public class AdminOrderController implements Initializable {
             OrdersDTO order = orderTableView.getSelectionModel().getSelectedItem();
             try {
                 System.out.println("Edit button clicked for order: " + order.getId());
-                orderPromptDialog(order, true);
-                //OrderService.updateOrder(order);
-                //list = FXCollections.observableArrayList(OrderService.getAllOrder());
-                //orderTableView.setItems(list);
-                orderTableView.refresh();
+                if (orderPromptDialog(order, true)) {
+                    OrderService.updateOrder(order);
+                    list = FXCollections.observableArrayList(OrderService.getAllOrder());
+                    orderTableView.setItems(list);
+                    orderTableView.refresh();
+                }
             } catch (NullPointerException x) {
                 Alert warningAlert = new Alert(Alert.AlertType.WARNING);
                 warningAlert.setContentText("Please select an order before proceed.");
@@ -206,7 +139,7 @@ public class AdminOrderController implements Initializable {
 
     }
 
-    private void orderPromptDialog(OrdersDTO order, boolean editable) {
+    private boolean orderPromptDialog(OrdersDTO order, boolean editable) {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/AdminOrderInfoAlert.fxml"));
             VBox dialogContent = loader.load();
@@ -217,13 +150,15 @@ public class AdminOrderController implements Initializable {
             Stage dialogStage = new Stage();
             controller.setParentStage(dialogStage);
             dialogStage.initModality(Modality.APPLICATION_MODAL);
-            dialogStage.setTitle("User Information");
+            dialogStage.setTitle("Order Information");
             dialogStage.setResizable(false);
             dialogStage.setScene(new Scene(dialogContent));
             dialogStage.showAndWait();
+            return controller.isCreate();
         } catch (IOException ex) {
             System.out.println("Error when loading AdminOrderInfoAlert.fxml");
             ex.printStackTrace();
+            return false;
         }
     }
 

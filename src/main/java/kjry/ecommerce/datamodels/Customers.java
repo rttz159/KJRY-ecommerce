@@ -2,7 +2,6 @@ package kjry.ecommerce.datamodels;
 
 import java.util.ArrayList;
 import java.util.Date;
-import javafx.util.Pair;
 
 public class Customers extends Users {
 

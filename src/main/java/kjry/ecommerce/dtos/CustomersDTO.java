@@ -2,7 +2,7 @@ package kjry.ecommerce.dtos;
 
 import java.util.ArrayList;
 import java.util.Date;
-import javafx.util.Pair;
+import kjry.ecommerce.datamodels.Pair;
 
 public class CustomersDTO extends UsersDTO{
     

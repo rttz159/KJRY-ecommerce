@@ -24,7 +24,7 @@ public class ClothingDTO extends ProductsDTO {
     }
 
     public ClothingDTO(String id, String name, double costPrice, double sellingPrice, int stockQty, SizeDTO size, TypeDTO type) {
-        super(id, name, costPrice, sellingPrice, "image/unavailable.png", stockQty);
+        super(id, name, costPrice, sellingPrice, stockQty);
         this.type = type;
         this.size = size;
     }
@@ -36,7 +36,6 @@ public class ClothingDTO extends ProductsDTO {
     }
 
     public ClothingDTO() {
-        this.imagePath = "image/unavailable.png";
     }
 
     public void setSize(SizeDTO size) {

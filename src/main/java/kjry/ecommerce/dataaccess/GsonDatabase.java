@@ -23,7 +23,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
-import javafx.util.Pair;
+import kjry.ecommerce.datamodels.Pair;
 import kjry.ecommerce.datamodels.Accessories;
 import kjry.ecommerce.datamodels.Clothing;
 import kjry.ecommerce.datamodels.Customers;
@@ -49,12 +49,13 @@ public class GsonDatabase extends Database {
                 .registerTypeAdapter(new TypeToken<ArrayList<Orders>>() {
                 }.getType(), new OrdersListAdapter())
                 .registerTypeAdapter(new TypeToken<HashMap<Products, Integer>>() {
-                }.getType(), new ProductStockAdapter());;
+                }.getType(), new ProductStockAdapter());
         this.gson = gsonbuilder.create();
         this.orderList = new ArrayList<>();
         this.productList = new ArrayList<>();
         this.userList = new ArrayList<>();
         this.productStock = new HashMap<>();
+        readFile(filepath);
     }
 
     @Override
@@ -271,7 +272,7 @@ public class GsonDatabase extends Database {
         @Override
         public JsonElement serialize(Orders order, Type typeOfSrc, JsonSerializationContext context) {
             JsonObject jsonObject = new JsonObject();
-            
+
             jsonObject.addProperty("id", order.getId());
             jsonObject.addProperty("user", order.getUser().getId());
             jsonObject.addProperty("status", order.getStatus().name());
@@ -296,7 +297,7 @@ public class GsonDatabase extends Database {
             String id = jsonObject.get("id").getAsString();
             String userId = jsonObject.get("user").getAsString();
             String statusString = jsonObject.get("status").getAsString();
-             String address = jsonObject.get("address").getAsString();
+            String address = jsonObject.get("address").getAsString();
             String orderingDateString = jsonObject.get("orderingDate").getAsString();
 
             JsonArray productListsJson = jsonObject.get("productLists").getAsJsonArray();
@@ -325,14 +326,14 @@ public class GsonDatabase extends Database {
 
             }
 
-            Date orderingDate= null;
+            Date orderingDate = null;
             try {
                 orderingDate = dateFormat.parse(orderingDateString);
             } catch (ParseException e) {
                 throw new JsonParseException("Failed to parse ordering date", e);
             }
 
-            return new Orders(id,address, particularUser, status, productLists,orderingDate);
+            return new Orders(id, address, particularUser, status, productLists, orderingDate);
         }
 
     }
@@ -346,7 +347,7 @@ public class GsonDatabase extends Database {
             JsonArray jsonArray = new JsonArray();
             for (Map.Entry<Products, Integer> entry : productStock.entrySet()) {
                 JsonObject jsonObject = new JsonObject();
-                jsonObject.add("product", productsAdapter.serialize(entry.getKey(), entry.getKey().getClass(), context));
+                jsonObject.addProperty("productId", entry.getKey().getId());
                 jsonObject.addProperty("quantity", entry.getValue());
                 jsonArray.add(jsonObject);
             }
@@ -359,12 +360,13 @@ public class GsonDatabase extends Database {
             HashMap<Products, Integer> productStock = new HashMap<>();
             for (JsonElement element : jsonArray) {
                 JsonObject jsonObject = element.getAsJsonObject();
-                String productId = productsAdapter.deserialize(jsonObject.get("product"), Products.class, context).getId();
+                String productId = jsonObject.get("productId").getAsString(); 
+                int quantity = jsonObject.get("quantity").getAsInt();
+
                 Products product = productList.stream()
                         .filter(p -> p.getId().equals(productId))
                         .findFirst()
                         .orElseThrow(() -> new JsonParseException("Product not found"));
-                int quantity = jsonObject.get("quantity").getAsInt();
                 productStock.put(product, quantity);
             }
             return productStock;

@@ -19,11 +19,9 @@ public abstract class Products {
         this.name = name;
         this.costPrice = costPrice;
         this.sellingPrice = sellingPrice;
-        this.imagePath = "image/unavailable.png";
     }
 
     public Products() {
-        this.imagePath = "image/unavailable.png";
     }
 
     public String getId() {
@@ -63,28 +61,6 @@ public abstract class Products {
     }
 
     public void setImagePath(String imageFilePath) {
-        String path = null;
-        Path sourcePath = Paths.get(imageFilePath);
-        Path destinationFolder = Paths.get("/image");
-        try {
-            if (Files.notExists(destinationFolder)) {
-                Files.createDirectories(destinationFolder);
-            }
-
-            Path destinationPath = destinationFolder.resolve(sourcePath.getFileName());
-
-            Files.copy(sourcePath, destinationPath, StandardCopyOption.REPLACE_EXISTING);
-
-            String copiedFilePath = destinationPath.toAbsolutePath().toString();
-
-            System.out.println("File copied to: " + copiedFilePath);
-
-            path = String.format("image/%s", sourcePath.getFileName());
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        this.imagePath = path;
+        this.imagePath = imageFilePath;
     }
-
 }

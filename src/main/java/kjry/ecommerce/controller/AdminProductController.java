@@ -64,13 +64,7 @@ public class AdminProductController implements Initializable {
     @FXML
     private Button removeButton;
 
-    private ObservableList<ProductsDTO> list = FXCollections.observableArrayList(
-            new ClothingDTO("1", "Shirt A", 10.0, 20.0, 1, ClothingDTO.SizeDTO.M, ClothingDTO.TypeDTO.SHIRT),
-            new ClothingDTO("2", "Pants B", 15.0, 10.0, 1, ClothingDTO.SizeDTO.L, ClothingDTO.TypeDTO.PANTS),
-            new ClothingDTO("3", "Pants C", 20.0, 30.0, 1, ClothingDTO.SizeDTO.L, ClothingDTO.TypeDTO.PANTS),
-            new ClothingDTO("4", "Pants D", 20.0, 40.0, 1, ClothingDTO.SizeDTO.L, ClothingDTO.TypeDTO.PANTS),
-            new AccessoriesDTO("5", "Belt", 20.0, 40.0, 1, true)
-    );
+    private ObservableList<ProductsDTO> list = FXCollections.observableArrayList(ProductService.getAllProducts());
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -102,11 +96,12 @@ public class AdminProductController implements Initializable {
             ProductsDTO product = productsTableView.getSelectionModel().getSelectedItem();
             try {
                 System.out.println("Edit button clicked for product: " + product.getName());
-                productPromptDialog(product, true);
-                ProductService.updateProduct(product, product.getStockQty());
-                //list = FXCollections.observableArrayList(ProductService.getAllProducts());
-                //productsTableView.setItems(list);
-                productsTableView.refresh();
+                if (productPromptDialog(product, true)) {
+                    ProductService.updateProduct(product, product.getStockQty());
+                    list = FXCollections.observableArrayList(ProductService.getAllProducts());
+                    productsTableView.setItems(list);
+                    productsTableView.refresh();
+                }
             } catch (NullPointerException x) {
                 Alert warningAlert = new Alert(Alert.AlertType.WARNING);
                 warningAlert.setContentText("Please select a product before proceed.");
@@ -149,10 +144,9 @@ public class AdminProductController implements Initializable {
 
             if (buttonClicked[0]) {
                 if (productPromptDialog(product[0], true)) {
-                    list.add(product[0]);
-                    //ProductService.createProduct(product[0],product[0].getStockQty());
-                    //list = FXCollections.observableArrayList(ProductService.getAllProducts());
-                    //productsTableView.setItems(list);
+                    ProductService.createProduct(product[0], product[0].getStockQty());
+                    list = FXCollections.observableArrayList(ProductService.getAllProducts());
+                    productsTableView.setItems(list);
                     this.productsTableView.refresh();
                 }
             }
@@ -164,10 +158,9 @@ public class AdminProductController implements Initializable {
             warningAlert.setHeaderText("Product will be PERMANENTLY DELETED.");
             warningAlert.showAndWait().ifPresent(result -> {
                 if (result == ButtonType.OK) {
-                    //ProductService.removeProduct(product);
-                    //list = FXCollections.observableArrayList(ProductService.getAllProducts());
-                    //productsTableView.setItems(list);
-                    list.remove(product);
+                    ProductService.removeProduct(product);
+                    list = FXCollections.observableArrayList(ProductService.getAllProducts());
+                    productsTableView.setItems(list);
                     this.productsTableView.refresh();
                 }
             });
@@ -187,7 +180,7 @@ public class AdminProductController implements Initializable {
             Stage dialogStage = new Stage();
             controller.setParentStage(dialogStage);
             dialogStage.initModality(Modality.APPLICATION_MODAL);
-            dialogStage.setTitle("User Information");
+            dialogStage.setTitle("Product Information");
             dialogStage.setResizable(false);
             dialogStage.setScene(new Scene(dialogContent));
             dialogStage.showAndWait();

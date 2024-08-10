@@ -2,7 +2,13 @@ package kjry.ecommerce.controller;
 
 import kjry.ecommerce.services.ValidationUtils;
 import java.io.File;
+import java.io.IOException;
+import java.net.URI;
 import java.net.URL;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -71,7 +77,7 @@ public class AdminProductInfoDialogController implements Initializable {
     private ProductsDTO product;
     private boolean viewOnly;
     private Stage parent;
-    private String tempImagePath;
+    private Path tempImagePath;
     private boolean isCreate = false;
 
     @FXML
@@ -99,9 +105,11 @@ public class AdminProductInfoDialogController implements Initializable {
             File selectedFile = fc.showOpenDialog(parent);
 
             if (selectedFile != null) {
-                tempImagePath = selectedFile.toURI().toString();
-                System.out.println("Selected file: " + tempImagePath);
-                productImage.setImage(new Image(tempImagePath));
+                URI fileUri = selectedFile.toURI();
+                Path filePath = Paths.get(fileUri);
+                productImage.setImage(new Image(selectedFile.toURI().toString()));
+                tempImagePath = filePath.toAbsolutePath();
+                System.out.println("Selected file: " + tempImagePath.toString());
             } else {
                 System.out.println("File selection was canceled.");
             }
@@ -140,7 +148,6 @@ public class AdminProductInfoDialogController implements Initializable {
         if (product.getId() != null) {
             populateField();
         }
-        productImage.setImage(new Image(product.getImagePath()));
     }
 
     public void setParentStage(Stage stage) {
@@ -148,6 +155,18 @@ public class AdminProductInfoDialogController implements Initializable {
     }
 
     private void populateField() {
+        if (product.getImagePath() == null) {
+            URL resourceUrl = getClass().getClassLoader().getResource("image/unavailable.png");
+            if (resourceUrl != null) {
+                productImage.setImage(new Image(resourceUrl.toString()));
+            } else {
+                System.out.println("Default image resource not found.");
+            }
+        } else {
+            System.out.println(product.getImagePath());
+            String fullPath = Paths.get(System.getProperty("user.home"), product.getImagePath()).toString();
+            productImage.setImage(new Image("file:" + fullPath));
+        }
         costPriceTextField.setText(String.format("%.2f", product.getCostPrice()));
         sellingPriceTextField.setText(String.format("%.2f", product.getSellingPrice()));
         descriptionTextField.setText(product.getName());
@@ -182,8 +201,14 @@ public class AdminProductInfoDialogController implements Initializable {
         int i = 0;
         for (ProductsDTO x : ProductService.getAllProducts()) {
             ids[i] = x.getId();
-            System.out.println(ids[i]);
             i++;
+        }
+
+        for (int j = 0; j < ids.length; j++) {
+            if (ids[j].equals(idTextField.getText())) {
+                ids[j] = "-1";
+                break;
+            }
         }
 
         boolean idValid = ValidationUtils.isUnqiue(idTextField.getText(), ids);
@@ -194,21 +219,21 @@ public class AdminProductInfoDialogController implements Initializable {
         ValidationUtils.setFieldValidity(stockQtyTextField, stockQtyValid);
         valid &= stockQtyValid;
 
-         if (product instanceof ClothingDTO) {
+        if (product instanceof ClothingDTO) {
             boolean typeValid = ValidationUtils.isValidNull(typeChoiceBox.getSelectionModel().getSelectedItem());
             ValidationUtils.setFieldValidity(typeChoiceBox, typeValid);
             valid &= typeValid;
-            
+
             boolean sizeValid = ValidationUtils.isValidNull(sizeChoiceBox.getSelectionModel().getSelectedItem());
             ValidationUtils.setFieldValidity(sizeChoiceBox, sizeValid);
             valid &= sizeValid;
-            
+
         } else {
             boolean washableValid = ValidationUtils.isValidNull(washableChoiceBox.getSelectionModel().getSelectedItem());
             ValidationUtils.setFieldValidity(washableChoiceBox, washableValid);
-            valid &= washableValid;  
+            valid &= washableValid;
         }
-        
+
         if (valid) {
             saveOrder();
             this.isCreate = true;
@@ -218,7 +243,28 @@ public class AdminProductInfoDialogController implements Initializable {
 
     private void saveOrder() {
         if (tempImagePath != null) {
-            product.setImagePath(tempImagePath);
+            Path sourcePath = this.tempImagePath;
+
+            Path destinationFolder = Paths.get(System.getProperty("user.home"), "kjryEcommerce_images");
+
+            try {
+                if (Files.notExists(destinationFolder)) {
+                    Files.createDirectories(destinationFolder);
+                }
+
+                Path destinationPath = destinationFolder.resolve(sourcePath.getFileName());
+
+                Files.copy(sourcePath, destinationPath, StandardCopyOption.REPLACE_EXISTING);
+
+                String copiedFilePath = destinationPath.toAbsolutePath().toString();
+
+                System.out.println("File copied to: " + copiedFilePath);
+
+                product.setImagePath(String.format("kjryEcommerce_images/%s", sourcePath.getFileName()));
+
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
         product.setCostPrice(Double.parseDouble(costPriceTextField.getText()));
         product.setSellingPrice(Double.parseDouble(sellingPriceTextField.getText()));

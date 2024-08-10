@@ -14,7 +14,7 @@ import java.text.SimpleDateFormat;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.stage.Stage;
-import javafx.util.Pair;
+import kjry.ecommerce.datamodels.Pair;
 import kjry.ecommerce.dtos.ProductsDTO;
 import kjry.ecommerce.services.UserService;
 
@@ -277,7 +277,12 @@ public class AdminUserInfoDialogController {
             ids[i] = x.getId();
             i++;
         }
-
+        for(int j = 0; j < ids.length; j++){
+            if(ids[j].equals(iDTextField.getText())){
+                ids[j] = "-1";
+                break;
+            }
+        }
         boolean idValid = ValidationUtils.isUnqiue(iDTextField.getText(), ids);
         ValidationUtils.setFieldValidity(iDTextField, idValid);
         valid &= idValid;

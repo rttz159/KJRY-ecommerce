@@ -1,7 +1,7 @@
 package kjry.ecommerce.dataaccess;
 
 import java.util.ArrayList;
-import javafx.util.Pair;
+import kjry.ecommerce.datamodels.Pair;
 import kjry.ecommerce.datamodels.Accessories;
 import kjry.ecommerce.datamodels.Clothing;
 import kjry.ecommerce.datamodels.Clothing.Size;
@@ -111,10 +111,16 @@ public class EntityDTOConverter {
                     break;
             }
 
-            productDto = new ClothingDTO(tempCloth.getId(), tempCloth.getName(), tempCloth.getCostPrice(), tempCloth.getSellingPrice(), tempCloth.getImagePath(), DatabaseWrapper.getProductStock().get(product), sizeDto, typeDto);
+            productDto = new ClothingDTO(tempCloth.getId(), tempCloth.getName(), tempCloth.getCostPrice(), tempCloth.getSellingPrice(), DatabaseWrapper.getProductStock().get(product), sizeDto, typeDto);
+            if (tempCloth.getImagePath() != null) {
+                productDto.setImagePath(tempCloth.getImagePath());
+            }
         } else if (product instanceof Accessories) {
             Accessories tempAcc = (Accessories) product;
-            productDto = new AccessoriesDTO(tempAcc.getId(), tempAcc.getName(), tempAcc.getCostPrice(), tempAcc.getSellingPrice(), tempAcc.getImagePath(), DatabaseWrapper.getProductStock().get(product), tempAcc.isWashable());
+            productDto = new AccessoriesDTO(tempAcc.getId(), tempAcc.getName(), tempAcc.getCostPrice(), tempAcc.getSellingPrice(), DatabaseWrapper.getProductStock().get(product), tempAcc.isWashable());
+            if (tempAcc.getImagePath() != null) {
+                productDto.setImagePath(tempAcc.getImagePath());
+            }
         }
 
         return productDto;
@@ -232,13 +238,17 @@ public class EntityDTOConverter {
             }
 
             product = new Clothing(tempClothDto.getId(), tempClothDto.getName(), tempClothDto.getCostPrice(), tempClothDto.getSellingPrice(), size, type);
-            product.setImagePath(tempClothDto.getImagePath());
+            if (tempClothDto.getImagePath() != null) {
+                product.setImagePath(tempClothDto.getImagePath());
+            }
         } else if (productDto instanceof AccessoriesDTO) {
             AccessoriesDTO tempAccDto = (AccessoriesDTO) productDto;
             product = new Accessories(tempAccDto.getId(), tempAccDto.getName(), tempAccDto.getCostPrice(), tempAccDto.getSellingPrice(), tempAccDto.isWashable());
-            product.setImagePath(tempAccDto.getImagePath());
+            if (tempAccDto.getImagePath() != null) {
+                product.setImagePath(tempAccDto.getImagePath());
+            }
         }
-        
+
         if (productDto.getStockQty() != -1) {
             DatabaseWrapper.getProductStock().replace(product, productDto.getStockQty());
         }

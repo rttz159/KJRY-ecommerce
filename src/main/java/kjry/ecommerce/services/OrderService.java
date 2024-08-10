@@ -1,6 +1,6 @@
 package kjry.ecommerce.services;
 
-import javafx.util.Pair;
+import kjry.ecommerce.datamodels.Pair;
 import kjry.ecommerce.dataaccess.DatabaseController;
 import kjry.ecommerce.dataaccess.OrderController;
 import kjry.ecommerce.dtos.OrdersDTO;

@@ -1,6 +1,5 @@
 package kjry.ecommerce.datamodels;
 
-import com.google.gson.annotations.Expose;
 import java.util.Date;
 
 public class Employees extends Users {
