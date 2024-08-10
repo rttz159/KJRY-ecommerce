@@ -155,7 +155,8 @@ public class AdminUserController implements Initializable {
                         userPromptDialog(user, true);
                         UserService service = new UserService(user);
                         service.updateUser();
-                        list = FXCollections.observableArrayList(UserService.getAllUsers());
+                        //list = FXCollections.observableArrayList(UserService.getAllUsers());
+                        //adminUserTableview.setItems(list);
                         adminUserTableview.refresh();
                     } catch (NullPointerException x) {
                         Alert warningAlert = new Alert(Alert.AlertType.WARNING);
@@ -199,13 +200,14 @@ public class AdminUserController implements Initializable {
             dialogStage1.showAndWait();
 
             if (buttonClicked[0]) {
-                userPromptDialog(user[0], true);
+                if (userPromptDialog(user[0], true)) {
+                    list.add(user[0]);
+                    //UserService.createUser(user[0]);
+                    //list = FXCollections.observableArrayList(UserService.getAllUsers());
+                    //adminUserTableview.setItems(list);
+                    this.adminUserTableview.refresh();
+                }
             }
-            
-            list.add(user[0]);
-            //UserService.createUser(user[0]);
-            this.adminUserTableview.refresh();
-            
         });
 
         removeButton.setOnAction(event -> {
@@ -217,6 +219,7 @@ public class AdminUserController implements Initializable {
                     //UserService service = new UserService(user);
                     //service.deleteUser();
                     //list = FXCollections.observableArrayList(UserService.getAllUsers());
+                    //adminUserTableview.setItems(list);
                     list.remove(user);
                     this.adminUserTableview.refresh();
                 }
@@ -225,7 +228,7 @@ public class AdminUserController implements Initializable {
 
     }
 
-    private void userPromptDialog(UsersDTO user, boolean editable) {
+    private boolean userPromptDialog(UsersDTO user, boolean editable) {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/AdminUserInfoAlert.fxml"));
             VBox dialogContent = loader.load();
@@ -240,9 +243,11 @@ public class AdminUserController implements Initializable {
             dialogStage.setResizable(false);
             dialogStage.setScene(new Scene(dialogContent));
             dialogStage.showAndWait();
+            return controller.isCreate();
         } catch (IOException ex) {
             System.out.println("Error when loading AdminUserInfoAlert.fxml");
             ex.printStackTrace();
+            return false;
         }
     }
 

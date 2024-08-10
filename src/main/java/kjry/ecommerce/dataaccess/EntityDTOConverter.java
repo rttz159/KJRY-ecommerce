@@ -29,10 +29,11 @@ import kjry.ecommerce.dtos.ProductsDTO;
 import kjry.ecommerce.dtos.UsersDTO;
 
 public class EntityDTOConverter {
-    public static UsersDTO convertEntityToDto(Users user){
+
+    public static UsersDTO convertEntityToDto(Users user) {
         UsersDTO dto = null;
-        if(user instanceof Employees){
-            Employees temp = (Employees)user;
+        if (user instanceof Employees) {
+            Employees temp = (Employees) user;
             JobRole jobrole = temp.getJobRole();
             JobRoleDTO jobroleDTO;
             switch (jobrole) {
@@ -46,17 +47,17 @@ public class EntityDTOConverter {
                     jobroleDTO = JobRoleDTO.STOCK;
                     break;
             }
-            
-            dto = new EmployeesDTO(temp.getId(),temp.getPassword(),temp.getName(),temp.getEmail(),temp.getPhoneNo(),temp.getGender(),temp.getBirthDate(),jobroleDTO);
-        }else{
-            Customers temp = (Customers)user;
-            ArrayList<Pair<ProductsDTO,Integer>> productArr = new ArrayList<>();
-            for(Pair<Products,Integer> x: temp.getShoppingCart()){
-                productArr.add(new Pair(convertEntityToDto(x.getKey()),x.getValue()));
+
+            dto = new EmployeesDTO(temp.getId(), temp.getPassword(), temp.getName(), temp.getEmail(), temp.getPhoneNo(), temp.getGender(), temp.getBirthDate(), jobroleDTO);
+        } else {
+            Customers temp = (Customers) user;
+            ArrayList<Pair<ProductsDTO, Integer>> productArr = new ArrayList<>();
+            for (Pair<Products, Integer> x : temp.getShoppingCart()) {
+                productArr.add(new Pair(convertEntityToDto(x.getKey()), x.getValue()));
             }
             ArrayList<NotificationTypeDTO> notificationArr = new ArrayList<>();
-            for(NotificationType x: temp.getNotificationTypes()){
-                switch(x){
+            for (NotificationType x : temp.getNotificationTypes()) {
+                switch (x) {
                     case SMS:
                         notificationArr.add(NotificationTypeDTO.SMS);
                         break;
@@ -68,17 +69,17 @@ public class EntityDTOConverter {
                         break;
                 }
             }
-            
-            CustomersDTO tempCusDTO = new CustomersDTO(temp.getId(),temp.getPassword(),temp.getName(),temp.getEmail(),temp.getPhoneNo(),temp.getGender(),temp.getBirthDate(),notificationArr,productArr);
-            for(String message: temp.getNotification()){
+
+            CustomersDTO tempCusDTO = new CustomersDTO(temp.getId(), temp.getPassword(), temp.getName(), temp.getEmail(), temp.getPhoneNo(), temp.getGender(), temp.getBirthDate(), notificationArr, productArr);
+            for (String message : temp.getNotification()) {
                 tempCusDTO.addNotification(message);
             }
             dto = tempCusDTO;
         }
-                
+
         return dto;
     }
-    
+
     public static ProductsDTO convertEntityToDto(Products product) {
         ProductsDTO productDto = null;
         if (product instanceof Clothing) {
@@ -110,15 +111,15 @@ public class EntityDTOConverter {
                     break;
             }
 
-            productDto = new ClothingDTO(tempCloth.getId(), tempCloth.getName(), tempCloth.getCostPrice(), tempCloth.getSellingPrice(), tempCloth.getImageFile(), sizeDto, typeDto);
+            productDto = new ClothingDTO(tempCloth.getId(), tempCloth.getName(), tempCloth.getCostPrice(), tempCloth.getSellingPrice(), tempCloth.getImagePath(), DatabaseWrapper.getProductStock().get(product), sizeDto, typeDto);
         } else if (product instanceof Accessories) {
             Accessories tempAcc = (Accessories) product;
-            productDto = new AccessoriesDTO(tempAcc.getId(), tempAcc.getName(), tempAcc.getCostPrice(), tempAcc.getSellingPrice(), tempAcc.getImageFile(), tempAcc.isWashable());
+            productDto = new AccessoriesDTO(tempAcc.getId(), tempAcc.getName(), tempAcc.getCostPrice(), tempAcc.getSellingPrice(), tempAcc.getImagePath(), DatabaseWrapper.getProductStock().get(product), tempAcc.isWashable());
         }
 
         return productDto;
     }
-    
+
     public static OrdersDTO convertEntityToDto(Orders order) {
         UsersDTO userDto = convertEntityToDto(order.getUser());
         OrdersDTO.StatusDTO statusDto = null;
@@ -143,10 +144,10 @@ public class EntityDTOConverter {
             productListsDto.add(new Pair<>(productDto, pair.getValue()));
         }
 
-        return new OrdersDTO(order.getId(),order.getAddress(), userDto, statusDto, productListsDto,order.getOrderingDate());
+        return new OrdersDTO(order.getId(), order.getAddress(), userDto, statusDto, productListsDto, order.getOrderingDate());
     }
-    
-    public static Users convertDtoToEntity(UsersDTO dto){
+
+    public static Users convertDtoToEntity(UsersDTO dto) {
         Users user = null;
         if (dto instanceof EmployeesDTO) {
             EmployeesDTO tempDto = (EmployeesDTO) dto;
@@ -162,18 +163,18 @@ public class EntityDTOConverter {
                     jobRole = JobRole.STOCK;
                     break;
             }
-            user = new Employees(tempDto.getId(),tempDto.getPassword(), tempDto.getName(), tempDto.getEmail(), tempDto.getPhoneNo(), tempDto.getGender(), tempDto.getBirthDate(), jobRole);
+            user = new Employees(tempDto.getId(), tempDto.getPassword(), tempDto.getName(), tempDto.getEmail(), tempDto.getPhoneNo(), tempDto.getGender(), tempDto.getBirthDate(), jobRole);
         } else if (dto instanceof CustomersDTO) {
             CustomersDTO tempDto = (CustomersDTO) dto;
-            ArrayList<Pair<Products,Integer>> productArr = new ArrayList<>();
-            for (Pair<ProductsDTO,Integer> x : tempDto.getShoppingCart()) {
+            ArrayList<Pair<Products, Integer>> productArr = new ArrayList<>();
+            for (Pair<ProductsDTO, Integer> x : tempDto.getShoppingCart()) {
                 Products prod = null;
-                for(int i = 0; i < DatabaseWrapper.getProductsList().size(); i++){
-                    if(DatabaseWrapper.getProductsList().get(i).getId().equals(convertDtoToEntity(x.getKey()).getId())){
+                for (int i = 0; i < DatabaseWrapper.getProductsList().size(); i++) {
+                    if (DatabaseWrapper.getProductsList().get(i).getId().equals(convertDtoToEntity(x.getKey()).getId())) {
                         prod = DatabaseWrapper.getProductsList().get(i);
                     }
                 }
-                productArr.add(new Pair(prod,x.getValue()));
+                productArr.add(new Pair(prod, x.getValue()));
             }
             ArrayList<NotificationType> notificationArr = new ArrayList<>();
             for (NotificationTypeDTO x : tempDto.getNotificationTypes()) {
@@ -189,8 +190,8 @@ public class EntityDTOConverter {
                         break;
                 }
             }
-            Customers tempCust = new Customers(tempDto.getId(),tempDto.getPassword(), tempDto.getName(), tempDto.getEmail(), tempDto.getPhoneNo(), tempDto.getGender(), tempDto.getBirthDate(), notificationArr, productArr);
-            for(String message: tempDto.getNotification()){
+            Customers tempCust = new Customers(tempDto.getId(), tempDto.getPassword(), tempDto.getName(), tempDto.getEmail(), tempDto.getPhoneNo(), tempDto.getGender(), tempDto.getBirthDate(), notificationArr, productArr);
+            for (String message : tempDto.getNotification()) {
                 tempCust.addNotification(message);
             }
             user = tempCust;
@@ -198,14 +199,14 @@ public class EntityDTOConverter {
 
         return user;
     }
-    
-    public static Products convertDtoToEntity(ProductsDTO productDto){
+
+    public static Products convertDtoToEntity(ProductsDTO productDto) {
         Products product = null;
         if (productDto instanceof ClothingDTO) {
             ClothingDTO tempClothDto = (ClothingDTO) productDto;
 
             Type type = null;
-            switch (tempClothDto.getType()) {
+            switch (tempClothDto.getClothingType()) {
                 case SHIRT:
                     type = Type.SHIRT;
                     break;
@@ -231,20 +232,24 @@ public class EntityDTOConverter {
             }
 
             product = new Clothing(tempClothDto.getId(), tempClothDto.getName(), tempClothDto.getCostPrice(), tempClothDto.getSellingPrice(), size, type);
-            product.setImageFile(tempClothDto.getImageFile());
+            product.setImagePath(tempClothDto.getImagePath());
         } else if (productDto instanceof AccessoriesDTO) {
             AccessoriesDTO tempAccDto = (AccessoriesDTO) productDto;
             product = new Accessories(tempAccDto.getId(), tempAccDto.getName(), tempAccDto.getCostPrice(), tempAccDto.getSellingPrice(), tempAccDto.isWashable());
-            product.setImageFile(tempAccDto.getImageFile());
+            product.setImagePath(tempAccDto.getImagePath());
+        }
+        
+        if (productDto.getStockQty() != -1) {
+            DatabaseWrapper.getProductStock().replace(product, productDto.getStockQty());
         }
 
         return product;
     }
-    
-    public static Orders convertDtoToEntity(OrdersDTO orderDto){
+
+    public static Orders convertDtoToEntity(OrdersDTO orderDto) {
         Users user = null;
-        for(int i = 0; i < DatabaseWrapper.getProductsList().size(); i++){
-            if(DatabaseWrapper.getUsersList().get(i).getId().equals(convertDtoToEntity(orderDto.getUser()).getId())){
+        for (int i = 0; i < DatabaseWrapper.getProductsList().size(); i++) {
+            if (DatabaseWrapper.getUsersList().get(i).getId().equals(convertDtoToEntity(orderDto.getUser()).getId())) {
                 user = DatabaseWrapper.getUsersList().get(i);
             }
         }
@@ -267,20 +272,19 @@ public class EntityDTOConverter {
         ArrayList<Pair<Products, Integer>> productLists = new ArrayList<>();
         for (Pair<ProductsDTO, Integer> pair : orderDto.getProductLists()) {
             Products product = null;
-            for(int i = 0; i < DatabaseWrapper.getProductsList().size(); i++){
-                if(DatabaseWrapper.getProductsList().get(i).getId().equals(convertDtoToEntity(pair.getKey()).getId())){
+            for (int i = 0; i < DatabaseWrapper.getProductsList().size(); i++) {
+                if (DatabaseWrapper.getProductsList().get(i).getId().equals(convertDtoToEntity(pair.getKey()).getId())) {
                     product = DatabaseWrapper.getProductsList().get(i);
                 }
             }
             productLists.add(new Pair<>(product, pair.getValue()));
         }
-        
-        if(orderDto.getId() == null){
-            return new Orders(orderDto.getAddress(),user, status, productLists);
-        }else{
-            return new Orders(orderDto.getId(), orderDto.getAddress(), user, status, productLists,orderDto.getOrderingDate());
+
+        if (orderDto.getId() == null) {
+            return new Orders(orderDto.getAddress(), user, status, productLists);
+        } else {
+            return new Orders(orderDto.getId(), orderDto.getAddress(), user, status, productLists, orderDto.getOrderingDate());
         }
     }
-
 
 }

@@ -1,14 +1,20 @@
 package kjry.ecommerce.dtos;
 
-import java.io.File;
+public class AccessoriesDTO extends ProductsDTO {
 
-public class AccessoriesDTO extends ProductsDTO{
     private boolean washable;
 
-    public AccessoriesDTO(){}
-    
-    public AccessoriesDTO(String id, String name, double costPrice, double sellingPrice, File imageFile,boolean washable) {
-        super(id, name, costPrice, sellingPrice, imageFile);
+    public AccessoriesDTO() {
+        this.imagePath = "image/unavailable.png";
+    }
+
+    public AccessoriesDTO(String id, String name, double costPrice, double sellingPrice, String imagePath, int stockQty, boolean washable) {
+        super(id, name, costPrice, sellingPrice, imagePath, stockQty);
+        this.washable = washable;
+    }
+
+    public AccessoriesDTO(String id, String name, double costPrice, double sellingPrice, int stockQty, boolean washable) {
+        super(id, name, costPrice, sellingPrice, "image/unavailable.png", stockQty);
         this.washable = washable;
     }
 
@@ -19,5 +25,5 @@ public class AccessoriesDTO extends ProductsDTO{
     public void setWashable(boolean washable) {
         this.washable = washable;
     }
-    
+
 }

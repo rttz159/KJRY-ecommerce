@@ -50,7 +50,6 @@
                <HBox.margin>
                   <Insets right="20.0" />
                </HBox.margin></Button>
-            <Button fx:id="removeButton" minHeight="30.0" minWidth="80.0" mnemonicParsing="false" text="Remove" />
          </children>
       </HBox>
    </children>
