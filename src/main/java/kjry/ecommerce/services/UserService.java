@@ -1,7 +1,7 @@
 package kjry.ecommerce.services;
 
 import java.util.ArrayList;
-import javafx.util.Pair;
+import kjry.ecommerce.datamodels.Pair;
 import kjry.ecommerce.dataaccess.DatabaseController;
 import kjry.ecommerce.dataaccess.UserController;
 import kjry.ecommerce.dtos.CustomersDTO;

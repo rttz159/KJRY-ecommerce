@@ -24,6 +24,14 @@ public abstract class ProductsDTO {
         this.stockQty = stockQty;
     }
 
+    protected ProductsDTO(String id, String name, double costPrice, double sellingPrice, int stockQty) {
+        this.id = id;
+        this.name = name;
+        this.costPrice = costPrice;
+        this.sellingPrice = sellingPrice;
+        this.stockQty = stockQty;
+    }
+    
     protected ProductsDTO(String id, String name, double costPrice, double sellingPrice) {
         this.id = id;
         this.name = name;
@@ -32,7 +40,7 @@ public abstract class ProductsDTO {
     }
 
     protected ProductsDTO() {
-        this.imagePath = "image/unavailable.png";
+        
     }
 
     public String getId() {
@@ -79,30 +87,10 @@ public abstract class ProductsDTO {
         return imagePath;
     }
 
-    public void setImagePath(String imageFilePath) {
-        String path = null;
-        Path sourcePath = Paths.get(imageFilePath);
-        Path destinationFolder = Paths.get("/image");
-        try {
-            if (Files.notExists(destinationFolder)) {
-                Files.createDirectories(destinationFolder);
-            }
-
-            Path destinationPath = destinationFolder.resolve(sourcePath.getFileName());
-
-            Files.copy(sourcePath, destinationPath, StandardCopyOption.REPLACE_EXISTING);
-
-            String copiedFilePath = destinationPath.toAbsolutePath().toString();
-
-            System.out.println("File copied to: " + copiedFilePath);
-
-            path = String.format("image/%s", sourcePath.getFileName());
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        this.imagePath = path;
+    public void setImagePath(String imageFilePath) { 
+        this.imagePath = imageFilePath;
     }
+
 
     public String getType() {
         if (this instanceof ClothingDTO) {

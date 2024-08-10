@@ -3,7 +3,6 @@ package kjry.ecommerce.controller;
 import java.io.IOException;
 import java.net.URL;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
@@ -24,12 +23,8 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
-import javafx.util.Pair;
-import kjry.ecommerce.dtos.ClothingDTO;
 import kjry.ecommerce.dtos.CustomersDTO;
-import kjry.ecommerce.dtos.CustomersDTO.NotificationTypeDTO;
 import kjry.ecommerce.dtos.EmployeesDTO;
-import kjry.ecommerce.dtos.EmployeesDTO.JobRoleDTO;
 import kjry.ecommerce.dtos.UsersDTO;
 import kjry.ecommerce.services.UserService;
 
@@ -65,33 +60,7 @@ public class AdminUserController implements Initializable {
     @FXML
     private Button addButton;
 
-    private ObservableList<UsersDTO> list = FXCollections.observableArrayList(
-            new EmployeesDTO("E01", "pass123", "Alice", "alice@example.com", "1234567890", 'F', new Date(90, 0, 1), JobRoleDTO.MANAGER),
-            new EmployeesDTO("E02", "pass456", "Bob", "bob@example.com", "2345678901", 'M', new Date(92, 4, 15), JobRoleDTO.MARKETING),
-            new EmployeesDTO("E03", "pass789", "Charlie", "charlie@example.com", "3456789012", 'M', new Date(85, 10, 20), JobRoleDTO.STOCK),
-            new CustomersDTO("C01", "cust123", "Dave", "dave@example.com", "4567890123", 'M', new Date(95, 6, 7), NotificationTypeDTO.APP),
-            new CustomersDTO("C02", "cust456", "Eve", "eve@example.com", "5678901234", 'F', new Date(89, 2, 3), new ArrayList<NotificationTypeDTO>() {
-                {
-                    add(NotificationTypeDTO.APP);
-                    add(NotificationTypeDTO.EMAIL);
-                }
-            }, new ArrayList<>() {
-                {
-                    add(new Pair(new ClothingDTO("12", "Smoking", 0.0, 0.0, ClothingDTO.SizeDTO.M, ClothingDTO.TypeDTO.SHIRT), 1));
-                    add(new Pair(new ClothingDTO("12", "Smoking", 0.0, 0.0, ClothingDTO.SizeDTO.M, ClothingDTO.TypeDTO.SHIRT), 1));
-                    add(new Pair(new ClothingDTO("12", "Smoking", 0.0, 0.0, ClothingDTO.SizeDTO.M, ClothingDTO.TypeDTO.SHIRT), 1));
-                    add(new Pair(new ClothingDTO("12", "Smoking", 0.0, 0.0, ClothingDTO.SizeDTO.M, ClothingDTO.TypeDTO.SHIRT), 1));
-                    add(new Pair(new ClothingDTO("12", "Smoking", 0.0, 0.0, ClothingDTO.SizeDTO.M, ClothingDTO.TypeDTO.SHIRT), 1));
-                }
-            }
-            ),
-            new CustomersDTO("C03", "cust789", "Fay", "fay@example.com", "6789012345", 'F', new Date(91, 9, 13), new ArrayList<NotificationTypeDTO>() {
-                {
-                    add(NotificationTypeDTO.SMS);
-                    add(NotificationTypeDTO.APP);
-                }
-            }, new ArrayList<>()
-            ));
+    private ObservableList<UsersDTO> list = FXCollections.observableArrayList(UserService.getAllUsers());
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -152,12 +121,13 @@ public class AdminUserController implements Initializable {
                     UsersDTO user = adminUserTableview.getSelectionModel().getSelectedItem();
                     try {
                         System.out.println("Edit button clicked for user: " + user.getName());
-                        userPromptDialog(user, true);
-                        UserService service = new UserService(user);
-                        service.updateUser();
-                        //list = FXCollections.observableArrayList(UserService.getAllUsers());
-                        //adminUserTableview.setItems(list);
-                        adminUserTableview.refresh();
+                        if (userPromptDialog(user, true)) {
+                            UserService service = new UserService(user);
+                            service.updateUser();
+                            list = FXCollections.observableArrayList(UserService.getAllUsers());
+                            adminUserTableview.setItems(list);
+                            adminUserTableview.refresh();
+                        }
                     } catch (NullPointerException x) {
                         Alert warningAlert = new Alert(Alert.AlertType.WARNING);
                         warningAlert.setContentText("Please select an user before proceed.");
@@ -201,10 +171,9 @@ public class AdminUserController implements Initializable {
 
             if (buttonClicked[0]) {
                 if (userPromptDialog(user[0], true)) {
-                    list.add(user[0]);
-                    //UserService.createUser(user[0]);
-                    //list = FXCollections.observableArrayList(UserService.getAllUsers());
-                    //adminUserTableview.setItems(list);
+                    UserService.createUser(user[0]);
+                    list = FXCollections.observableArrayList(UserService.getAllUsers());
+                    adminUserTableview.setItems(list);
                     this.adminUserTableview.refresh();
                 }
             }
@@ -216,11 +185,10 @@ public class AdminUserController implements Initializable {
             warningAlert.setHeaderText("User will be PERMANENTLY DELETED.");
             warningAlert.showAndWait().ifPresent(result -> {
                 if (result == ButtonType.OK) {
-                    //UserService service = new UserService(user);
-                    //service.deleteUser();
-                    //list = FXCollections.observableArrayList(UserService.getAllUsers());
-                    //adminUserTableview.setItems(list);
-                    list.remove(user);
+                    UserService service = new UserService(user);
+                    service.deleteUser();
+                    list = FXCollections.observableArrayList(UserService.getAllUsers());
+                    adminUserTableview.setItems(list);
                     this.adminUserTableview.refresh();
                 }
             });

@@ -5,7 +5,6 @@ public class AccessoriesDTO extends ProductsDTO {
     private boolean washable;
 
     public AccessoriesDTO() {
-        this.imagePath = "image/unavailable.png";
     }
 
     public AccessoriesDTO(String id, String name, double costPrice, double sellingPrice, String imagePath, int stockQty, boolean washable) {
@@ -14,7 +13,7 @@ public class AccessoriesDTO extends ProductsDTO {
     }
 
     public AccessoriesDTO(String id, String name, double costPrice, double sellingPrice, int stockQty, boolean washable) {
-        super(id, name, costPrice, sellingPrice, "image/unavailable.png", stockQty);
+        super(id, name, costPrice, sellingPrice, stockQty);
         this.washable = washable;
     }
 
