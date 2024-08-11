@@ -14,6 +14,7 @@ public abstract class Users {
     
     protected Users(String id, String password, String name, String email, String phoneNo, char gender, Date birthDate) {
         this.id = id;
+        this.password = password;
         this.name = name;
         this.email = email;
         this.phoneNo = phoneNo;

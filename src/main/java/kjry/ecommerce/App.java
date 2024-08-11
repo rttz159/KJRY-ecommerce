@@ -19,6 +19,7 @@ public class App extends Application {
         scene = new Scene(root);
         stage.setScene(scene);
         stage.setTitle("KJRY ECOMMERCE");
+        stage.setResizable(false);
         stage.centerOnScreen();
         stage.show();
     }

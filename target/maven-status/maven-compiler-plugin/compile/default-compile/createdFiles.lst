@@ -51,6 +51,7 @@ kjry\ecommerce\dataaccess\ProductController.class
 kjry\ecommerce\dataaccess\DatabaseWrapper.class
 kjry\ecommerce\dataaccess\GsonDatabase$ProductsAdapter.class
 kjry\ecommerce\dataaccess\GsonDatabase$OrdersAdapter.class
+kjry\ecommerce\services\ProductImageManager.class
 kjry\ecommerce\controller\AdminUserController$1.class
 kjry\ecommerce\dtos\AccessoriesDTO.class
 kjry\ecommerce\services\ProductService.class

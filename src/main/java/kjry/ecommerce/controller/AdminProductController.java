@@ -24,7 +24,9 @@ import javafx.stage.Stage;
 import kjry.ecommerce.dtos.AccessoriesDTO;
 import kjry.ecommerce.dtos.ClothingDTO;
 import kjry.ecommerce.dtos.ProductsDTO;
+import kjry.ecommerce.services.ProductImageManager;
 import kjry.ecommerce.services.ProductService;
+import static kjry.ecommerce.services.ProductService.removeProduct;
 
 public class AdminProductController implements Initializable {
 
@@ -158,6 +160,8 @@ public class AdminProductController implements Initializable {
             warningAlert.setHeaderText("Product will be PERMANENTLY DELETED.");
             warningAlert.showAndWait().ifPresent(result -> {
                 if (result == ButtonType.OK) {
+                    ProductImageManager imageManager = new ProductImageManager();
+                    imageManager.removeProductImage(product);
                     ProductService.removeProduct(product);
                     list = FXCollections.observableArrayList(ProductService.getAllProducts());
                     productsTableView.setItems(list);

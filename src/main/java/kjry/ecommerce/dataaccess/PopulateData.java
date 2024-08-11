@@ -22,7 +22,7 @@ public class PopulateData {
                     "password" + i,
                     "Customer" + i,
                     "customer" + i + "@example.com",
-                    "0123456789" + i,
+                    "012345678" + i,
                     'M',
                     new Date(),
                     Customers.NotificationType.values()[i%3]
@@ -36,7 +36,7 @@ public class PopulateData {
                     "password" + i,
                     "Employee" + i,
                     "employee" + i + "@example.com",
-                    "0987654321" + i,
+                    "098765432" + i,
                     i % 2 == 0 ? 'F' : 'M',
                     new Date(),
                     Employees.JobRole.values()[i % 3] 
