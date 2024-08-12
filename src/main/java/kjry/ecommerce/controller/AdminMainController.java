@@ -42,8 +42,13 @@ public class AdminMainController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
 
-        if (content != null) {
+        try {
+            clearContentVBox();
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/AdminDashBoard.fxml"));
+            content = loader.load();
             parentHBox.getChildren().add(content);
+        } catch (IOException ex) {
+            System.out.println("Error occurs when loading the fxml file");
         }
 
         usersButton.setOnAction(ev -> {
@@ -67,11 +72,22 @@ public class AdminMainController implements Initializable {
                 System.out.println("Error occurs when loading the fxml file");
             }
         });
-        
+
         productsButton.setOnAction(ev -> {
             try {
                 clearContentVBox();
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/AdminProducts.fxml"));
+                content = loader.load();
+                parentHBox.getChildren().add(content);
+            } catch (IOException ex) {
+                System.out.println("Error occurs when loading the fxml file");
+            }
+        });
+
+        dashBoardButton.setOnAction(ev -> {
+            try {
+                clearContentVBox();
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/AdminDashBoard.fxml"));
                 content = loader.load();
                 parentHBox.getChildren().add(content);
             } catch (IOException ex) {

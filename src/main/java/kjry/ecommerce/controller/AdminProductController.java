@@ -26,7 +26,6 @@ import kjry.ecommerce.dtos.ClothingDTO;
 import kjry.ecommerce.dtos.ProductsDTO;
 import kjry.ecommerce.services.ProductImageManager;
 import kjry.ecommerce.services.ProductService;
-import static kjry.ecommerce.services.ProductService.removeProduct;
 
 public class AdminProductController implements Initializable {
 

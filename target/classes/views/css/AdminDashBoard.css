@@ -1,0 +1,71 @@
+.vbox {
+    -fx-background-color: #D3D3D3;
+}
+
+.scroll-pane {
+    -fx-background-color: #D3D3D3;
+}
+
+.label {
+    -fx-text-fill: #28282B;
+}
+
+.label#greetingLabel {
+    -fx-background-color: #333333;
+    -fx-text-fill: white;
+    -fx-font-size: 24px;
+    -fx-font-weight: bold;
+}
+
+.label[contentDisplay="CENTER"] {
+    -fx-text-fill: #4d4d4d;
+    -fx-font-size: 14px;
+}
+
+.hbox, .vbox {
+    -fx-background-color: #D3D3D3;
+}
+
+.pie-chart, .bar-chart{
+    -fx-background-color: transparent;
+}
+
+.pie-chart .chart-title, .bar-chart .chart-title {
+    -fx-text-fill: #28282B;
+    -fx-font-size: 16px;
+    -fx-font-weight: bold;
+}
+
+.pie-chart .label-line, .bar-chart .label-line{
+    -fx-stroke: #28282B;
+}
+
+.image-view {
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.25), 10, 0.0, 0.0, 2.0);
+    -fx-background-color: #28282B;
+}
+
+.bar-chart .default-color0.chart-bar {
+    -fx-bar-fill: #A3B4A2;
+}
+
+.chart-series-line {
+    -fx-stroke: #28282B;
+}
+
+.default-color0.chart-pie {
+    -fx-pie-color: #5A7D9A;
+}
+
+.default-color1.chart-pie {
+    -fx-pie-color: #6C8A8D;
+}
+
+.default-color2.chart-pie {
+    -fx-pie-color: #C8B39D;
+}
+
+.wrapper{
+    -fx-border-color:black;
+    -fx-border-width: 0 0 1 0;
+}

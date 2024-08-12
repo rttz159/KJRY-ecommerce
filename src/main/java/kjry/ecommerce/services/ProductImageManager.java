@@ -2,6 +2,7 @@ package kjry.ecommerce.services;
 
 import java.io.File;
 import java.io.IOException;
+import java.net.URL;
 import java.nio.file.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -10,7 +11,7 @@ import kjry.ecommerce.dtos.ProductsDTO;
 public class ProductImageManager {
 
     public final Path IMAGEFOLDER = getAppDirectory().resolve("kjryEcommerce_images");
-    
+
     public ProductImageManager() {
     }
 
@@ -23,17 +24,23 @@ public class ProductImageManager {
             return Paths.get("");
         }
     }
-    
+
     public void loadImage(ProductsDTO product, ImageView productImage) {
         try {
             String imagePath = product.getImagePath();
-            Path fullPath = IMAGEFOLDER.resolve(imagePath);
-            File imageFile = fullPath.toFile();
-            if (imageFile.exists()) {
-                Image image = new Image("file:" + imageFile.getAbsolutePath());
-                productImage.setImage(image);
+            if (imagePath != null) {
+                Path fullPath = IMAGEFOLDER.resolve(imagePath);
+                File imageFile = fullPath.toFile();
+                if (imageFile.exists()) {
+                    Image image = new Image("file:" + imageFile.getAbsolutePath());
+                    productImage.setImage(image);
+                } else {
+                    System.out.println("Image file does not exist: " + imageFile.getAbsolutePath());
+                }
             } else {
-                System.out.println("Image file does not exist: " + imageFile.getAbsolutePath());
+                System.out.println("This product doesn't have an image.");
+                URL resourceUrl = getClass().getClassLoader().getResource("image/unavailable.png");
+                productImage.setImage(new Image(resourceUrl.toString()));
             }
         } catch (Exception e) {
             e.printStackTrace();

@@ -100,14 +100,6 @@
                     <include>**/*.jpg</include>
                 </includes>
             </resource>
-            <resource>
-                <directory>src/main/resources/image</directory>
-                <includes>
-                    <include>**/*.png</include>
-                    <include>**/*.jpeg</include>
-                    <include>**/*.jpg</include>
-                </includes>
-            </resource>
         </resources>
     </build>
 </project>

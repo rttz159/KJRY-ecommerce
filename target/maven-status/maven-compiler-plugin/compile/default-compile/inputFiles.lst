@@ -39,6 +39,7 @@ D:\Study\Degree\Y1S3\OOP\ecommerce\src\main\java\kjry\ecommerce\services\CardPay
 D:\Study\Degree\Y1S3\OOP\ecommerce\src\main\java\kjry\ecommerce\services\OrderService.java
 D:\Study\Degree\Y1S3\OOP\ecommerce\src\main\java\kjry\ecommerce\datamodels\Pair.java
 D:\Study\Degree\Y1S3\OOP\ecommerce\src\main\java\kjry\ecommerce\controller\AdminUserInfoDialogController.java
+D:\Study\Degree\Y1S3\OOP\ecommerce\src\main\java\kjry\ecommerce\controller\AdminDashBoardController.java
 D:\Study\Degree\Y1S3\OOP\ecommerce\src\main\java\kjry\ecommerce\controller\AdminProductController.java
 D:\Study\Degree\Y1S3\OOP\ecommerce\src\main\java\kjry\ecommerce\dataaccess\GsonDatabase.java
 D:\Study\Degree\Y1S3\OOP\ecommerce\src\main\java\kjry\ecommerce\services\OnlineBankingPaymentMethod.java
