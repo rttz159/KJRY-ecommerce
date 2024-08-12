@@ -2,6 +2,8 @@ package kjry.ecommerce.controller;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -21,9 +23,12 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import kjry.ecommerce.datamodels.Pair;
 import kjry.ecommerce.dtos.AccessoriesDTO;
 import kjry.ecommerce.dtos.ClothingDTO;
+import kjry.ecommerce.dtos.OrdersDTO;
 import kjry.ecommerce.dtos.ProductsDTO;
+import kjry.ecommerce.services.OrderService;
 import kjry.ecommerce.services.ProductImageManager;
 import kjry.ecommerce.services.ProductService;
 
@@ -159,12 +164,24 @@ public class AdminProductController implements Initializable {
             warningAlert.setHeaderText("Product will be PERMANENTLY DELETED.");
             warningAlert.showAndWait().ifPresent(result -> {
                 if (result == ButtonType.OK) {
-                    ProductImageManager imageManager = new ProductImageManager();
-                    imageManager.removeProductImage(product);
-                    ProductService.removeProduct(product);
-                    list = FXCollections.observableArrayList(ProductService.getAllProducts());
-                    productsTableView.setItems(list);
-                    this.productsTableView.refresh();
+                    Map<String, Integer> hashMap = new HashMap<>();
+                    for (OrdersDTO x : OrderService.getAllOrder()) {
+                        for (Pair<ProductsDTO, Integer> y : x.getProductLists()) {
+                            hashMap.put(y.getKey().getId(), 1);
+                        }
+                    }
+                    if (hashMap.get(product.getId()) == null) {
+                        ProductImageManager imageManager = new ProductImageManager();
+                        imageManager.removeProductImage(product);
+                        ProductService.removeProduct(product);
+                        list = FXCollections.observableArrayList(ProductService.getAllProducts());
+                        productsTableView.setItems(list);
+                        this.productsTableView.refresh();
+                    } else {
+                        Alert warningAlert1 = new Alert(Alert.AlertType.WARNING);
+                        warningAlert1.setHeaderText("The product is associated with orders, cannot be deleted.");
+                        warningAlert1.showAndWait();
+                    }
                 }
             });
         });

@@ -68,8 +68,8 @@ public class ProductImageManager {
     public void removeProductImage(ProductsDTO product) {
         String imagePath = product.getImagePath();
         Path appDirectory = getAppDirectory();
-        Path imageFilePath = appDirectory.resolve("kjryEcommerce_images").resolve(imagePath);
         try {
+            Path imageFilePath = appDirectory.resolve("kjryEcommerce_images").resolve(imagePath);
             if (Files.exists(imageFilePath)) {
                 Files.delete(imageFilePath);
                 System.out.println("File deleted: " + imageFilePath.toAbsolutePath().toString());
@@ -78,6 +78,8 @@ public class ProductImageManager {
             }
         } catch (IOException e) {
             e.printStackTrace();
+        }catch(NullPointerException e){
+            System.out.println("File does not exist");
         }
     }
 }
