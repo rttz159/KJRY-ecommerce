@@ -4,6 +4,8 @@ import java.io.IOException;
 import java.net.URL;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -25,7 +27,9 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 import kjry.ecommerce.dtos.CustomersDTO;
 import kjry.ecommerce.dtos.EmployeesDTO;
+import kjry.ecommerce.dtos.OrdersDTO;
 import kjry.ecommerce.dtos.UsersDTO;
+import kjry.ecommerce.services.OrderService;
 import kjry.ecommerce.services.UserService;
 
 public class AdminUserController implements Initializable {
@@ -185,11 +189,22 @@ public class AdminUserController implements Initializable {
             warningAlert.setHeaderText("User will be PERMANENTLY DELETED.");
             warningAlert.showAndWait().ifPresent(result -> {
                 if (result == ButtonType.OK) {
-                    UserService service = new UserService(user);
-                    service.deleteUser();
-                    list = FXCollections.observableArrayList(UserService.getAllUsers());
-                    adminUserTableview.setItems(list);
-                    this.adminUserTableview.refresh();
+                    Map<String, Integer> hashMap = new HashMap<>();
+                    for (OrdersDTO x : OrderService.getAllOrder()) {
+                        hashMap.put(x.getUser().getId(), 1);
+                    }
+                    if (hashMap.get(user.getId()) == null) {
+                        UserService service = new UserService(user);
+                        service.deleteUser();
+                        list = FXCollections.observableArrayList(UserService.getAllUsers());
+                        adminUserTableview.setItems(list);
+                        this.adminUserTableview.refresh();
+                    } else {
+                        Alert warningAlert1 = new Alert(Alert.AlertType.WARNING);
+                        warningAlert1.setHeaderText("The user is associated with orders, cannot be deleted.");
+                        warningAlert1.showAndWait();
+                    }
+
                 }
             });
         });
