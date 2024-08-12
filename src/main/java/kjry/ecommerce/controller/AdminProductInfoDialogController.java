@@ -25,6 +25,7 @@ import javafx.stage.Stage;
 import kjry.ecommerce.dtos.AccessoriesDTO;
 import kjry.ecommerce.dtos.ClothingDTO;
 import kjry.ecommerce.dtos.ProductsDTO;
+import kjry.ecommerce.services.ProductImageManager;
 import kjry.ecommerce.services.ProductService;
 
 public class AdminProductInfoDialogController implements Initializable {
@@ -164,8 +165,8 @@ public class AdminProductInfoDialogController implements Initializable {
             }
         } else {
             System.out.println(product.getImagePath());
-            String fullPath = Paths.get(System.getProperty("user.home"), product.getImagePath()).toString();
-            productImage.setImage(new Image("file:" + fullPath));
+            ProductImageManager imageManager = new ProductImageManager();
+            imageManager.loadImage(product,productImage);
         }
         costPriceTextField.setText(String.format("%.2f", product.getCostPrice()));
         sellingPriceTextField.setText(String.format("%.2f", product.getSellingPrice()));
@@ -243,28 +244,8 @@ public class AdminProductInfoDialogController implements Initializable {
 
     private void saveOrder() {
         if (tempImagePath != null) {
-            Path sourcePath = this.tempImagePath;
-
-            Path destinationFolder = Paths.get(System.getProperty("user.home"), "kjryEcommerce_images");
-
-            try {
-                if (Files.notExists(destinationFolder)) {
-                    Files.createDirectories(destinationFolder);
-                }
-
-                Path destinationPath = destinationFolder.resolve(sourcePath.getFileName());
-
-                Files.copy(sourcePath, destinationPath, StandardCopyOption.REPLACE_EXISTING);
-
-                String copiedFilePath = destinationPath.toAbsolutePath().toString();
-
-                System.out.println("File copied to: " + copiedFilePath);
-
-                product.setImagePath(String.format("kjryEcommerce_images/%s", sourcePath.getFileName()));
-
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
+            ProductImageManager imageManager = new ProductImageManager();
+            imageManager.saveProductImage(tempImagePath, product);
         }
         product.setCostPrice(Double.parseDouble(costPriceTextField.getText()));
         product.setSellingPrice(Double.parseDouble(sellingPriceTextField.getText()));

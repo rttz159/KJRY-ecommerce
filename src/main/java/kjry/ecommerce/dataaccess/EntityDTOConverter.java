@@ -57,16 +57,12 @@ public class EntityDTOConverter {
             }
             ArrayList<NotificationTypeDTO> notificationArr = new ArrayList<>();
             for (NotificationType x : temp.getNotificationTypes()) {
-                switch (x) {
-                    case SMS:
-                        notificationArr.add(NotificationTypeDTO.SMS);
-                        break;
-                    case EMAIL:
-                        notificationArr.add(NotificationTypeDTO.EMAIL);
-                        break;
-                    case APP:
-                        notificationArr.add(NotificationTypeDTO.EMAIL);
-                        break;
+                if (x == NotificationType.SMS) {
+                    notificationArr.add(NotificationTypeDTO.SMS);
+                } else if (x == NotificationType.EMAIL) {
+                    notificationArr.add(NotificationTypeDTO.EMAIL);
+                } else if (x == NotificationType.APP) {
+                    notificationArr.add(NotificationTypeDTO.APP);
                 }
             }
 
@@ -184,16 +180,12 @@ public class EntityDTOConverter {
             }
             ArrayList<NotificationType> notificationArr = new ArrayList<>();
             for (NotificationTypeDTO x : tempDto.getNotificationTypes()) {
-                switch (x) {
-                    case SMS:
-                        notificationArr.add(NotificationType.SMS);
-                        break;
-                    case EMAIL:
-                        notificationArr.add(NotificationType.EMAIL);
-                        break;
-                    case APP:
-                        notificationArr.add(NotificationType.APP);
-                        break;
+                if (x == NotificationTypeDTO.SMS) {
+                    notificationArr.add(NotificationType.SMS);
+                } else if (x == NotificationTypeDTO.EMAIL) {
+                    notificationArr.add(NotificationType.EMAIL);
+                } else if (x == NotificationTypeDTO.APP) {
+                    notificationArr.add(NotificationType.APP);
                 }
             }
             Customers tempCust = new Customers(tempDto.getId(), tempDto.getPassword(), tempDto.getName(), tempDto.getEmail(), tempDto.getPhoneNo(), tempDto.getGender(), tempDto.getBirthDate(), notificationArr, productArr);

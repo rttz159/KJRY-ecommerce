@@ -120,7 +120,7 @@ public class AdminUserController implements Initializable {
                 event -> {
                     UsersDTO user = adminUserTableview.getSelectionModel().getSelectedItem();
                     try {
-                        System.out.println("Edit button clicked for user: " + user.getName());
+                        System.out.println("Edit button clicked for user: " + user.getName() + " password: " + user.getPassword());
                         if (userPromptDialog(user, true)) {
                             UserService service = new UserService(user);
                             service.updateUser();

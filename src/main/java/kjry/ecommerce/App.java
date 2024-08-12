@@ -8,9 +8,13 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 import kjry.ecommerce.dataaccess.DatabaseWrapper;
+import kjry.ecommerce.dtos.UsersDTO;
+import kjry.ecommerce.services.UserService;
 
 public class App extends Application {
 
+    private static int currentUserIdx;
+    
     private static Scene scene;
 
     @Override
@@ -19,6 +23,7 @@ public class App extends Application {
         scene = new Scene(root);
         stage.setScene(scene);
         stage.setTitle("KJRY ECOMMERCE");
+        stage.setResizable(false);
         stage.centerOnScreen();
         stage.show();
     }
@@ -38,4 +43,18 @@ public class App extends Application {
         DatabaseWrapper.updateFile();
     }
 
+    public static void setCurrentUser(UsersDTO user){
+        int i = 0;
+        for(UsersDTO x : UserService.getAllUsers()){
+            if(user.getId().equals(x.getId())){
+                currentUserIdx = i;
+            }
+            i++;
+        }
+    }
+    
+    public static UsersDTO getCurrentUser(){
+        return UserService.getAllUsers()[App.currentUserIdx];
+    }
+    
 }

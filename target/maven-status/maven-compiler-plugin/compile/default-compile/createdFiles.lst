@@ -33,6 +33,7 @@ kjry\ecommerce\dataaccess\GsonDatabase$10.class
 kjry\ecommerce\dataaccess\Database.class
 kjry\ecommerce\dataaccess\GsonDatabase$8.class
 kjry\ecommerce\services\NotificationService$1.class
+kjry\ecommerce\controller\AdminDashBoardController.class
 kjry\ecommerce\dtos\OrdersDTO.class
 kjry\ecommerce\dtos\EmployeesDTO.class
 kjry\ecommerce\dataaccess\GsonDatabase$11.class
@@ -40,6 +41,7 @@ kjry\ecommerce\controller\AdminProductController$1.class
 kjry\ecommerce\dtos\EmployeesDTO$JobRoleDTO.class
 kjry\ecommerce\services\ValidationUtils.class
 kjry\ecommerce\dataaccess\UserController.class
+kjry\ecommerce\controller\AdminDashBoardController$1.class
 kjry\ecommerce\dtos\CustomersDTO$1.class
 kjry\ecommerce\dataaccess\GsonDatabase$2.class
 kjry\ecommerce\controller\AdminUserInfoDialogController.class
@@ -51,6 +53,7 @@ kjry\ecommerce\dataaccess\ProductController.class
 kjry\ecommerce\dataaccess\DatabaseWrapper.class
 kjry\ecommerce\dataaccess\GsonDatabase$ProductsAdapter.class
 kjry\ecommerce\dataaccess\GsonDatabase$OrdersAdapter.class
+kjry\ecommerce\services\ProductImageManager.class
 kjry\ecommerce\controller\AdminUserController$1.class
 kjry\ecommerce\dtos\AccessoriesDTO.class
 kjry\ecommerce\services\ProductService.class
