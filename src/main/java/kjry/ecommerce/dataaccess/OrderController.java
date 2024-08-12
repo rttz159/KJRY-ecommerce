@@ -85,7 +85,6 @@ public class OrderController implements DatabaseController<OrdersDTO>{
         for(int i = 0; i < DatabaseWrapper.getOrdersList().size(); i++){
             temp[i] = EntityDTOConverter.convertEntityToDto(DatabaseWrapper.getOrdersList().get(i));
         }
-        System.out.println(DatabaseWrapper.getOrdersList().size());
         return temp;
     }
     
