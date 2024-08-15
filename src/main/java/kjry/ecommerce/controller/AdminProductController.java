@@ -70,7 +70,7 @@ public class AdminProductController implements Initializable {
     @FXML
     private Button removeButton;
 
-    private ObservableList<ProductsDTO> list = FXCollections.observableArrayList(ProductService.getAllProducts());
+    private ObservableList<ProductsDTO> list = FXCollections.observableArrayList(ProductService.getAllProducts(false));
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -104,7 +104,7 @@ public class AdminProductController implements Initializable {
                 System.out.println("Edit button clicked for product: " + product.getName());
                 if (productPromptDialog(product, true)) {
                     ProductService.updateProduct(product, product.getStockQty());
-                    list = FXCollections.observableArrayList(ProductService.getAllProducts());
+                    list = FXCollections.observableArrayList(ProductService.getAllProducts(false));
                     productsTableView.setItems(list);
                     productsTableView.refresh();
                 }
@@ -151,7 +151,7 @@ public class AdminProductController implements Initializable {
             if (buttonClicked[0]) {
                 if (productPromptDialog(product[0], true)) {
                     ProductService.createProduct(product[0], product[0].getStockQty());
-                    list = FXCollections.observableArrayList(ProductService.getAllProducts());
+                    list = FXCollections.observableArrayList(ProductService.getAllProducts(false));
                     productsTableView.setItems(list);
                     this.productsTableView.refresh();
                 }
@@ -161,27 +161,15 @@ public class AdminProductController implements Initializable {
         removeButton.setOnAction(event -> {
             ProductsDTO product = productsTableView.getSelectionModel().getSelectedItem();
             Alert warningAlert = new Alert(Alert.AlertType.CONFIRMATION);
-            warningAlert.setHeaderText("Product will be PERMANENTLY DELETED.");
+            warningAlert.setHeaderText("Product will be ARCHIVED.");
             warningAlert.showAndWait().ifPresent(result -> {
                 if (result == ButtonType.OK) {
-                    Map<String, Integer> hashMap = new HashMap<>();
-                    for (OrdersDTO x : OrderService.getAllOrder()) {
-                        for (Pair<ProductsDTO, Integer> y : x.getProductLists()) {
-                            hashMap.put(y.getKey().getId(), 1);
-                        }
-                    }
-                    if (hashMap.get(product.getId()) == null) {
-                        ProductImageManager imageManager = new ProductImageManager();
-                        imageManager.removeProductImage(product);
-                        ProductService.removeProduct(product);
-                        list = FXCollections.observableArrayList(ProductService.getAllProducts());
-                        productsTableView.setItems(list);
-                        this.productsTableView.refresh();
-                    } else {
-                        Alert warningAlert1 = new Alert(Alert.AlertType.WARNING);
-                        warningAlert1.setHeaderText("The product is associated with orders, cannot be deleted.");
-                        warningAlert1.showAndWait();
-                    }
+                    ProductImageManager imageManager = new ProductImageManager();
+                    imageManager.removeProductImage(product);
+                    ProductService.removeProduct(product);
+                    list = FXCollections.observableArrayList(ProductService.getAllProducts(false));
+                    productsTableView.setItems(list);
+                    this.productsTableView.refresh();
                 }
             });
         });

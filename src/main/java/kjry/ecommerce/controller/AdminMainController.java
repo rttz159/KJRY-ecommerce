@@ -29,6 +29,9 @@ public class AdminMainController implements Initializable {
     private Button dashBoardButton;
 
     @FXML
+    private Button archivedButton;
+
+    @FXML
     private HBox parentHBox;
 
     @FXML
@@ -88,6 +91,17 @@ public class AdminMainController implements Initializable {
             try {
                 clearContentVBox();
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/AdminDashBoard.fxml"));
+                content = loader.load();
+                parentHBox.getChildren().add(content);
+            } catch (IOException ex) {
+                System.out.println("Error occurs when loading the fxml file");
+            }
+        });
+
+        archivedButton.setOnAction(ev -> {
+            try {
+                clearContentVBox();
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/AdminArchived.fxml"));
                 content = loader.load();
                 parentHBox.getChildren().add(content);
             } catch (IOException ex) {

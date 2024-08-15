@@ -271,9 +271,9 @@ public class AdminUserInfoDialogController {
     private void validateFields() {
         boolean valid = true;
 
-        String[] ids = new String[UserService.getAllUsers().length];
+        String[] ids = new String[UserService.getAllUsers(false).length];
         int i = 0;
-        for (UsersDTO x : UserService.getAllUsers()) {
+        for (UsersDTO x : UserService.getAllUsers(true)) {
             ids[i] = x.getId();
             i++;
         }

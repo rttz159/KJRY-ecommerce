@@ -1,5 +1,6 @@
 package kjry.ecommerce.dataaccess;
 
+import java.util.ArrayList;
 import kjry.ecommerce.datamodels.Products;
 import kjry.ecommerce.dtos.ProductsDTO;
 
@@ -70,7 +71,8 @@ public class ProductController implements DatabaseController<ProductsDTO>{
         for (int i = 0; i < DatabaseWrapper.getProductsList().size(); i++) {
             if (DatabaseWrapper.getProductsList().get(i).getId().equals(id)) {
                 DatabaseWrapper.getProductStock().remove(DatabaseWrapper.getProductsList().get(i));
-                DatabaseWrapper.getProductsList().remove(i);
+                DatabaseWrapper.getProductsList().get(i).setIsActive(false);
+                ArrayList<Products> temp = DatabaseWrapper.getProductsList();
                 error = false;
                 break;
             }

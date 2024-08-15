@@ -64,7 +64,7 @@ public class AdminUserController implements Initializable {
     @FXML
     private Button addButton;
 
-    private ObservableList<UsersDTO> list = FXCollections.observableArrayList(UserService.getAllUsers());
+    private ObservableList<UsersDTO> list = FXCollections.observableArrayList(UserService.getAllUsers(false));
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -128,7 +128,7 @@ public class AdminUserController implements Initializable {
                         if (userPromptDialog(user, true)) {
                             UserService service = new UserService(user);
                             service.updateUser();
-                            list = FXCollections.observableArrayList(UserService.getAllUsers());
+                            list = FXCollections.observableArrayList(UserService.getAllUsers(false));
                             adminUserTableview.setItems(list);
                             adminUserTableview.refresh();
                         }
@@ -176,7 +176,7 @@ public class AdminUserController implements Initializable {
             if (buttonClicked[0]) {
                 if (userPromptDialog(user[0], true)) {
                     UserService.createUser(user[0]);
-                    list = FXCollections.observableArrayList(UserService.getAllUsers());
+                    list = FXCollections.observableArrayList(UserService.getAllUsers(false));
                     adminUserTableview.setItems(list);
                     this.adminUserTableview.refresh();
                 }
@@ -186,25 +186,14 @@ public class AdminUserController implements Initializable {
         removeButton.setOnAction(event -> {
             UsersDTO user = adminUserTableview.getSelectionModel().getSelectedItem();
             Alert warningAlert = new Alert(Alert.AlertType.CONFIRMATION);
-            warningAlert.setHeaderText("User will be PERMANENTLY DELETED.");
+            warningAlert.setHeaderText("User will be ARCHIVED.");
             warningAlert.showAndWait().ifPresent(result -> {
                 if (result == ButtonType.OK) {
-                    Map<String, Integer> hashMap = new HashMap<>();
-                    for (OrdersDTO x : OrderService.getAllOrder()) {
-                        hashMap.put(x.getUser().getId(), 1);
-                    }
-                    if (hashMap.get(user.getId()) == null) {
-                        UserService service = new UserService(user);
-                        service.deleteUser();
-                        list = FXCollections.observableArrayList(UserService.getAllUsers());
-                        adminUserTableview.setItems(list);
-                        this.adminUserTableview.refresh();
-                    } else {
-                        Alert warningAlert1 = new Alert(Alert.AlertType.WARNING);
-                        warningAlert1.setHeaderText("The user is associated with orders, cannot be deleted.");
-                        warningAlert1.showAndWait();
-                    }
-
+                    UserService service = new UserService(user);
+                    service.deleteUser();
+                    list = FXCollections.observableArrayList(UserService.getAllUsers(false));
+                    adminUserTableview.setItems(list);
+                    this.adminUserTableview.refresh();
                 }
             });
         });

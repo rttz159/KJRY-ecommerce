@@ -65,3 +65,11 @@
 #sidePanelVBox #ordersButton:hover{
     -fx-background-image: url("/views/css/image/shopping-list_black.png");
 }
+
+#sidePanelVBox #archivedButton{
+    -fx-background-image: url("/views/css/image/recycle_bin_white.png");
+}
+
+#sidePanelVBox #archivedButton:hover{
+    -fx-background-image: url("/views/css/image/recycle_bin_black.png");
+}

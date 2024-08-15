@@ -11,6 +11,7 @@ public abstract class UsersDTO {
     protected String phoneNo;
     protected char gender;
     protected Date birthDate;
+    protected boolean isActive = true;
     
     protected UsersDTO(){}
     
@@ -22,6 +23,14 @@ public abstract class UsersDTO {
         this.phoneNo = phoneNo;
         this.gender = gender;
         this.birthDate = birthDate;
+    }
+
+    public boolean getIsActive() {
+        return isActive;
+    }
+
+    public void setIsActive(boolean isActive) {
+        this.isActive = isActive;
     }
 
     public String getId() {

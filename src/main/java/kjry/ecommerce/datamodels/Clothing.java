@@ -41,4 +41,9 @@ public class Clothing extends Products {
         return this.type;
     }
 
+    @Override
+    public String toString() {
+        return super.toString() + "Clothing{" + "type=" + type + ", size=" + size + '}';
+    }
+
 }

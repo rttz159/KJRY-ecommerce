@@ -1,19 +1,14 @@
 package kjry.ecommerce.dtos;
 
-import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.nio.file.StandardCopyOption;
-
 public abstract class ProductsDTO {
 
-    public String id;
-    public String name;
-    public int stockQty = -1;
-    public double costPrice;
-    public double sellingPrice;
-    public String imagePath;
+    protected String id;
+    protected String name;
+    protected int stockQty = -1;
+    protected double costPrice;
+    protected double sellingPrice;
+    protected String imagePath;
+    protected boolean isActive = true;
 
     protected ProductsDTO(String id, String name, double costPrice, double sellingPrice, String imagePath, int stockQty) {
         this.id = id;
@@ -31,7 +26,7 @@ public abstract class ProductsDTO {
         this.sellingPrice = sellingPrice;
         this.stockQty = stockQty;
     }
-    
+
     protected ProductsDTO(String id, String name, double costPrice, double sellingPrice) {
         this.id = id;
         this.name = name;
@@ -40,7 +35,15 @@ public abstract class ProductsDTO {
     }
 
     protected ProductsDTO() {
-        
+
+    }
+
+    public boolean getIsActive() {
+        return isActive;
+    }
+
+    public void setIsActive(boolean isActive) {
+        this.isActive = isActive;
     }
 
     public String getId() {
@@ -87,10 +90,9 @@ public abstract class ProductsDTO {
         return imagePath;
     }
 
-    public void setImagePath(String imageFilePath) { 
+    public void setImagePath(String imageFilePath) {
         this.imagePath = imageFilePath;
     }
-
 
     public String getType() {
         if (this instanceof ClothingDTO) {

@@ -17,5 +17,10 @@ public class Accessories extends Products{
     public void setWashable(boolean washable) {
         this.washable = washable;
     }
+
+    @Override
+    public String toString() {
+        return super.toString() + "Accessories{" + "washable=" + washable + '}';
+    }
     
 }

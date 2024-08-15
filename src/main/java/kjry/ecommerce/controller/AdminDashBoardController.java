@@ -78,14 +78,14 @@ public class AdminDashBoardController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         //Example User
-        App.setCurrentUser(UserService.getAllUsers()[10]);
+        App.setCurrentUser(UserService.getAllUsers(false)[10]);
 
         String greetings = String.format("%s%s!", greetingLabel.getText(), App.getCurrentUser().getName());
         greetingLabel.setText(greetings);
 
         int[] genderCount = {0, 0};
         int[] subCount = {0, 0, 0};
-        for (UsersDTO x : UserService.getAllUsers()) {
+        for (UsersDTO x : UserService.getAllUsers(false)) {
             if (x instanceof CustomersDTO) {
                 if (x.getGender() == 'F') {
                     genderCount[0]++;

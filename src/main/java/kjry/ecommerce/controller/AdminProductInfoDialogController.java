@@ -2,13 +2,10 @@ package kjry.ecommerce.controller;
 
 import kjry.ecommerce.services.ValidationUtils;
 import java.io.File;
-import java.io.IOException;
 import java.net.URI;
 import java.net.URL;
-import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.nio.file.StandardCopyOption;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -166,7 +163,7 @@ public class AdminProductInfoDialogController implements Initializable {
         } else {
             System.out.println(product.getImagePath());
             ProductImageManager imageManager = new ProductImageManager();
-            imageManager.loadImage(product,productImage);
+            imageManager.loadImage(product, productImage);
         }
         costPriceTextField.setText(String.format("%.2f", product.getCostPrice()));
         sellingPriceTextField.setText(String.format("%.2f", product.getSellingPrice()));
@@ -198,9 +195,9 @@ public class AdminProductInfoDialogController implements Initializable {
         ValidationUtils.setFieldValidity(descriptionTextField, descriptionValid);
         valid &= descriptionValid;
 
-        String[] ids = new String[ProductService.getAllProducts().length];
+        String[] ids = new String[ProductService.getAllProducts(false).length];
         int i = 0;
-        for (ProductsDTO x : ProductService.getAllProducts()) {
+        for (ProductsDTO x : ProductService.getAllProducts(true)) {
             ids[i] = x.getId();
             i++;
         }

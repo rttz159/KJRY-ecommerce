@@ -48,7 +48,7 @@ public class UserController implements DatabaseController<UsersDTO> {
         boolean error = true;
         for(int i = 0; i < DatabaseWrapper.getUsersList().size(); i++){
             if(DatabaseWrapper.getUsersList().get(i).getId().equals(id)){
-                DatabaseWrapper.getUsersList().remove(i);
+                DatabaseWrapper.getUsersList().get(i).setIsActive(false);
                 error = false;
                 break;
             }

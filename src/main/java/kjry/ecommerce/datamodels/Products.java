@@ -1,11 +1,5 @@
 package kjry.ecommerce.datamodels;
 
-import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.nio.file.StandardCopyOption;
-
 public abstract class Products {
 
     protected String id;
@@ -13,6 +7,7 @@ public abstract class Products {
     protected double costPrice;
     protected double sellingPrice;
     protected String imagePath;
+    protected boolean isActive = true;
 
     public Products(String id, String name, double costPrice, double sellingPrice) {
         this.id = id;
@@ -22,6 +17,14 @@ public abstract class Products {
     }
 
     public Products() {
+    }
+
+    public boolean isIsActive() {
+        return isActive;
+    }
+
+    public void setIsActive(boolean isActive) {
+        this.isActive = isActive;
     }
 
     public String getId() {
@@ -62,5 +65,10 @@ public abstract class Products {
 
     public void setImagePath(String imageFilePath) {
         this.imagePath = imageFilePath;
+    }
+
+    @Override
+    public String toString() {
+        return "Products{" + "id=" + id + ", name=" + name + ", costPrice=" + costPrice + ", sellingPrice=" + sellingPrice + ", imagePath=" + imagePath + ", isActive=" + isActive + '}';
     }
 }

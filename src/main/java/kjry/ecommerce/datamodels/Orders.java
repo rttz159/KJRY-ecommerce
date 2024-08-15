@@ -87,4 +87,9 @@ public class Orders {
         this.address = address;
     }
 
+    @Override
+    public String toString() {
+        return "Orders{" + "id=" + id + ", user=" + user.toString() + ", status=" + status + ", productLists=" + productLists + ", orderingDate=" + orderingDate + ", address=" + address + '}';
+    }
+
 }

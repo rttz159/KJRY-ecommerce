@@ -73,4 +73,9 @@ public class Customers extends Users {
         this.notification.add(message);
     }
 
+    @Override
+    public String toString() {
+        return super.toString() + "Customers{" + "shoppingCart=" + shoppingCart + ", notification=" + notification + ", notificationTypes=" + notificationTypes + '}';
+    }
+
 }

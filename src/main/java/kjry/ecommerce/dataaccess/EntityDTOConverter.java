@@ -48,7 +48,9 @@ public class EntityDTOConverter {
                     break;
             }
 
-            dto = new EmployeesDTO(temp.getId(), temp.getPassword(), temp.getName(), temp.getEmail(), temp.getPhoneNo(), temp.getGender(), temp.getBirthDate(), jobroleDTO);
+            EmployeesDTO tempEmp =  new EmployeesDTO(temp.getId(), temp.getPassword(), temp.getName(), temp.getEmail(), temp.getPhoneNo(), temp.getGender(), temp.getBirthDate(), jobroleDTO);
+            tempEmp.setIsActive(temp.isIsActive());
+            dto = tempEmp;
         } else {
             Customers temp = (Customers) user;
             ArrayList<Pair<ProductsDTO, Integer>> productArr = new ArrayList<>();
@@ -70,6 +72,7 @@ public class EntityDTOConverter {
             for (String message : temp.getNotification()) {
                 tempCusDTO.addNotification(message);
             }
+            tempCusDTO.setIsActive(temp.isIsActive());
             dto = tempCusDTO;
         }
 
@@ -107,16 +110,18 @@ public class EntityDTOConverter {
                     break;
             }
 
-            productDto = new ClothingDTO(tempCloth.getId(), tempCloth.getName(), tempCloth.getCostPrice(), tempCloth.getSellingPrice(), DatabaseWrapper.getProductStock().get(product), sizeDto, typeDto);
+            productDto = new ClothingDTO(tempCloth.getId(), tempCloth.getName(), tempCloth.getCostPrice(), tempCloth.getSellingPrice(), DatabaseWrapper.getProductStock().getOrDefault(product, -1), sizeDto, typeDto);
             if (tempCloth.getImagePath() != null) {
                 productDto.setImagePath(tempCloth.getImagePath());
             }
+            productDto.setIsActive(tempCloth.isIsActive());
         } else if (product instanceof Accessories) {
             Accessories tempAcc = (Accessories) product;
-            productDto = new AccessoriesDTO(tempAcc.getId(), tempAcc.getName(), tempAcc.getCostPrice(), tempAcc.getSellingPrice(), DatabaseWrapper.getProductStock().get(product), tempAcc.isWashable());
+            productDto = new AccessoriesDTO(tempAcc.getId(), tempAcc.getName(), tempAcc.getCostPrice(), tempAcc.getSellingPrice(), DatabaseWrapper.getProductStock().getOrDefault(product, -1), tempAcc.isWashable());
             if (tempAcc.getImagePath() != null) {
                 productDto.setImagePath(tempAcc.getImagePath());
             }
+            productDto.setIsActive(tempAcc.isIsActive());
         }
 
         return productDto;
@@ -166,6 +171,7 @@ public class EntityDTOConverter {
                     break;
             }
             user = new Employees(tempDto.getId(), tempDto.getPassword(), tempDto.getName(), tempDto.getEmail(), tempDto.getPhoneNo(), tempDto.getGender(), tempDto.getBirthDate(), jobRole);
+            user.setIsActive(tempDto.getIsActive());
         } else if (dto instanceof CustomersDTO) {
             CustomersDTO tempDto = (CustomersDTO) dto;
             ArrayList<Pair<Products, Integer>> productArr = new ArrayList<>();
@@ -193,6 +199,7 @@ public class EntityDTOConverter {
                 tempCust.addNotification(message);
             }
             user = tempCust;
+            user.setIsActive(tempDto.getIsActive());
         }
 
         return user;
@@ -233,12 +240,14 @@ public class EntityDTOConverter {
             if (tempClothDto.getImagePath() != null) {
                 product.setImagePath(tempClothDto.getImagePath());
             }
+            product.setIsActive(tempClothDto.getIsActive());
         } else if (productDto instanceof AccessoriesDTO) {
             AccessoriesDTO tempAccDto = (AccessoriesDTO) productDto;
             product = new Accessories(tempAccDto.getId(), tempAccDto.getName(), tempAccDto.getCostPrice(), tempAccDto.getSellingPrice(), tempAccDto.isWashable());
             if (tempAccDto.getImagePath() != null) {
                 product.setImagePath(tempAccDto.getImagePath());
             }
+            product.setIsActive(tempAccDto.getIsActive());
         }
 
         if (productDto.getStockQty() != -1) {

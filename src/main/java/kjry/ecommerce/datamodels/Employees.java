@@ -27,4 +27,9 @@ public class Employees extends Users {
         this.jobRole = jobRole;
     }
 
+    @Override
+    public String toString() {
+        return super.toString() + "Employees{" + "jobRole=" + jobRole + '}';
+    }
+
 }

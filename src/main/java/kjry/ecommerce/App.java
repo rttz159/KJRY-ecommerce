@@ -45,7 +45,7 @@ public class App extends Application {
 
     public static void setCurrentUser(UsersDTO user){
         int i = 0;
-        for(UsersDTO x : UserService.getAllUsers()){
+        for(UsersDTO x : UserService.getAllUsers(false)){
             if(user.getId().equals(x.getId())){
                 currentUserIdx = i;
             }
@@ -54,7 +54,7 @@ public class App extends Application {
     }
     
     public static UsersDTO getCurrentUser(){
-        return UserService.getAllUsers()[App.currentUserIdx];
+        return UserService.getAllUsers(false)[App.currentUserIdx];
     }
     
 }

@@ -11,7 +11,8 @@ public abstract class Users {
     protected String phoneNo;
     protected char gender;
     protected Date birthDate;
-    
+    protected boolean isActive = true;
+
     protected Users(String id, String password, String name, String email, String phoneNo, char gender, Date birthDate) {
         this.id = id;
         this.password = password;
@@ -21,8 +22,17 @@ public abstract class Users {
         this.gender = gender;
         this.birthDate = birthDate;
     }
-    
-    protected Users(){}
+
+    protected Users() {
+    }
+
+    public boolean isIsActive() {
+        return isActive;
+    }
+
+    public void setIsActive(boolean isActive) {
+        this.isActive = isActive;
+    }
 
     public String getId() {
         return id;
@@ -31,15 +41,15 @@ public abstract class Users {
     public void setId(String id) {
         this.id = id;
     }
-    
-    public void setPassword(String pw){
+
+    public void setPassword(String pw) {
         this.password = pw;
     }
-    
-    public String getPassword(){
+
+    public String getPassword() {
         return this.password;
     }
-    
+
     public String getName() {
         return name;
     }
@@ -80,4 +90,8 @@ public abstract class Users {
         this.birthDate = birthDate;
     }
 
+    @Override
+    public String toString() {
+        return "Users{" + "id=" + id + ", password=" + password + ", name=" + name + ", email=" + email + ", phoneNo=" + phoneNo + ", gender=" + gender + ", birthDate=" + birthDate + ", isActive=" + isActive + '}';
+    }
 }
