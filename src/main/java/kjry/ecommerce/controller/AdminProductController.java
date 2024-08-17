@@ -164,8 +164,6 @@ public class AdminProductController implements Initializable {
             warningAlert.setHeaderText("Product will be ARCHIVED.");
             warningAlert.showAndWait().ifPresent(result -> {
                 if (result == ButtonType.OK) {
-                    ProductImageManager imageManager = new ProductImageManager();
-                    imageManager.removeProductImage(product);
                     ProductService.removeProduct(product);
                     list = FXCollections.observableArrayList(ProductService.getAllProducts(false));
                     productsTableView.setItems(list);
