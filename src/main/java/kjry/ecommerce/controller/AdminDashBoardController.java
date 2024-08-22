@@ -1,6 +1,7 @@
 package kjry.ecommerce.controller;
 
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.ResourceBundle;
@@ -10,16 +11,15 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.geometry.Side;
 import javafx.scene.chart.BarChart;
-import javafx.scene.chart.LineChart;
 import javafx.scene.chart.PieChart;
 import javafx.scene.chart.XYChart;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import kjry.ecommerce.App;
 import kjry.ecommerce.datamodels.Pair;
+import kjry.ecommerce.dtos.AccessoriesDTO;
 import kjry.ecommerce.dtos.CustomersDTO;
 import kjry.ecommerce.dtos.OrdersDTO;
 import kjry.ecommerce.dtos.ProductsDTO;
@@ -35,6 +35,9 @@ public class AdminDashBoardController implements Initializable {
 
     @FXML
     private PieChart custSubPieChart;
+    
+    @FXML
+    private PieChart revenuePieChart;
 
     @FXML
     private Label greetingLabel;
@@ -59,6 +62,9 @@ public class AdminDashBoardController implements Initializable {
 
     @FXML
     private Label popularItemNameLabel;
+    
+    @FXML
+    private Label totalRevenueLabel;
 
     @FXML
     private VBox leastItemVBox;
@@ -142,6 +148,39 @@ public class AdminDashBoardController implements Initializable {
             data.nameProperty().bind(
                     javafx.beans.binding.Bindings.concat(
                             data.getName(), ": ", data.pieValueProperty().intValue()
+                    )
+            );
+        }
+        
+        
+        double[] revenue = {0.0,0.0};
+        for (OrdersDTO x : OrderService.getAllOrder()) {
+            ArrayList<Pair<ProductsDTO,Integer>> pairList = x.getProductLists();
+            for(Pair<ProductsDTO,Integer> y : pairList){
+                int idx = 0;
+                if(y.getKey() instanceof AccessoriesDTO){
+                    idx = 1;
+                }
+                revenue[idx] += ((y.getKey().getSellingPrice() - y.getKey().getCostPrice())*y.getValue());
+            }
+        }
+        
+        totalRevenueLabel.setText(String.format("RM %.2f",revenue[0] + revenue[1]));
+        
+        ObservableList<PieChart.Data> revenueChartData
+                = FXCollections.observableArrayList(
+                        new PieChart.Data("Cloth", revenue[0]),
+                        new PieChart.Data("Accessories", revenue[1])
+                );
+        revenuePieChart.setData(revenueChartData);
+        revenuePieChart.setStyle("-fx-background-color: #E3E3E3;");
+        revenuePieChart.setLegendVisible(true);
+        revenuePieChart.setLabelLineLength(20);
+        revenuePieChart.setLegendSide(Side.LEFT);
+        for (PieChart.Data data : revenueChartData) {
+            data.nameProperty().bind(
+                    javafx.beans.binding.Bindings.concat(
+                            data.getName(), ": RM ", data.pieValueProperty().doubleValue()
                     )
             );
         }
