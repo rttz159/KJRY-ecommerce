@@ -277,10 +277,13 @@ public class AdminUserInfoDialogController {
             ids[i] = x.getId();
             i++;
         }
-        for(int j = 0; j < ids.length; j++){
-            if(ids[j].equals(iDTextField.getText())){
-                ids[j] = "-1";
-                break;
+
+        if (user.getId() != null) {
+            for (int j = 0; j < ids.length; j++) {
+                if (ids[j].equals(iDTextField.getText())) {
+                    ids[j] = "-1";
+                    break;
+                }
             }
         }
         boolean idValid = ValidationUtils.isUnqiue(iDTextField.getText(), ids);

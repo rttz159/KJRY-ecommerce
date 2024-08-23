@@ -19,22 +19,33 @@ public class OrdersDTO {
     private StatusDTO status;
     private ArrayList<Pair<ProductsDTO,Integer>> productLists;
     private Date orderingDate;
+    private PromoDTO promo = null;
     public static final double SERVICETAX = 0.06;
     
-    public OrdersDTO(String id,String address, UsersDTO user,StatusDTO status,ArrayList<Pair<ProductsDTO,Integer>> productLists,Date orderingDate){
+    public OrdersDTO(String id,String address, UsersDTO user,StatusDTO status,ArrayList<Pair<ProductsDTO,Integer>> productLists,Date orderingDate,PromoDTO promo){
         this.id = id;
         this.address = address;
         this.user = user;
         this.status = status;
         this.productLists = productLists;
         this.orderingDate = orderingDate;
+        this.promo = promo;
     }
     
-    public OrdersDTO(String address,UsersDTO user,StatusDTO status,ArrayList<Pair<ProductsDTO,Integer>> productLists){
+    public OrdersDTO(String address,UsersDTO user,StatusDTO status,ArrayList<Pair<ProductsDTO,Integer>> productLists,PromoDTO promo){
         this.address = address;
         this.user = user;
         this.status = status;
         this.productLists = productLists;
+        this.promo = promo;
+    }
+
+    public PromoDTO getPromo() {
+        return promo;
+    }
+
+    public void setPromo(PromoDTO promo) {
+        this.promo = promo;
     }
 
     public String getId() {

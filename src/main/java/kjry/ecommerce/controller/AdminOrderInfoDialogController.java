@@ -43,6 +43,9 @@ public class AdminOrderInfoDialogController implements Initializable {
 
     @FXML
     private TextField usernameTextField;
+    
+    @FXML
+    private TextField promoTextField;
 
     @FXML
     private TextArea addressTextField;
@@ -91,6 +94,7 @@ public class AdminOrderInfoDialogController implements Initializable {
             i++;
         }
         productsListView.getItems().setAll(products);
+        promoTextField.setText(order.getPromo()==null?"NA":order.getPromo().getCodeName());
     }
 
     @FXML

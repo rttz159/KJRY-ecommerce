@@ -33,6 +33,7 @@
                         <Button fx:id="usersButton" mnemonicParsing="false" prefHeight="50.0" prefWidth="250.0" text="Users" />
                         <Button fx:id="productsButton" mnemonicParsing="false" prefHeight="50.0" prefWidth="250.0" text="Products" />
                         <Button fx:id="ordersButton" mnemonicParsing="false" prefHeight="50.0" prefWidth="250.0" text="Orders" />
+                        <Button fx:id="promoButton" mnemonicParsing="false" prefHeight="50.0" prefWidth="250.0" text="Promotion" />
                         <Button fx:id="archivedButton" mnemonicParsing="false" prefHeight="50.0" prefWidth="250.0" text="Archived" />
                      </children>
                      <VBox.margin>

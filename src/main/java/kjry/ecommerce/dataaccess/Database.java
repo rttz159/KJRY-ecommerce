@@ -5,11 +5,13 @@ import java.util.HashMap;
 import kjry.ecommerce.datamodels.Orders;
 import kjry.ecommerce.datamodels.Users;
 import kjry.ecommerce.datamodels.Products;
+import kjry.ecommerce.datamodels.Promo;
         
 public abstract class Database {
     protected ArrayList<Users> userList;
     protected ArrayList<Products> productList;
     protected ArrayList<Orders> orderList;
+    protected ArrayList<Promo> promoList;
     protected HashMap<Products, Integer> productStock;
 
     public ArrayList<Users> getUserList() {
@@ -22,6 +24,10 @@ public abstract class Database {
 
     public ArrayList<Products> getProductList() {
         return productList;
+    }
+    
+    public ArrayList<Promo> getPromoList() {
+        return promoList;
     }
 
     public HashMap<Products, Integer> getProductStock() {

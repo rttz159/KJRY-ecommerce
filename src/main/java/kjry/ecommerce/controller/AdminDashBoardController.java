@@ -23,9 +23,11 @@ import kjry.ecommerce.dtos.AccessoriesDTO;
 import kjry.ecommerce.dtos.CustomersDTO;
 import kjry.ecommerce.dtos.OrdersDTO;
 import kjry.ecommerce.dtos.ProductsDTO;
+import kjry.ecommerce.dtos.PromoDTO;
 import kjry.ecommerce.dtos.UsersDTO;
 import kjry.ecommerce.services.OrderService;
 import kjry.ecommerce.services.ProductImageManager;
+import kjry.ecommerce.services.PromoService;
 import kjry.ecommerce.services.UserService;
 
 public class AdminDashBoardController implements Initializable {
@@ -35,7 +37,7 @@ public class AdminDashBoardController implements Initializable {
 
     @FXML
     private PieChart custSubPieChart;
-    
+
     @FXML
     private PieChart revenuePieChart;
 
@@ -62,7 +64,7 @@ public class AdminDashBoardController implements Initializable {
 
     @FXML
     private Label popularItemNameLabel;
-    
+
     @FXML
     private Label totalRevenueLabel;
 
@@ -151,22 +153,30 @@ public class AdminDashBoardController implements Initializable {
                     )
             );
         }
-        
-        
-        double[] revenue = {0.0,0.0};
+
+        double[] revenue = {0.0, 0.0};
         for (OrdersDTO x : OrderService.getAllOrder()) {
-            ArrayList<Pair<ProductsDTO,Integer>> pairList = x.getProductLists();
-            for(Pair<ProductsDTO,Integer> y : pairList){
+            double tempPercentage = 0.0;
+            if (x.getPromo() != null) {
+                for (PromoDTO z : PromoService.getAllPromo(true)) {
+                    if (z.getId().equals(x.getPromo().getId())) {
+                        tempPercentage = z.getPercentage();
+                        break;
+                    }
+                }
+            }
+            ArrayList<Pair<ProductsDTO, Integer>> pairList = x.getProductLists();
+            for (Pair<ProductsDTO, Integer> y : pairList) {
                 int idx = 0;
-                if(y.getKey() instanceof AccessoriesDTO){
+                if (y.getKey() instanceof AccessoriesDTO) {
                     idx = 1;
                 }
-                revenue[idx] += ((y.getKey().getSellingPrice() - y.getKey().getCostPrice())*y.getValue());
+                revenue[idx] += (((y.getKey().getSellingPrice() - y.getKey().getCostPrice()) * y.getValue()) * (1 - (tempPercentage / 100.00)));
             }
         }
-        
-        totalRevenueLabel.setText(String.format("RM %.2f",revenue[0] + revenue[1]));
-        
+
+        totalRevenueLabel.setText(String.format("RM %.2f", revenue[0] + revenue[1]));
+
         ObservableList<PieChart.Data> revenueChartData
                 = FXCollections.observableArrayList(
                         new PieChart.Data("Cloth", revenue[0]),
@@ -180,7 +190,7 @@ public class AdminDashBoardController implements Initializable {
         for (PieChart.Data data : revenueChartData) {
             data.nameProperty().bind(
                     javafx.beans.binding.Bindings.concat(
-                            data.getName(), ": RM ", data.pieValueProperty().doubleValue()
+                            data.getName(), ": RM ", String.format("%.2f", data.pieValueProperty().doubleValue())
                     )
             );
         }
