@@ -66,6 +66,14 @@
     -fx-background-image: url("/views/css/image/shopping-list_black.png");
 }
 
+#sidePanelVBox #promoButton{
+    -fx-background-image: url("/views/css/image/discount_white.png");
+}
+
+#sidePanelVBox #promoButton:hover{
+    -fx-background-image: url("/views/css/image/discount_black.png");
+}
+
 #sidePanelVBox #archivedButton{
     -fx-background-image: url("/views/css/image/recycle_bin_white.png");
 }

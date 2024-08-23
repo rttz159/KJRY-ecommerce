@@ -76,7 +76,8 @@ public class PopulateData {
                     "123 Street, City" + i,
                     user,
                     Orders.Status.values()[i % 4], 
-                    productList
+                    productList,
+                    null
             );
             ordersList.add(order);
         }

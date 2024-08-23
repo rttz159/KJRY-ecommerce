@@ -15,6 +15,7 @@ import kjry.ecommerce.datamodels.Employees.JobRole;
 import kjry.ecommerce.datamodels.Orders;
 import static kjry.ecommerce.datamodels.Orders.Status.*;
 import kjry.ecommerce.datamodels.Products;
+import kjry.ecommerce.datamodels.Promo;
 import kjry.ecommerce.datamodels.Users;
 import kjry.ecommerce.dtos.AccessoriesDTO;
 import kjry.ecommerce.dtos.ClothingDTO;
@@ -26,6 +27,7 @@ import kjry.ecommerce.dtos.CustomersDTO.NotificationTypeDTO;
 import kjry.ecommerce.dtos.EmployeesDTO.JobRoleDTO;
 import kjry.ecommerce.dtos.OrdersDTO;
 import kjry.ecommerce.dtos.ProductsDTO;
+import kjry.ecommerce.dtos.PromoDTO;
 import kjry.ecommerce.dtos.UsersDTO;
 
 public class EntityDTOConverter {
@@ -48,7 +50,7 @@ public class EntityDTOConverter {
                     break;
             }
 
-            EmployeesDTO tempEmp =  new EmployeesDTO(temp.getId(), temp.getPassword(), temp.getName(), temp.getEmail(), temp.getPhoneNo(), temp.getGender(), temp.getBirthDate(), jobroleDTO);
+            EmployeesDTO tempEmp = new EmployeesDTO(temp.getId(), temp.getPassword(), temp.getName(), temp.getEmail(), temp.getPhoneNo(), temp.getGender(), temp.getBirthDate(), jobroleDTO);
             tempEmp.setIsActive(temp.isIsActive());
             dto = tempEmp;
         } else {
@@ -144,14 +146,22 @@ public class EntityDTOConverter {
                 statusDto = OrdersDTO.StatusDTO.CANCELLED;
                 break;
         }
-
         ArrayList<Pair<ProductsDTO, Integer>> productListsDto = new ArrayList<>();
         for (Pair<Products, Integer> pair : order.getProductLists()) {
             ProductsDTO productDto = convertEntityToDto(pair.getKey());
             productListsDto.add(new Pair<>(productDto, pair.getValue()));
         }
 
-        return new OrdersDTO(order.getId(), order.getAddress(), userDto, statusDto, productListsDto, order.getOrderingDate());
+        PromoDTO tempPromo = null;
+        if (order.getPromoUsed() != null) {
+            tempPromo = convertEntityToDto(order.getPromoUsed());
+        }
+
+        return new OrdersDTO(order.getId(), order.getAddress(), userDto, statusDto, productListsDto, order.getOrderingDate(), tempPromo);
+    }
+
+    public static PromoDTO convertEntityToDto(Promo promo) {
+        return new PromoDTO(promo.getId(), promo.getCodeName(), promo.getStartingDate(), promo.getAvailableDay(), promo.getDescription(), promo.getPercentage(), promo.isIsActive());
     }
 
     public static Users convertDtoToEntity(UsersDTO dto) {
@@ -290,12 +300,19 @@ public class EntityDTOConverter {
             }
             productLists.add(new Pair<>(product, pair.getValue()));
         }
-
+        
+        Promo tempPromo = null;
+        if (orderDto.getPromo() != null) {
+            tempPromo = convertDtoToEntity(orderDto.getPromo());
+        }
         if (orderDto.getId() == null) {
-            return new Orders(orderDto.getAddress(), user, status, productLists);
+            return new Orders(orderDto.getAddress(), user, status, productLists, tempPromo);
         } else {
-            return new Orders(orderDto.getId(), orderDto.getAddress(), user, status, productLists, orderDto.getOrderingDate());
+            return new Orders(orderDto.getId(), orderDto.getAddress(), user, status, productLists, orderDto.getOrderingDate(), tempPromo);
         }
     }
 
+    public static Promo convertDtoToEntity(PromoDTO dto) {
+        return new Promo(dto.getId(), dto.getCodeName(), dto.getStartingDate(), dto.getAvailableDay(), dto.getDescription(), dto.getPercentage(), dto.isIsActive());
+    }
 }

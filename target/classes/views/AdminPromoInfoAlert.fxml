@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<VBox fx:id="alertParentVBox" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="350.0" stylesheets="@css/AdminPromoInfoDialog.css" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="kjry.ecommerce.controller.AdminPromoInfoDialogController">
+    <children>
+        <Label styleClass="dialog-title" text="PROMO INFORMATION (DETAILS)">
+            <VBox.margin>
+                <Insets bottom="20.0" />
+            </VBox.margin>
+            <font>
+                <Font name="System Bold" size="12.0" />
+            </font>
+        </Label>
+        <ScrollPane prefHeight="250.0" prefWidth="300.0" styleClass="scrollPane">
+            <content>
+                <AnchorPane prefHeight="0.0">
+                    <children>
+                        <VBox prefHeight="200.0" prefWidth="295.0">
+                            <children>
+                                <HBox prefHeight="100.0" prefWidth="200.0" styleClass="wrapper">
+                                    <children>
+                                        <Label prefHeight="20.0" prefWidth="100.0" text="ID" />
+                                        <TextField fx:id="idTextField" prefHeight="25.0" prefWidth="190.0" styleClass="text-field" />
+                                    </children>
+                                    <VBox.margin>
+                                        <Insets bottom="10.0" />
+                                    </VBox.margin>
+                                </HBox>
+                                <HBox prefHeight="100.0" prefWidth="200.0" styleClass="wrapper">
+                                    <children>
+                                        <Label prefHeight="20.0" prefWidth="100.0" text="CodeName" />
+                                        <TextField fx:id="codeNameTextField" prefWidth="190.0" styleClass="text-field" />
+                                    </children>
+                                    <VBox.margin>
+                                        <Insets bottom="10.0" />
+                                    </VBox.margin>
+                                </HBox>
+                                <HBox prefHeight="100.0" prefWidth="200.0" styleClass="wrapper">
+                                    <children>
+                                        <Label prefHeight="20.0" prefWidth="100.0" text="Starting Date" />
+                                        <TextField fx:id="startingDateTextField" prefWidth="190.0" promptText="dd-mm-yyyy" styleClass="text-field" />
+                                    </children>
+                                    <VBox.margin>
+                                        <Insets bottom="10.0" />
+                                    </VBox.margin>
+                                </HBox>
+                                <HBox prefHeight="100.0" prefWidth="200.0" styleClass="wrapper">
+                                    <children>
+                                        <Label prefHeight="20.0" prefWidth="100.0" text="Duration" />
+                                        <TextField fx:id="durationTextField" prefWidth="190.0" styleClass="text-field" />
+                                    </children>
+                                    <VBox.margin>
+                                        <Insets bottom="10.0" />
+                                    </VBox.margin>
+                                </HBox>
+                                <HBox prefHeight="100.0" prefWidth="200.0" styleClass="wrapper">
+                                    <children>
+                                        <Label prefHeight="20.0" prefWidth="100.0" text="Description" />
+                                        <TextField fx:id="descriptionTextField" prefWidth="190.0" styleClass="text-field" />
+                                    </children>
+                                    <VBox.margin>
+                                        <Insets bottom="10.0" />
+                                    </VBox.margin>
+                                </HBox>
+                                <HBox prefHeight="100.0" prefWidth="200.0" styleClass="wrapper">
+                                    <children>
+                                        <Label prefHeight="20.0" prefWidth="100.0" text="Percentage" />
+                                        <TextField fx:id="percentageTextField" prefWidth="190.0" />
+                                    </children>
+                                    <VBox.margin>
+                                        <Insets bottom="10.0" />
+                                    </VBox.margin>
+                                </HBox>
+                            </children>
+                        </VBox>
+                    </children>
+                </AnchorPane>
+            </content>
+        </ScrollPane>
+        <HBox alignment="CENTER">
+            <children>
+                <Button fx:id="saveButton" mnemonicParsing="false" onAction="#handleSaveButtonAction" text="Save">
+                    <HBox.margin>
+                        <Insets top="10.0" />
+                    </HBox.margin>
+                </Button>
+            </children>
+        </HBox>
+    </children>
+    <padding>
+        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+    </padding>
+</VBox>

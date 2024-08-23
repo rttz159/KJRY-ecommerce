@@ -69,17 +69,6 @@ public class AdminUserController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         nameColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
-        nameColumn.setCellFactory(column -> new TableCell<UsersDTO, String>() {
-            @Override
-            protected void updateItem(String item, boolean empty) {
-                super.updateItem(item, empty);
-                if (empty || item == null) {
-                    setText(null);
-                } else {
-                    setText(item.toUpperCase());
-                }
-            }
-        });
 
         birthDateColumn.setCellValueFactory(new PropertyValueFactory<>("birthDate"));
         birthDateColumn.setCellFactory(column -> new TableCell<UsersDTO, Date>() {

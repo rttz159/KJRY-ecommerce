@@ -202,10 +202,12 @@ public class AdminProductInfoDialogController implements Initializable {
             i++;
         }
 
-        for (int j = 0; j < ids.length; j++) {
-            if (ids[j].equals(idTextField.getText())) {
-                ids[j] = "-1";
-                break;
+        if (product.getId() != null) {
+            for (int j = 0; j < ids.length; j++) {
+                if (ids[j].equals(idTextField.getText())) {
+                    ids[j] = "-1";
+                    break;
+                }
             }
         }
 

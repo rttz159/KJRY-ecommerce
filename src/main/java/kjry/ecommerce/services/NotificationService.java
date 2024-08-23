@@ -15,10 +15,10 @@ public class NotificationService {
                         case APP:
                             break;
                         case SMS:
-                            System.out.printf("Sending SMS with message <%s> to %s with phone number of %s.%n",message,tempCus.getName(),tempCus.getPhoneNo());
+                            System.out.printf("Sending SMS with message <%n%s%n> to %s with phone number of %s.%n%n",message,tempCus.getName(),tempCus.getPhoneNo());
                             break;
                         case EMAIL:
-                            System.out.printf("Sending EMAIL with message <%s> to %s with email of %s.%n",message,tempCus.getName(),tempCus.getEmail());
+                            System.out.printf("Sending EMAIL with message <%n%s%n> to %s with email of %s.%n%n",message,tempCus.getName(),tempCus.getEmail());
                             break;
                     }
                 }

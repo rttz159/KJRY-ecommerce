@@ -30,6 +30,7 @@ import kjry.ecommerce.datamodels.Customers;
 import kjry.ecommerce.datamodels.Employees;
 import kjry.ecommerce.datamodels.Orders;
 import kjry.ecommerce.datamodels.Products;
+import kjry.ecommerce.datamodels.Promo;
 import kjry.ecommerce.datamodels.Users;
 
 public class GsonDatabase extends Database {
@@ -54,6 +55,7 @@ public class GsonDatabase extends Database {
         this.orderList = new ArrayList<>();
         this.productList = new ArrayList<>();
         this.userList = new ArrayList<>();
+        this.promoList = new ArrayList<>();
         this.productStock = new HashMap<>();
         readFile(filepath);
     }
@@ -67,10 +69,13 @@ public class GsonDatabase extends Database {
             JsonElement usersElement = jsonObject.get("users");
             JsonElement productsElement = jsonObject.get("products");
             JsonElement ordersElement = jsonObject.get("orders");
+            JsonElement promoCodeElement = jsonObject.get("promoCode");
             JsonElement productStockElement = jsonObject.get("productStock");
             this.userList = gson.fromJson(usersElement, new TypeToken<ArrayList<Users>>() {
             }.getType());
             this.productList = gson.fromJson(productsElement, new TypeToken<ArrayList<Products>>() {
+            }.getType());
+            this.promoList = gson.fromJson(promoCodeElement, new TypeToken<ArrayList<Promo>>() {
             }.getType());
             this.orderList = gson.fromJson(ordersElement, new TypeToken<ArrayList<Orders>>() {
             }.getType());
@@ -109,6 +114,8 @@ public class GsonDatabase extends Database {
             }.getType()).getAsJsonArray();
             JsonArray productsJsonArray = gson.toJsonTree(productList, new TypeToken<ArrayList<Products>>() {
             }.getType()).getAsJsonArray();
+            JsonArray promoCodeJsonArray = gson.toJsonTree(promoList, new TypeToken<ArrayList<Promo>>() {
+            }.getType()).getAsJsonArray();
             JsonArray ordersJsonArray = gson.toJsonTree(orderList, new TypeToken<ArrayList<Orders>>() {
             }.getType()).getAsJsonArray();
             JsonElement productStockJson = gson.toJsonTree(productStock, new TypeToken<HashMap<Products, Integer>>() {
@@ -116,6 +123,7 @@ public class GsonDatabase extends Database {
             jsonObject.add("users", usersJsonArray);
             jsonObject.add("products", productsJsonArray);
             jsonObject.add("orders", ordersJsonArray);
+            jsonObject.add("promoCode", promoCodeJsonArray);
             jsonObject.add("productStock", productStockJson);
             fw.write(gson.toJson(jsonObject));
             error = false;
@@ -272,11 +280,15 @@ public class GsonDatabase extends Database {
         @Override
         public JsonElement serialize(Orders order, Type typeOfSrc, JsonSerializationContext context) {
             JsonObject jsonObject = new JsonObject();
-
+            String tempPromo = "NA";
+            if (order.getPromoUsed() != null) {
+                tempPromo = order.getPromoUsed().getId();
+            }
             jsonObject.addProperty("id", order.getId());
             jsonObject.addProperty("user", order.getUser().getId());
             jsonObject.addProperty("status", order.getStatus().name());
             jsonObject.addProperty("address", order.getAddress());
+            jsonObject.addProperty("promo", tempPromo);
             jsonObject.addProperty("orderingDate", dateFormat.format(order.getOrderingDate()));
 
             JsonArray productListsJson = new JsonArray();
@@ -299,6 +311,7 @@ public class GsonDatabase extends Database {
             String statusString = jsonObject.get("status").getAsString();
             String address = jsonObject.get("address").getAsString();
             String orderingDateString = jsonObject.get("orderingDate").getAsString();
+            String promoID = jsonObject.get("promo").getAsString();
 
             JsonArray productListsJson = jsonObject.get("productLists").getAsJsonArray();
 
@@ -332,8 +345,16 @@ public class GsonDatabase extends Database {
             } catch (ParseException e) {
                 throw new JsonParseException("Failed to parse ordering date", e);
             }
+            
+            Promo tempPromo = null;
+            if (!promoID.equals("NA")) {
+                tempPromo = promoList.stream()
+                        .filter(p -> p.getId().equals(promoID))
+                        .findFirst()
+                        .orElseThrow(() -> new JsonParseException("Promo not found"));
+            }
 
-            return new Orders(id, address, particularUser, status, productLists, orderingDate);
+            return new Orders(id, address, particularUser, status, productLists, orderingDate, tempPromo);
         }
 
     }
@@ -360,7 +381,7 @@ public class GsonDatabase extends Database {
             HashMap<Products, Integer> productStock = new HashMap<>();
             for (JsonElement element : jsonArray) {
                 JsonObject jsonObject = element.getAsJsonObject();
-                String productId = jsonObject.get("productId").getAsString(); 
+                String productId = jsonObject.get("productId").getAsString();
                 int quantity = jsonObject.get("quantity").getAsInt();
 
                 Products product = productList.stream()

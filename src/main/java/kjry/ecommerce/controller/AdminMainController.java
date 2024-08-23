@@ -30,6 +30,9 @@ public class AdminMainController implements Initializable {
 
     @FXML
     private Button archivedButton;
+    
+    @FXML
+    private Button promoButton;
 
     @FXML
     private HBox parentHBox;
@@ -102,6 +105,17 @@ public class AdminMainController implements Initializable {
             try {
                 clearContentVBox();
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/AdminArchived.fxml"));
+                content = loader.load();
+                parentHBox.getChildren().add(content);
+            } catch (IOException ex) {
+                System.out.println("Error occurs when loading the fxml file");
+            }
+        });
+        
+        promoButton.setOnAction(ev -> {
+            try {
+                clearContentVBox();
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/AdminPromo.fxml"));
                 content = loader.load();
                 parentHBox.getChildren().add(content);
             } catch (IOException ex) {

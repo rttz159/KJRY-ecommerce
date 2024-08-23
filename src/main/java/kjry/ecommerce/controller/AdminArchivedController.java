@@ -17,14 +17,13 @@ import kjry.ecommerce.dtos.ClothingDTO;
 import kjry.ecommerce.dtos.CustomersDTO;
 import kjry.ecommerce.dtos.EmployeesDTO;
 import kjry.ecommerce.dtos.ProductsDTO;
+import kjry.ecommerce.dtos.PromoDTO;
 import kjry.ecommerce.dtos.UsersDTO;
 import kjry.ecommerce.services.ProductService;
+import kjry.ecommerce.services.PromoService;
 import kjry.ecommerce.services.UserService;
 
 public class AdminArchivedController implements Initializable {
-
-    @FXML
-    private VBox AdminOrderParentVBox;
 
     @FXML
     private TableView<Object> archivedTableView;
@@ -51,6 +50,8 @@ public class AdminArchivedController implements Initializable {
                 return new SimpleStringProperty(((UsersDTO) item).getId());
             } else if (item instanceof ProductsDTO) {
                 return new SimpleStringProperty(((ProductsDTO) item).getId());
+            } else if (item instanceof PromoDTO) {
+                return new SimpleStringProperty(((PromoDTO) item).getId());
             }
             return new SimpleStringProperty("");
         });
@@ -61,6 +62,8 @@ public class AdminArchivedController implements Initializable {
                 return new SimpleStringProperty(((UsersDTO) item).getName());
             } else if (item instanceof ProductsDTO) {
                 return new SimpleStringProperty(((ProductsDTO) item).getName());
+            } else if (item instanceof PromoDTO) {
+                return new SimpleStringProperty(((PromoDTO) item).getCodeName());
             }
             return new SimpleStringProperty("");
         });
@@ -71,6 +74,8 @@ public class AdminArchivedController implements Initializable {
                 return new SimpleStringProperty("Users");
             } else if (item instanceof ProductsDTO) {
                 return new SimpleStringProperty("Products");
+            } else if (item instanceof PromoDTO) {
+                return new SimpleStringProperty("Promotions");
             }
             return new SimpleStringProperty("");
         });
@@ -113,6 +118,10 @@ public class AdminArchivedController implements Initializable {
                         tempCloth.setIsActive(true);
                         ProductService.updateProduct(tempCloth);
                     }
+                }else if(selectedItem instanceof PromoDTO){
+                    PromoDTO tempPromo = (PromoDTO)selectedItem;
+                    tempPromo.setIsActive(true);
+                    PromoService.updatePromo(tempPromo);
                 }
                 Alert infoAlert = new Alert(Alert.AlertType.INFORMATION);
                 infoAlert.setContentText("Restored successfully.");
@@ -136,6 +145,12 @@ public class AdminArchivedController implements Initializable {
 
         for (ProductsDTO x : ProductService.getAllProducts(true)) {
             if (!x.getIsActive()) {
+                list.add(x);
+            }
+        }
+        
+        for (PromoDTO x : PromoService.getAllPromo(true)) {
+            if (!x.isIsActive()) {
                 list.add(x);
             }
         }

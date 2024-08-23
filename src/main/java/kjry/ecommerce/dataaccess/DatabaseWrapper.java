@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import kjry.ecommerce.datamodels.Orders;
 import kjry.ecommerce.datamodels.Products;
+import kjry.ecommerce.datamodels.Promo;
 import kjry.ecommerce.datamodels.Users;
 
 public class DatabaseWrapper {
@@ -34,6 +35,10 @@ public class DatabaseWrapper {
     
     public static ArrayList<Orders> getOrdersList(){
         return instance.getOrderList();
+    }
+
+    public static ArrayList<Promo> getPromoCodeList(){
+        return instance.getPromoList();
     }
     
     public static HashMap<Products, Integer> getProductStock(){
