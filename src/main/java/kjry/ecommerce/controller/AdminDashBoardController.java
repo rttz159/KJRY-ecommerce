@@ -171,7 +171,7 @@ public class AdminDashBoardController implements Initializable {
                 if (y.getKey() instanceof AccessoriesDTO) {
                     idx = 1;
                 }
-                revenue[idx] += (((y.getKey().getSellingPrice() - y.getKey().getCostPrice()) * y.getValue()) * (1 - (tempPercentage / 100.00)));
+                revenue[idx] += (((y.getKey().getSellingPrice()* (1 - (tempPercentage / 100.00)) - y.getKey().getCostPrice()) * y.getValue()));
             }
         }
 
