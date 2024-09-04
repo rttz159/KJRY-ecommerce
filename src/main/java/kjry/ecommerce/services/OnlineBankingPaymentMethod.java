@@ -2,6 +2,7 @@ package kjry.ecommerce.services;
 
 import java.io.IOException;
 import java.util.Optional;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.ButtonType;
@@ -16,7 +17,7 @@ public class OnlineBankingPaymentMethod implements PaymentMethod {
     public boolean makePayment(double total) {
         boolean paymentSuccess = false;
         try {
-            AnchorPane paymentDialogPane = (AnchorPane) App.loadFXML("views/OnlineBankingPaymentDialog");
+            AnchorPane paymentDialogPane = (AnchorPane) new FXMLLoader(getClass().getResource("/views/OnlineBankingPaymentDialog.fxml")).load();
 
             TextField accountNumberField = (TextField) paymentDialogPane.lookup("#accountNumberField");
             PasswordField passwordField = (PasswordField) paymentDialogPane.lookup("#passwordField");

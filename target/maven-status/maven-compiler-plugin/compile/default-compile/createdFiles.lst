@@ -6,6 +6,7 @@ kjry\ecommerce\dtos\CustomersDTO$NotificationTypeDTO.class
 kjry\ecommerce\dtos\ClothingDTO$TypeDTO.class
 kjry\ecommerce\dataaccess\EntityDTOConverter$1.class
 kjry\ecommerce\controller\AdminArchivedController.class
+kjry\ecommerce\controller\TestingController.class
 kjry\ecommerce\controller\AdminOrderController.class
 kjry\ecommerce\dataaccess\GsonDatabase$3.class
 kjry\ecommerce\services\NotificationService.class
