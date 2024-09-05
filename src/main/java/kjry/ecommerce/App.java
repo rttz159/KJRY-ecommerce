@@ -8,18 +8,19 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 import kjry.ecommerce.dataaccess.DatabaseWrapper;
-import kjry.ecommerce.dtos.UsersDTO;
-import kjry.ecommerce.services.UserService;
 
 public class App extends Application {
 
-    private static int currentUserIdx;
+    private static String currentUserId;
     
     private static Scene scene;
+    
+    private static Stage primaryStage;
 
     @Override
     public void start(Stage stage) throws IOException {
-        Parent root = loadFXML("/views/AdminMain");
+        primaryStage = stage;
+        Parent root = new FXMLLoader(App.class.getResource("/views/WelcomePage.fxml")).load();
         scene = new Scene(root);
         stage.setScene(scene);
         stage.setTitle("KJRY ECOMMERCE");
@@ -28,33 +29,21 @@ public class App extends Application {
         stage.show();
     }
 
-    public static void setRoot(String fxml) throws IOException {
-        scene.setRoot(loadFXML(fxml));
-    }
-
-    public static Parent loadFXML(String fxml) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource(fxml + ".fxml"));
-        return fxmlLoader.load();
-    }
-
     public static void main(String[] args) {
         DatabaseWrapper dw = new DatabaseWrapper();
         launch();
         DatabaseWrapper.updateFile();
     }
 
-    public static void setCurrentUser(UsersDTO user){
-        int i = 0;
-        for(UsersDTO x : UserService.getAllUsers(false)){
-            if(user.getId().equals(x.getId())){
-                currentUserIdx = i;
-            }
-            i++;
-        }
+    public static void setCurrentUserId(String userid){
+        currentUserId = userid;
     }
     
-    public static UsersDTO getCurrentUser(){
-        return UserService.getAllUsers(false)[App.currentUserIdx];
+    public static String getCurrentUserId(){
+        return currentUserId;
     }
-    
+
+    public static Stage getPrimaryStage() {
+        return primaryStage;
+    }
 }

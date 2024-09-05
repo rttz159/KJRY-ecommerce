@@ -1,0 +1,119 @@
+#parentVbox {
+    -fx-background-color: #28282B;
+    -fx-padding: 20px;
+}
+
+.scrollPane {
+    -fx-background-color: transparent;
+    -fx-border-color: #D3D3D3;
+    -fx-border-width: 1px;
+    -fx-border-radius: 5px;
+}
+
+.scroll-bar:vertical .thumb {
+    -fx-background-color: #D3D3D3;
+    -fx-background-radius: 5px;
+}
+
+.scrollPane .scroll-bar .increment-button,
+.scrollPane .scroll-bar .decrement-button {
+    -fx-opacity: 0;
+}
+
+.wrapper {
+    -fx-padding: 10px;
+    -fx-background-color: #D3D3D3;
+    -fx-border-color: #28282B;
+    -fx-border-width: 1px;
+    -fx-border-radius: 10px;
+    -fx-background-radius: 10px;
+    -fx-alignment: center;
+}
+
+#title_label {
+    -fx-font-size: 26px;
+    -fx-text-fill: #D3D3D3;
+    -fx-font-weight: bold;
+}
+
+#subtitle_label {
+    -fx-text-fill: #D3D3D3;
+    -fx-font-size: 18px;
+}
+
+.label {
+    -fx-text-fill: #28282B;
+    -fx-font-size: 14px;
+}
+
+.text-field {
+    -fx-background-color: #FFFFFF;
+    -fx-text-fill: #28282B;
+    -fx-border-color: #D3D3D3;
+    -fx-border-radius: 5px;
+    -fx-background-radius: 5px;
+    -fx-padding: 5px;
+}
+
+.text-field.invalid {
+    -fx-border-color: red;
+    -fx-border-width: 2px;
+    -fx-background-color: #fdd;
+}
+
+.choice-box {
+    -fx-background-color: #FFFFFF;
+    -fx-text-fill: #28282B;
+    -fx-border-color: #D3D3D3;
+    -fx-border-radius: 5px;
+    -fx-background-radius: 5px;
+    -fx-padding: 5px;
+}
+
+.choice-box.invalid {
+    -fx-border-color: red;
+    -fx-border-width: 2px;
+    -fx-background-color: #fdd;
+}
+
+.list-view {
+    -fx-background-color: #FFFFFF;
+    -fx-border-color: #D3D3D3;
+    -fx-border-radius: 5px;
+    -fx-background-radius: 5px;
+}
+
+.button {
+    -fx-background-color: #D3D3D3;
+    -fx-text-fill: #28282B;
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+    -fx-padding: 10 20px 10 20px;
+    -fx-border-width: 1px;
+    -fx-border-color: #28282B;
+    -fx-border-radius: 5px;
+    -fx-background-radius: 5px;
+}
+
+.button:hover {
+    -fx-cursor: hand;
+    -fx-background-color: #28282B;
+    -fx-text-fill: #D3D3D3;
+    -fx-border-color: #D3D3D3;
+}
+
+.button:pressed {
+    -fx-background-color: #1d1d1f;
+    -fx-text-fill: #D3D3D3;
+}
+
+.scrollPane .scroll-bar .increment-button:hover,
+.scrollPane .scroll-bar .decrement-button:hover {
+    -fx-opacity: 1;
+}
+
+.scrollPane .scroll-bar .increment-button:pressed,
+.scrollPane .scroll-bar .decrement-button:pressed {
+    -fx-background-color: #D3D3D3;
+    -fx-opacity: 1;
+}

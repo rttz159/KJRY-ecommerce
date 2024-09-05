@@ -34,6 +34,32 @@
     -fx-text-fill: black;
 }
 
+#logoutVBox  .button {
+    -fx-background-color: -secondary-color;
+    -fx-text-fill: -primary-color;
+    -fx-font-size: 14px;
+    -fx-font-style: bold;
+    -fx-text-alignment: left;
+    -fx-background-size: 25px 25px;
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: 10px center;
+    -fx-padding: 15 10px 15 10px; 
+}
+
+#logoutVBox .button:hover {
+    -fx-cursor:hand;
+    -fx-background-color: -primary-color;
+    -fx-text-fill: black;
+}
+
+#logoutVBox  #logoutButton {
+    -fx-background-image: url("/views/css/image/logout_white.png");
+}
+
+#logoutVBox #logoutButton:hover {
+    -fx-background-image: url("/views/css/image/logout_black.png");
+}
+
 #sidePanelVBox #dashBoardButton{
     -fx-background-image: url("/views/css/image/home_white.png");
 }

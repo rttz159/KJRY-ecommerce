@@ -6,10 +6,14 @@ import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.stage.Stage;
+import kjry.ecommerce.App;
 
 public class AdminMainController implements Initializable {
 
@@ -33,6 +37,9 @@ public class AdminMainController implements Initializable {
     
     @FXML
     private Button promoButton;
+    
+    @FXML
+    private Button logoutButton;
 
     @FXML
     private HBox parentHBox;
@@ -120,6 +127,21 @@ public class AdminMainController implements Initializable {
                 parentHBox.getChildren().add(content);
             } catch (IOException ex) {
                 System.out.println("Error occurs when loading the fxml file");
+            }
+        });
+        
+        logoutButton.setOnAction(ev -> {
+            Stage primaryStage = App.getPrimaryStage();
+            try {
+                Parent root = new FXMLLoader(getClass().getResource("/views/WelcomePage.fxml")).load();
+                Scene scene = new Scene(root);
+                primaryStage.setScene(scene);
+                primaryStage.setTitle("KJRY ECOMMERCE");
+                primaryStage.setResizable(false);
+                primaryStage.centerOnScreen();
+                primaryStage.show();
+            } catch (IOException ex) {
+                System.out.println("There are exceptions when loading the Welcome Page.");
             }
         });
 

@@ -1,0 +1,69 @@
+#AnchorPane {
+    -fx-background-color: #28282B;
+}
+
+.title-label {
+    -fx-text-fill: #D3D3D3;
+    -fx-font-size: 36px;
+    -fx-border-color: #D3D3D3;
+    -fx-border-color: #D3D3D3;
+    -fx-border-width: 5px;
+    -fx-border-style: solid;
+    -fx-font-weight: bold;
+}
+
+.subtitle-label {
+    -fx-text-fill: #D3D3D3;
+}
+
+.form-label {
+    -fx-text-fill: #D3D3D3;
+}
+
+.text-field {
+    -fx-background-color: #D3D3D3;
+    -fx-text-fill: #28282B;
+}
+
+.button {
+    -fx-background-color: #D3D3D3;
+    -fx-text-fill: #28282B;
+    -fx-font-size: 14px;
+    -fx-text-alignment: left;
+    -fx-padding: 10 20px 10 20px;
+    -fx-border-size:1px;
+    -fx-border-style:solid;
+    -fx-border-color:#28282B;
+}
+
+.button:hover {
+    -fx-cursor:hand;
+    -fx-background-color: #28282B;
+    -fx-text-fill: #D3D3D3;
+    -fx-border-size:1px;
+    -fx-border-style:solid;
+    -fx-border-color:#D3D3D3;
+}
+
+
+.text-field.invalid {
+    -fx-border-color: red;
+    -fx-border-width: 2px;
+    -fx-background-color: #fdd; 
+}
+
+.password-field.invalid {
+    -fx-border-color: red;
+    -fx-border-width: 2px;
+    -fx-background-color: #fdd; 
+}
+
+.wrapper {
+    -fx-padding: 10px;
+    -fx-background-color: #D3D3D3;
+    -fx-border-color: #28282B;
+    -fx-border-width: 1px;
+    -fx-border-radius: 10px;
+    -fx-background-radius: 10px;
+    -fx-alignment: center;
+}

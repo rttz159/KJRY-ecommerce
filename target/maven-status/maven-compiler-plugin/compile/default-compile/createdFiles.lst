@@ -6,7 +6,6 @@ kjry\ecommerce\dtos\CustomersDTO$NotificationTypeDTO.class
 kjry\ecommerce\dtos\ClothingDTO$TypeDTO.class
 kjry\ecommerce\dataaccess\EntityDTOConverter$1.class
 kjry\ecommerce\controller\AdminArchivedController.class
-kjry\ecommerce\controller\TestingController.class
 kjry\ecommerce\controller\AdminOrderController.class
 kjry\ecommerce\dataaccess\GsonDatabase$3.class
 kjry\ecommerce\services\NotificationService.class
@@ -23,6 +22,7 @@ kjry\ecommerce\services\OnlineBankingPaymentMethod.class
 kjry\ecommerce\controller\AdminProductInfoDialogController.class
 kjry\ecommerce\dataaccess\EntityDTOConverter.class
 kjry\ecommerce\controller\AdminOrderController$3.class
+kjry\ecommerce\controller\UserMainController.class
 kjry\ecommerce\datamodels\Orders$Status.class
 kjry\ecommerce\controller\AdminMainController.class
 kjry\ecommerce\dtos\ProductsDTO.class
@@ -32,6 +32,7 @@ kjry\ecommerce\App.class
 kjry\ecommerce\dataaccess\GsonDatabase$9.class
 kjry\ecommerce\dataaccess\GsonDatabase$UsersAdapter.class
 kjry\ecommerce\datamodels\Promo.class
+kjry\ecommerce\controller\WelcomePageController.class
 kjry\ecommerce\datamodels\Products.class
 module-info.class
 kjry\ecommerce\datamodels\Pair.class
@@ -85,6 +86,7 @@ kjry\ecommerce\dataaccess\GsonDatabase$5.class
 kjry\ecommerce\services\OrderService.class
 kjry\ecommerce\controller\AdminPromoController.class
 kjry\ecommerce\dataaccess\PromoController.class
+kjry\ecommerce\controller\SignUpPageController.class
 kjry\ecommerce\datamodels\Clothing$Type.class
 kjry\ecommerce\dtos\CustomersDTO.class
 kjry\ecommerce\services\DataUpdateService.class

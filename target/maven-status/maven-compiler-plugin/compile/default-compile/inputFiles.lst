@@ -1,5 +1,6 @@
 D:\Study\Degree\Y1S3\OOP\ecommerce\src\main\java\kjry\ecommerce\services\ProductService.java
 D:\Study\Degree\Y1S3\OOP\ecommerce\src\main\java\kjry\ecommerce\dtos\CustomersDTO.java
+D:\Study\Degree\Y1S3\OOP\ecommerce\src\main\java\kjry\ecommerce\controller\WelcomePageController.java
 D:\Study\Degree\Y1S3\OOP\ecommerce\src\main\java\kjry\ecommerce\datamodels\Users.java
 D:\Study\Degree\Y1S3\OOP\ecommerce\src\main\java\kjry\ecommerce\services\PromoService.java
 D:\Study\Degree\Y1S3\OOP\ecommerce\src\main\java\kjry\ecommerce\datamodels\Accessories.java
@@ -7,6 +8,7 @@ D:\Study\Degree\Y1S3\OOP\ecommerce\src\main\java\kjry\ecommerce\dataaccess\Popul
 D:\Study\Degree\Y1S3\OOP\ecommerce\src\main\java\kjry\ecommerce\datamodels\Promo.java
 D:\Study\Degree\Y1S3\OOP\ecommerce\src\main\java\kjry\ecommerce\dataaccess\DatabaseController.java
 D:\Study\Degree\Y1S3\OOP\ecommerce\src\main\java\kjry\ecommerce\datamodels\Products.java
+D:\Study\Degree\Y1S3\OOP\ecommerce\src\main\java\kjry\ecommerce\controller\UserMainController.java
 D:\Study\Degree\Y1S3\OOP\ecommerce\src\main\java\kjry\ecommerce\App.java
 D:\Study\Degree\Y1S3\OOP\ecommerce\src\main\java\kjry\ecommerce\controller\AdminPromoInfoDialogController.java
 D:\Study\Degree\Y1S3\OOP\ecommerce\src\main\java\kjry\ecommerce\services\UserService.java
@@ -25,7 +27,6 @@ D:\Study\Degree\Y1S3\OOP\ecommerce\src\main\java\kjry\ecommerce\controller\Admin
 D:\Study\Degree\Y1S3\OOP\ecommerce\src\main\java\kjry\ecommerce\controller\AdminProductInfoDialogController.java
 D:\Study\Degree\Y1S3\OOP\ecommerce\src\main\java\kjry\ecommerce\dataaccess\OrderController.java
 D:\Study\Degree\Y1S3\OOP\ecommerce\src\main\java\kjry\ecommerce\dtos\ProductsDTO.java
-D:\Study\Degree\Y1S3\OOP\ecommerce\src\main\java\kjry\ecommerce\controller\TestingController.java
 D:\Study\Degree\Y1S3\OOP\ecommerce\src\main\java\kjry\ecommerce\controller\AdminUserController.java
 D:\Study\Degree\Y1S3\OOP\ecommerce\src\main\java\kjry\ecommerce\services\PaymentService.java
 D:\Study\Degree\Y1S3\OOP\ecommerce\src\main\java\kjry\ecommerce\dtos\AccessoriesDTO.java
@@ -45,6 +46,7 @@ D:\Study\Degree\Y1S3\OOP\ecommerce\src\main\java\kjry\ecommerce\dataaccess\Entit
 D:\Study\Degree\Y1S3\OOP\ecommerce\src\main\java\module-info.java
 D:\Study\Degree\Y1S3\OOP\ecommerce\src\main\java\kjry\ecommerce\dataaccess\Database.java
 D:\Study\Degree\Y1S3\OOP\ecommerce\src\main\java\kjry\ecommerce\datamodels\Orders.java
+D:\Study\Degree\Y1S3\OOP\ecommerce\src\main\java\kjry\ecommerce\controller\SignUpPageController.java
 D:\Study\Degree\Y1S3\OOP\ecommerce\src\main\java\kjry\ecommerce\services\NotificationService.java
 D:\Study\Degree\Y1S3\OOP\ecommerce\src\main\java\kjry\ecommerce\dtos\UsersDTO.java
 D:\Study\Degree\Y1S3\OOP\ecommerce\src\main\java\kjry\ecommerce\datamodels\Clothing.java

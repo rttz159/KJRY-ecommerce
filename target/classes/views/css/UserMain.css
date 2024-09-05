@@ -68,14 +68,6 @@
     -fx-background-image: url("/views/css/image/home_black.png");    
 }
 
-#sidePanelVBox #usersButton{
-    -fx-background-image: url("/views/css/image/user_white.png");
-}
-
-#sidePanelVBox #usersButton:hover{
-    -fx-background-image: url("/views/css/image/user_black.png");    
-}
-
 #sidePanelVBox #productsButton{
     -fx-background-image: url("/views/css/image/box_white.png");
 }
@@ -84,26 +76,28 @@
     -fx-background-image: url("/views/css/image/box_black.png");    
 }
 
-#sidePanelVBox #ordersButton{
-    -fx-background-image: url("/views/css/image/shopping-list_white.png");
+#sidePanelVBox #shoppingCartButton{
+    -fx-background-image: url("/views/css/image/grocery_store_white.png");
 }
 
-#sidePanelVBox #ordersButton:hover{
-    -fx-background-image: url("/views/css/image/shopping-list_black.png");
+#sidePanelVBox #shoppingCartButton:hover{
+    -fx-background-image: url("/views/css/image/grocery_store_black.png");    
 }
 
-#sidePanelVBox #promoButton{
-    -fx-background-image: url("/views/css/image/discount_white.png");
+#sidePanelVBox #ordersHistoryButton{
+    -fx-background-image: url("/views/css/image/order_history_white.png");
 }
 
-#sidePanelVBox #promoButton:hover{
-    -fx-background-image: url("/views/css/image/discount_black.png");
+#sidePanelVBox #ordersHistoryButton:hover{
+    -fx-background-image: url("/views/css/image/order_history_black.png");    
 }
 
-#sidePanelVBox #archivedButton{
-    -fx-background-image: url("/views/css/image/recycle_bin_white.png");
+#sidePanelVBox #settingsButton{
+    -fx-background-image: url("/views/css/image/settings_white.png");
 }
 
-#sidePanelVBox #archivedButton:hover{
-    -fx-background-image: url("/views/css/image/recycle_bin_black.png");
+#sidePanelVBox #settingsButton:hover{
+    -fx-background-image: url("/views/css/image/settings_black.png");    
 }
+
+
