@@ -67,7 +67,6 @@ kjry\ecommerce\controller\AdminUserController$1.class
 kjry\ecommerce\dtos\AccessoriesDTO.class
 kjry\ecommerce\services\ProductService.class
 kjry\ecommerce\dataaccess\GsonDatabase$1.class
-kjry\ecommerce\dataaccess\PopulateData.class
 kjry\ecommerce\services\CardPaymentMethod.class
 kjry\ecommerce\controller\AdminOrderController$4.class
 kjry\ecommerce\dataaccess\GsonDatabase$4.class
