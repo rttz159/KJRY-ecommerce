@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="630.0" stylesheets="@css/UserDashBoard.css" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="kjry.ecommerce.controller.UserDashBoardController">
+   <children>
+      <ScrollPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="630.0">
+         <content>
+            <AnchorPane minHeight="0.0" minWidth="0.0" prefWidth="0.0">
+               <children>
+                  <VBox fx:id="AdminProductParentVBox" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="620.0" stylesheets="@css/Parent.css">
+                     <children>
+                        <Label fx:id="greetingLabel" prefHeight="49.0" prefWidth="630.0" text="Welcome Back, " textAlignment="CENTER">
+                           <font>
+                              <Font name="System Bold" size="24.0" />
+                           </font>
+                           <VBox.margin>
+                              <Insets />
+                           </VBox.margin>
+                           <padding>
+                              <Insets bottom="15.0" left="10.0" right="20.0" top="30.0" />
+                           </padding>
+                        </Label>
+                        <Label contentDisplay="CENTER" prefHeight="17.0" prefWidth="635.0" style="-fx-background-color: #D3D3D3;" text="Shop now and enjoy exclusive savings on your favorites." textFill="#4d4d4d">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                           <padding>
+                              <Insets bottom="10.0" left="10.0" />
+                           </padding>
+                           <VBox.margin>
+                              <Insets />
+                           </VBox.margin>
+                        </Label>
+                        <AnchorPane prefHeight="301.0" prefWidth="600.0">
+                           <VBox.margin>
+                              <Insets top="20.0" />
+                           </VBox.margin>
+                           <children>
+                              <ImageView fx:id="banner1" fitHeight="300.0" fitWidth="530.0" layoutX="40.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../image/banner1.jpeg" />
+                                 </image>
+                              </ImageView>
+                              <ImageView fx:id="banner2" fitHeight="300.0" fitWidth="530.0" layoutX="608.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../image/banner2.jpeg" />
+                                 </image>
+                              </ImageView>
+                              <ImageView fx:id="banner3" fitHeight="300.0" fitWidth="530.0" layoutX="1160.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../image/banner3.jpeg" />
+                                 </image>
+                              </ImageView>
+                              <Button fx:id="leftBannerButton" alignment="CENTER" contentDisplay="GRAPHIC_ONLY" layoutY="139.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="25.0" style="-fx-background-color: transparent;" text="Button">
+                                 <graphic>
+                                    <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@css/image/left-arrow.png" />
+                                       </image>
+                                    </ImageView>
+                                 </graphic>
+                              </Button>
+                              <Button fx:id="rightBannerButton" alignment="CENTER" contentDisplay="GRAPHIC_ONLY" layoutX="573.0" layoutY="141.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="25.0" style="-fx-background-color: transparent;" text="Button">
+                                 <graphic>
+                                    <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@css/image/right-arrow.png" />
+                                       </image>
+                                    </ImageView>
+                                 </graphic>
+                              </Button>
+                           </children>
+                        </AnchorPane>
+                        <Label alignment="CENTER" prefHeight="17.0" prefWidth="616.0" text="Terms and Condition applies" />
+                        <HBox prefHeight="100.0" prefWidth="200.0">
+                           <children>
+                              <VBox fx:id="popularItemVBox" alignment="CENTER" prefHeight="281.0" prefWidth="311.0" styleClass=".card">
+                                 <children>
+                                    <Label text="Most Popular Item">
+                                       <font>
+                                          <Font size="14.0" />
+                                       </font>
+                                    </Label>
+                                    <ImageView fx:id="popularItemImageView" fitHeight="150.0" fitWidth="180.0" pickOnBounds="true" preserveRatio="true">
+                                       <VBox.margin>
+                                          <Insets bottom="10.0" top="10.0" />
+                                       </VBox.margin>
+                                    </ImageView>
+                                    <VBox prefHeight="200.0" prefWidth="100.0">
+                                       <children>
+                                          <Label fx:id="popularItemIdLabel" text="Label" />
+                                          <Label fx:id="popularItemNameLabel" text="Label" />
+                                          <Label fx:id="totalSalesLabel" text="Label" />
+                                       </children>
+                                    </VBox>
+                                 </children>
+                                 <padding>
+                                    <Insets bottom="20.0" left="30.0" right="30.0" top="20.0" />
+                                 </padding>
+                              </VBox>
+                              <VBox prefHeight="266.0" prefWidth="300.0" style="-fx-background-color: #D3D3D3;">
+                                 <children>
+                                    <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="17.0" prefWidth="307.0" text="Notifications" textAlignment="CENTER">
+                                       <font>
+                                          <Font size="14.0" />
+                                       </font>
+                                       <padding>
+                                          <Insets bottom="5.0" top="10.0" />
+                                       </padding>
+                                    </Label>
+                                    <ListView fx:id="notificationMsgListView" prefHeight="266.0" prefWidth="240.0" style="-fx-background-color: #D3D3D3;">
+                                       <padding>
+                                          <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                       </padding>
+                                    </ListView>
+                                 </children>
+                                 <padding>
+                                    <Insets bottom="20.0" />
+                                 </padding>
+                              </VBox>
+                           </children>
+                           <VBox.margin>
+                              <Insets top="40.0" />
+                           </VBox.margin>
+                        </HBox>
+                     </children>
+                     <padding>
+                        <Insets left="10.0" right="10.0" top="10.0" />
+                     </padding>
+                  </VBox>
+               </children>
+               <padding>
+                  <Insets bottom="10.0" top="10.0" />
+               </padding>
+            </AnchorPane>
+         </content>
+      </ScrollPane>
+   </children>
+</VBox>

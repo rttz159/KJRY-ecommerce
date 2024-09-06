@@ -1,0 +1,44 @@
+.vbox {
+    -fx-background-color: #D3D3D3;
+}
+
+.scroll-pane {
+    -fx-background-color: #D3D3D3;
+}
+
+.label {
+    -fx-text-fill: #28282B;
+}
+
+.label#greetingLabel {
+    -fx-background-color: #333333;
+    -fx-text-fill: white;
+    -fx-font-size: 24px;
+    -fx-font-weight: bold;
+}
+
+.label[contentDisplay="CENTER"] {
+    -fx-text-fill: #4d4d4d;
+    -fx-font-size: 14px;
+}
+
+.hbox, .vbox {
+    -fx-background-color: #D3D3D3;
+}
+
+#leftBannerButton:hover{
+    -fx-cursor:hand;
+}
+
+#rightBannerButton:hover{
+    -fx-cursor:hand;
+}
+
+#popularItemImageView {
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.25), 10, 0.0, 0.0, 2.0);
+    -fx-background-color: #28282B;
+}
+
+#notificationMsgListView:disabled{
+    -fx-opacity:1;
+}

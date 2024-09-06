@@ -179,6 +179,7 @@ public class SignUpPageController implements Initializable {
             e.printStackTrace();
         }
         customer.getNotificationTypes().clear();
+        notificationTypeCheckComboBox.getCheckModel().check(CustomersDTO.NotificationTypeDTO.APP);
         customer.getNotificationTypes().addAll(notificationTypeCheckComboBox.getCheckModel().getCheckedItems());
         customer.getShoppingCart().clear();
 

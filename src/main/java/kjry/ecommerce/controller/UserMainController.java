@@ -65,25 +65,26 @@ public class UserMainController implements Initializable {
                 System.out.println("There are exceptions when loading the Welcome Page.");
             }
         });
-//        try {
-//            clearContentVBox();
-//            FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/AdminDashBoard.fxml"));
-//            content = loader.load();
-//            parentHBox.getChildren().add(content);
-//        } catch (IOException ex) {
-//            System.out.println("Error occurs when loading the fxml file");
-//        }
-//
-//        usersButton.setOnAction(ev -> {
-//            try {
-//                clearContentVBox();
-//                FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/AdminUsers.fxml"));
-//                content = loader.load();
-//                parentHBox.getChildren().add(content);
-//            } catch (IOException ex) {
-//                System.out.println("Error occurs when loading the fxml file");
-//            }
-//        });
+        
+        try {
+            clearContentVBox();
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/UserDashBoard.fxml"));
+            content = loader.load();
+            parentHBox.getChildren().add(content);
+        } catch (IOException ex) {
+            System.out.println("Error occurs when loading the fxml file");
+        }
+
+        dashBoardButton.setOnAction(ev -> {
+            try {
+                clearContentVBox();
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/UserDashBoard.fxml"));
+                content = loader.load();
+                parentHBox.getChildren().add(content);
+            } catch (IOException ex) {
+                System.out.println("Error occurs when loading the fxml file");
+            }
+        });
     }
 
     private void clearContentVBox() {

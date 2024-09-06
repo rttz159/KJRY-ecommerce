@@ -78,7 +78,7 @@ public class ProductImageManager {
             }
         } catch (IOException e) {
             e.printStackTrace();
-        }catch(NullPointerException e){
+        } catch (NullPointerException e) {
             System.out.println("File does not exist");
         }
     }
