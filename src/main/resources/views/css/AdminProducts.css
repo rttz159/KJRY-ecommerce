@@ -6,7 +6,7 @@
     -fx-text-fill: -secondary-color;
 }
 
-#AdminProductParentVBox  .button {
+#buttonHBox  .button {
     -fx-background-color: -secondary-color;
     -fx-text-fill: -primary-color;
     -fx-font-size: 14px;
@@ -22,7 +22,7 @@
     -fx-border-radius:6px;
 }
 
-#AdminProductParentVBox .button:hover {
+#buttonHBox .button:hover {
     -fx-cursor:hand;
     -fx-background-color: -primary-color;
     -fx-text-fill: -secondary-color;
@@ -41,4 +41,54 @@
 #AdminProductParentVBox .table-view .table-cell .button:hover {
     -fx-cursor:hand;
     -fx-text-fill: #f01e2c;
+}
+
+#searchTextField {
+    -fx-background-color: #D3D3D3; 
+    -fx-text-fill: #28282B;         
+    -fx-prompt-text-fill: #A9A9A9;  
+    -fx-background-radius: 5;
+    -fx-border-radius: 5;
+    -fx-border-color: #28282B;     
+    -fx-border-width: 2;
+    -fx-padding: 5;
+    -fx-font-size: 14px;
+}
+
+#searchButton {
+    -fx-background-color: #D3D3D3;  
+    -fx-text-fill: #D3D3D3;         
+    -fx-border-color: #D3D3D3;      
+    -fx-border-width: 2;
+    -fx-background-radius: 5;
+    -fx-border-radius: 5;
+    -fx-padding: 5;
+    -fx-font-size: 14px;
+    -fx-cursor: hand;
+}
+
+#searchButton:hover {
+    -fx-opacity:0.65;
+}
+
+#resetButton {
+    -fx-background-color: -secondary-color;
+    -fx-text-fill: -primary-color;
+    -fx-font-size: 14px;
+    -fx-font-style: bold;
+    -fx-text-alignment: left;
+    -fx-background-size: 25px 25px;
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: 10px center;
+    -fx-padding: 5 10px 5 10px;
+    -fx-border-size:1px;
+    -fx-border-style:solid;
+    -fx-border-color:-secondary-color;
+    -fx-border-radius:6px;
+}
+
+#resetButton:hover {
+    -fx-cursor:hand;
+    -fx-background-color: -primary-color;
+    -fx-text-fill: -secondary-color;
 }

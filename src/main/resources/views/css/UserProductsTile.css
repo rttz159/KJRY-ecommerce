@@ -1,0 +1,58 @@
+#alertParentVBox{
+    -fx-border-color: #D3D3D3;
+    -fx-border-width: 1px;
+    -fx-border-radius: 10px;
+    -fx-background-radius: 10px;
+    -fx-background-color:#28282B;
+}
+
+.dialog-title {
+    font-size: 18px;
+    font-weight: bold;
+    -fx-text-fill: #28282B;
+}
+
+.wrapper {
+    -fx-padding: 5px;
+    -fx-background-color: #28282B;
+    -fx-border-color: #D3D3D3;
+    -fx-border-width: 1px;
+    -fx-border-radius: 5px;
+    -fx-background-radius: 5px;
+    -fx-alignment: center;
+}
+
+.label {
+    -fx-text-fill:  #D3D3D3;
+    -fx-font-size: 14px;
+}
+
+.text-field {
+    -fx-background-color: #959596;
+    -fx-border-color:  #D3D3D3;
+    -fx-border-radius: 5px;
+    -fx-background-radius: 5px;
+    -fx-text-fill:#28282B;
+}
+
+#detailsButton{
+    -fx-background-color: #28282B;
+    -fx-text-fill:  #D3D3D3;
+    -fx-font-size: 14px;
+    -fx-font-style: bold;
+    -fx-text-alignment: left;
+    -fx-background-size: 25px 25px;
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: 10px center;
+    -fx-padding: 5 10px 5 10px;
+    -fx-border-size:1px;
+    -fx-border-style:solid;
+    -fx-border-color: #D3D3D3;
+    -fx-border-radius:6px;
+}
+
+#detailsButton:hover{
+    -fx-cursor:hand;
+}
+
+

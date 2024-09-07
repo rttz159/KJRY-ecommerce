@@ -85,6 +85,17 @@ public class UserMainController implements Initializable {
                 System.out.println("Error occurs when loading the fxml file");
             }
         });
+
+        productsButton.setOnAction(ev -> {
+            try {
+                clearContentVBox();
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/UserProducts.fxml"));
+                content = loader.load();
+                parentHBox.getChildren().add(content);
+            } catch (IOException ex) {
+                System.out.println("Error occurs when loading the fxml file");
+            }
+        });
     }
 
     private void clearContentVBox() {

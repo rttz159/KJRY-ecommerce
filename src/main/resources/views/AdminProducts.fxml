@@ -6,6 +6,9 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
@@ -31,6 +34,24 @@
             <Insets bottom="10.0" />
          </padding>
       </Label>
+      <HBox fx:id="searchHbox" alignment="CENTER" prefHeight="40.0" prefWidth="610.0">
+         <children>
+            <TextField fx:id="searchTextField" prefHeight="25.0" prefWidth="300.0" promptText="Search...." />
+            <Button fx:id="searchButton" mnemonicParsing="false" prefHeight="20.0" prefWidth="14.0">
+               <graphic>
+                  <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@css/image/search_black.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+            <Button fx:id="resetButton" mnemonicParsing="false" text="Reset" />
+         </children>
+         <VBox.margin>
+            <Insets bottom="10.0" />
+         </VBox.margin>
+      </HBox>
       <TableView fx:id="productsTableView" prefHeight="386.0" prefWidth="610.0">
         <columns>
           <TableColumn fx:id="idTableColumn" prefWidth="75.0" text="ID" />
@@ -45,7 +66,7 @@
             <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
          </columnResizePolicy>
       </TableView>
-      <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+      <HBox fx:id="buttonHBox" alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
          <children>
             <Button fx:id="editButton" minHeight="30.0" minWidth="80.0" mnemonicParsing="false" text="Edit" />
             <Button fx:id="addButton" minHeight="30.0" minWidth="80.0" mnemonicParsing="false" text="Add">

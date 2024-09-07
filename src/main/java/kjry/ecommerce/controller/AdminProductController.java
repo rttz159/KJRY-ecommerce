@@ -2,8 +2,7 @@ package kjry.ecommerce.controller;
 
 import java.io.IOException;
 import java.net.URL;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -18,18 +17,15 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
-import kjry.ecommerce.datamodels.Pair;
 import kjry.ecommerce.dtos.AccessoriesDTO;
 import kjry.ecommerce.dtos.ClothingDTO;
-import kjry.ecommerce.dtos.OrdersDTO;
 import kjry.ecommerce.dtos.ProductsDTO;
-import kjry.ecommerce.services.OrderService;
-import kjry.ecommerce.services.ProductImageManager;
 import kjry.ecommerce.services.ProductService;
 
 public class AdminProductController implements Initializable {
@@ -69,6 +65,15 @@ public class AdminProductController implements Initializable {
 
     @FXML
     private Button removeButton;
+
+    @FXML
+    private Button searchButton;
+
+    @FXML
+    private Button resetButton;
+
+    @FXML
+    private TextField searchTextField;
 
     private ObservableList<ProductsDTO> list = FXCollections.observableArrayList(ProductService.getAllProducts(false));
 
@@ -172,7 +177,30 @@ public class AdminProductController implements Initializable {
             });
         });
 
+        resetButton.setOnAction(ev -> {
+            list = FXCollections.observableArrayList(ProductService.getAllProducts(false));
+            productsTableView.setItems(list);
+            this.productsTableView.refresh();
+        });
+
+        searchButton.setOnAction(ev -> {
+            if (!searchTextField.getText().isBlank()) {
+                String searchText = searchTextField.getText().toLowerCase();
+                ProductsDTO[] tempProd = ProductService.getAllProducts(false);
+                ArrayList<ProductsDTO> tempProd1 = new ArrayList<>();
+                for (ProductsDTO x : tempProd) {
+                    if (x.getName().toLowerCase().contains(searchText) || x.getId().toLowerCase().contains(searchText)) {
+                        tempProd1.add(x);
+                    }
+                }
+                productsTableView.setItems(FXCollections.observableArrayList(tempProd1));
+                this.productsTableView.refresh();
+            }
+        });
+
         productsTableView.setItems(list);
+        Label unfoundProduct = new Label("No product found.");
+        productsTableView.setPlaceholder(unfoundProduct);
     }
 
     private boolean productPromptDialog(ProductsDTO product, boolean editable) {

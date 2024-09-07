@@ -37,6 +37,7 @@ kjry\ecommerce\datamodels\Products.class
 module-info.class
 kjry\ecommerce\datamodels\Pair.class
 kjry\ecommerce\datamodels\Users.class
+kjry\ecommerce\controller\UserProductTilesController.class
 kjry\ecommerce\dtos\PromoDTO.class
 kjry\ecommerce\dataaccess\GsonDatabase$10.class
 kjry\ecommerce\dataaccess\Database.class
@@ -61,6 +62,7 @@ kjry\ecommerce\dataaccess\DatabaseController.class
 kjry\ecommerce\dataaccess\ProductController.class
 kjry\ecommerce\dataaccess\DatabaseWrapper.class
 kjry\ecommerce\dataaccess\GsonDatabase$ProductsAdapter.class
+kjry\ecommerce\controller\UserProductController.class
 kjry\ecommerce\dataaccess\GsonDatabase$OrdersAdapter.class
 kjry\ecommerce\services\ProductImageManager.class
 kjry\ecommerce\controller\AdminUserController$1.class
@@ -78,6 +80,8 @@ kjry\ecommerce\controller\AdminPromoController$2.class
 kjry\ecommerce\dataaccess\GsonDatabase$UsersListAdapter.class
 kjry\ecommerce\controller\AdminOrderController$1.class
 kjry\ecommerce\services\PaymentMethod.class
+kjry\ecommerce\controller\UserProductInfoDialogController.class
+kjry\ecommerce\controller\UserProductController$1.class
 kjry\ecommerce\dataaccess\GsonDatabase$ProductsListAdapter.class
 kjry\ecommerce\datamodels\Clothing.class
 kjry\ecommerce\dataaccess\GsonDatabase$7.class

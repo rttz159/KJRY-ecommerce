@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.Spinner?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<VBox fx:id="alertParentVBox" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="400.0" snapToPixel="false" stylesheets="@css/UserProductsInfoDialog.css" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="kjry.ecommerce.controller.UserProductInfoDialogController">
+    <children>
+        <Label fx:id="nameLabel" styleClass="dialog-title">
+            <VBox.margin>
+                <Insets bottom="20.0" />
+            </VBox.margin>
+            <font>
+                <Font name="System Bold" size="12.0" />
+            </font>
+        </Label>
+        <ScrollPane prefHeight="308.0" prefWidth="360.0" styleClass="scrollPane">
+            <content>
+                <AnchorPane prefHeight="0.0">
+                    <children>
+                        <VBox alignment="CENTER" prefHeight="530.0" prefWidth="345.0">
+                            <children>
+                        <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" styleClass="wrapper">
+                           <children>
+                              <ImageView fx:id="productImage" fitHeight="150.0" fitWidth="150.0" pickOnBounds="true" preserveRatio="true">
+                                 <VBox.margin>
+                                    <Insets bottom="10.0" top="10.0" />
+                                 </VBox.margin></ImageView>
+                           </children>
+                           <VBox.margin>
+                              <Insets bottom="10.0" />
+                           </VBox.margin>
+                        </VBox>
+                                <HBox maxHeight="100.0" prefHeight="100.0" prefWidth="200.0" styleClass="wrapper">
+                                    <children>
+                                        <Label prefHeight="20.0" prefWidth="100.0" text="Stock Qty" />
+                                        <TextField fx:id="stockQtyTextField" editable="false" prefWidth="190.0" styleClass="text-field" />
+                                    </children>
+                                    <VBox.margin>
+                                        <Insets bottom="10.0" />
+                                    </VBox.margin>
+                                </HBox>
+                        <HBox maxHeight="100.0" prefHeight="100.0" prefWidth="200.0" styleClass="wrapper">
+                           <children>
+                              <Label prefHeight="20.0" prefWidth="100.0" text="Selling Price" />
+                              <TextField fx:id="sellingPriceTextField" editable="false" prefWidth="190.0" styleClass="text-field" />
+                           </children>
+                           <VBox.margin>
+                              <Insets bottom="10.0" />
+                           </VBox.margin>
+                        </HBox>
+                        <HBox fx:id="typeHBox" maxHeight="100.0" prefHeight="100.0" prefWidth="200.0" styleClass="wrapper">
+                           <children>
+                              <Label prefHeight="20.0" prefWidth="100.0" text="Type" />
+                              <ChoiceBox fx:id="typeChoiceBox" prefWidth="190.0" />
+                           </children>
+                           <VBox.margin>
+                              <Insets bottom="10.0" />
+                           </VBox.margin>
+                        </HBox>
+                        <HBox fx:id="sizeHBox" maxHeight="100.0" prefHeight="100.0" prefWidth="200.0" styleClass="wrapper">
+                           <children>
+                              <Label prefHeight="20.0" prefWidth="100.0" text="Size" />
+                              <ChoiceBox fx:id="sizeChoiceBox" prefWidth="190.0" />
+                           </children>
+                        </HBox>
+                        <HBox fx:id="washableHBox" maxHeight="100.0" prefHeight="100.0" prefWidth="200.0" styleClass="wrapper">
+                           <children>
+                              <Label prefHeight="20.0" prefWidth="100.0" text="Washable" />
+                              <ChoiceBox fx:id="washableChoiceBox" prefWidth="190.0" />
+                           </children>
+                        </HBox>
+                            </children>
+                        </VBox>
+                    </children>
+                </AnchorPane>
+            </content>
+        </ScrollPane>
+        <HBox alignment="CENTER" spacing="20.0">
+         <children>
+            <Label text="Qty" />
+            <Spinner fx:id="qtySpinner" editable="true" />
+         </children>
+         <padding>
+            <Insets top="10.0" />
+         </padding>
+        </HBox>
+      <HBox alignment="CENTER" prefHeight="50.0" prefWidth="360.0" spacing="30.0">
+         <VBox.margin>
+            <Insets top="10.0" />
+         </VBox.margin>
+         <children>
+            <Button fx:id="addButton" mnemonicParsing="false" text="Add to Cart" />
+            <Button fx:id="cancelButton" mnemonicParsing="false" text="Cancel" />
+         </children>
+      </HBox>
+    </children>
+    <padding>
+        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+    </padding>
+</VBox>

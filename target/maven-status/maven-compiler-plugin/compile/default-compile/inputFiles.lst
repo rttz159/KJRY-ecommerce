@@ -6,6 +6,7 @@ D:\Study\Degree\Y1S3\OOP\ecommerce\src\main\java\kjry\ecommerce\services\PromoSe
 D:\Study\Degree\Y1S3\OOP\ecommerce\src\main\java\kjry\ecommerce\controller\UserDashBoardController.java
 D:\Study\Degree\Y1S3\OOP\ecommerce\src\main\java\kjry\ecommerce\datamodels\Accessories.java
 D:\Study\Degree\Y1S3\OOP\ecommerce\src\main\java\kjry\ecommerce\datamodels\Promo.java
+D:\Study\Degree\Y1S3\OOP\ecommerce\src\main\java\kjry\ecommerce\controller\UserProductInfoDialogController.java
 D:\Study\Degree\Y1S3\OOP\ecommerce\src\main\java\kjry\ecommerce\dataaccess\DatabaseController.java
 D:\Study\Degree\Y1S3\OOP\ecommerce\src\main\java\kjry\ecommerce\datamodels\Products.java
 D:\Study\Degree\Y1S3\OOP\ecommerce\src\main\java\kjry\ecommerce\controller\UserMainController.java
@@ -42,6 +43,7 @@ D:\Study\Degree\Y1S3\OOP\ecommerce\src\main\java\kjry\ecommerce\controller\Admin
 D:\Study\Degree\Y1S3\OOP\ecommerce\src\main\java\kjry\ecommerce\datamodels\Customers.java
 D:\Study\Degree\Y1S3\OOP\ecommerce\src\main\java\kjry\ecommerce\controller\AdminPromoController.java
 D:\Study\Degree\Y1S3\OOP\ecommerce\src\main\java\kjry\ecommerce\dtos\ClothingDTO.java
+D:\Study\Degree\Y1S3\OOP\ecommerce\src\main\java\kjry\ecommerce\controller\UserProductController.java
 D:\Study\Degree\Y1S3\OOP\ecommerce\src\main\java\kjry\ecommerce\dataaccess\EntityDTOConverter.java
 D:\Study\Degree\Y1S3\OOP\ecommerce\src\main\java\module-info.java
 D:\Study\Degree\Y1S3\OOP\ecommerce\src\main\java\kjry\ecommerce\dataaccess\Database.java
@@ -51,5 +53,6 @@ D:\Study\Degree\Y1S3\OOP\ecommerce\src\main\java\kjry\ecommerce\services\Notific
 D:\Study\Degree\Y1S3\OOP\ecommerce\src\main\java\kjry\ecommerce\dtos\UsersDTO.java
 D:\Study\Degree\Y1S3\OOP\ecommerce\src\main\java\kjry\ecommerce\datamodels\Clothing.java
 D:\Study\Degree\Y1S3\OOP\ecommerce\src\main\java\kjry\ecommerce\services\CardPaymentMethod.java
+D:\Study\Degree\Y1S3\OOP\ecommerce\src\main\java\kjry\ecommerce\controller\UserProductTilesController.java
 D:\Study\Degree\Y1S3\OOP\ecommerce\src\main\java\kjry\ecommerce\services\OrderService.java
 D:\Study\Degree\Y1S3\OOP\ecommerce\src\main\java\kjry\ecommerce\dataaccess\GsonDatabase.java

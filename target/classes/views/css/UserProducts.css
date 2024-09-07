@@ -1,8 +1,8 @@
-#AdminProductParentVBox{
+#UserProductParentVBox{
     -fx-background-color:-primary-color;
 }
 
-#AdminProductParentVBox .label{
+#UserProductParentVBox .label{
     -fx-text-fill: -secondary-color;
 }
 
@@ -29,7 +29,7 @@
 }
 
 
-#AdminProductParentVBox .table-view .table-cell .button{
+#UserProductParentVBox .table-view .table-cell .button{
     -fx-background-color: transparent;
     -fx-padding: 2 8px 2 8px;
     -fx-border-size: 0px;
@@ -38,7 +38,7 @@
     -fx-underline: true;
 }
 
-#AdminProductParentVBox .table-view .table-cell .button:hover {
+#UserProductParentVBox .table-view .table-cell .button:hover {
     -fx-cursor:hand;
     -fx-text-fill: #f01e2c;
 }
@@ -55,7 +55,7 @@
     -fx-font-size: 14px;
 }
 
-#searchButton {
+#searchButton,#tileButton, #listButton {
     -fx-background-color: #D3D3D3;  
     -fx-text-fill: #D3D3D3;         
     -fx-border-color: #D3D3D3;      
@@ -67,7 +67,7 @@
     -fx-cursor: hand;
 }
 
-#searchButton:hover {
+#searchButton:hover,#tileButton:hover, #listButton:hover {
     -fx-opacity:0.65;
 }
 
