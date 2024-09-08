@@ -17,7 +17,6 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.VBox;
 import javafx.util.Callback;
 import kjry.ecommerce.App;
-import kjry.ecommerce.controller.UserShoppingCartController.ShoppingCartItem;
 import kjry.ecommerce.dtos.OrdersDTO;
 import kjry.ecommerce.services.OrderService;
 

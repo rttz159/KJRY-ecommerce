@@ -54,6 +54,7 @@ kjry\ecommerce\dataaccess\GsonDatabase$11.class
 kjry\ecommerce\controller\AdminProductController$1.class
 kjry\ecommerce\dtos\EmployeesDTO$JobRoleDTO.class
 kjry\ecommerce\services\ValidationUtils.class
+kjry\ecommerce\controller\UserAccountDialogController.class
 kjry\ecommerce\dataaccess\UserController.class
 kjry\ecommerce\controller\AdminDashBoardController$1.class
 kjry\ecommerce\dtos\CustomersDTO$1.class

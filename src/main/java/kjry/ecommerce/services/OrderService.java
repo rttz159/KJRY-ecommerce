@@ -45,7 +45,7 @@ public class OrderService {
             total += prod.getKey().getSellingPrice() * prod.getValue();
         }
         
-        return total * OrdersDTO.SERVICETAX;
+        return total * (1 + OrdersDTO.SERVICETAX);
     }
     
     public static boolean makePayment(OrdersDTO dto, String choice){

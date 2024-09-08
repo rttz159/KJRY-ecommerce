@@ -38,10 +38,7 @@ import kjry.ecommerce.dtos.OrdersDTO;
 import kjry.ecommerce.dtos.ProductsDTO;
 import kjry.ecommerce.dtos.PromoDTO;
 import kjry.ecommerce.dtos.UsersDTO;
-import kjry.ecommerce.services.CardPaymentMethod;
-import kjry.ecommerce.services.OnlineBankingPaymentMethod;
 import kjry.ecommerce.services.OrderService;
-import kjry.ecommerce.services.PaymentService;
 import kjry.ecommerce.services.ProductService;
 import kjry.ecommerce.services.PromoService;
 import kjry.ecommerce.services.UserService;
@@ -187,104 +184,110 @@ public class UserShoppingCartController implements Initializable {
         });
 
         checkoutButton.setOnAction(ev -> {
-            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-            alert.setTitle("Payment Method");
-            alert.setHeaderText("Choose your payment method");
-            alert.setContentText("Please select one of the following options and enter your address and promo code(Optional):");
+            if (!list.isEmpty()) {
+                Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+                alert.setTitle("Payment Method");
+                alert.setHeaderText("Choose your payment method");
+                alert.setContentText("Please select one of the following options and enter your address and promo code(Optional):");
 
-            ButtonType cardPaymentButton = new ButtonType("Card Payment", ButtonBar.ButtonData.OK_DONE);
-            ButtonType onlineBankingButton = new ButtonType("Online Banking", ButtonBar.ButtonData.OK_DONE);
-            ButtonType cancelButton = new ButtonType("Cancel", ButtonBar.ButtonData.CANCEL_CLOSE);
+                ButtonType cardPaymentButton = new ButtonType("Card Payment", ButtonBar.ButtonData.OK_DONE);
+                ButtonType onlineBankingButton = new ButtonType("Online Banking", ButtonBar.ButtonData.OK_DONE);
+                ButtonType cancelButton = new ButtonType("Cancel", ButtonBar.ButtonData.CANCEL_CLOSE);
 
-            GridPane grid = new GridPane();
-            grid.setHgap(10);
-            grid.setVgap(10);
-            grid.setPadding(new Insets(20, 150, 10, 10));
+                GridPane grid = new GridPane();
+                grid.setHgap(10);
+                grid.setVgap(10);
+                grid.setPadding(new Insets(20, 150, 10, 10));
 
-            TextField addressField = new TextField();
-            addressField.setPromptText("Enter your address");
-            Label addressLabel = new Label("Address:");
+                TextField addressField = new TextField();
+                addressField.setPromptText("Enter your address");
+                Label addressLabel = new Label("Address:");
 
-            TextField promoCodeField = new TextField();
-            promoCodeField.setPromptText("Enter promo code");
-            Label promoCodeLabel = new Label("Promo Code:");
+                TextField promoCodeField = new TextField();
+                promoCodeField.setPromptText("Enter promo code");
+                Label promoCodeLabel = new Label("Promo Code:");
 
-            grid.add(addressLabel, 0, 0);
-            grid.add(addressField, 1, 0);
+                grid.add(addressLabel, 0, 0);
+                grid.add(addressField, 1, 0);
 
-            grid.add(promoCodeLabel, 0, 1);
-            grid.add(promoCodeField, 1, 1);
+                grid.add(promoCodeLabel, 0, 1);
+                grid.add(promoCodeField, 1, 1);
 
-            alert.getDialogPane().setContent(grid);
+                alert.getDialogPane().setContent(grid);
 
-            alert.getButtonTypes().setAll(cardPaymentButton, onlineBankingButton, cancelButton);
+                alert.getButtonTypes().setAll(cardPaymentButton, onlineBankingButton, cancelButton);
 
-            Optional<ButtonType> result = alert.showAndWait();
+                Optional<ButtonType> result = alert.showAndWait();
 
-            if (result.isPresent()) {
-                CustomersDTO tempCust = (CustomersDTO) UserService.getUser(App.getCurrentUserId());
+                if (result.isPresent()) {
+                    CustomersDTO tempCust = (CustomersDTO) UserService.getUser(App.getCurrentUserId());
 
-                String enteredAddress = addressField.getText();
-                String enteredPromoCode = promoCodeField.getText();
-                OrdersDTO tempOrder;
-                if (result.get() != cancelButton) {
-                    if (!enteredAddress.isBlank()) {
-                        String method;
-                        if (result.get() == cardPaymentButton) {
-                            method = "Card";
-                        } else {
-                            method = "Bank";
-                        }
-                        System.out.println("Card Payment selected");
-                        System.out.println("Address: " + enteredAddress);
-                        System.out.println("Promo Code: " + enteredPromoCode);
-                        PromoDTO tempPromo = null;
-                        tempOrder = new OrdersDTO();
-                        for (PromoDTO x : PromoService.getAllPromo(false)) {
-                            if (enteredPromoCode.equals(x.getCodeName())) {
-                                tempPromo = x;
-                                break;
+                    String enteredAddress = addressField.getText();
+                    String enteredPromoCode = promoCodeField.getText();
+                    OrdersDTO tempOrder;
+                    if (result.get() != cancelButton) {
+                        if (!enteredAddress.isBlank()) {
+                            String method;
+                            if (result.get() == cardPaymentButton) {
+                                method = "Card";
+                            } else {
+                                method = "Bank";
                             }
-                        }
-                        if (tempPromo == null) {
-                            Alert infoAlert = new Alert(Alert.AlertType.INFORMATION);
-                            infoAlert.setContentText("The promo code is invalid. The payment will be proceeded without discount.");
-                            infoAlert.showAndWait();
-                        }
-                        tempOrder.setPromo(tempPromo);
-                        tempOrder.setStatus(OrdersDTO.StatusDTO.PROCESSING);
-                        tempOrder.setAddress(enteredAddress);
-                        LocalDate localDate = LocalDate.now();
-                        tempOrder.setOrderingDate(Date.from(localDate.atStartOfDay(ZoneId.systemDefault()).toInstant()));
-                        tempOrder.setUser(tempCust);
-                        tempOrder.setProductLists(tempCust.getShoppingCart());
-                        if (OrderService.makePayment(tempOrder, method)) {
-                        tempCust.setShoppingCart(new ArrayList<>());
-                        UserService userService = new UserService(tempCust);
-                        userService.updateUser();
-                        OrderService.createOrder(tempOrder);
-                        list = FXCollections.observableArrayList();
-                        for (Pair<ProductsDTO, Integer> x : ((CustomersDTO) UserService.getUser(id)).getShoppingCart()) {
-                            list.add(new ShoppingCartItem(x));
-                        }
-                        productsTableView.setItems(list);
-                        productsTableView.refresh();
-                            Alert infoAlert = new Alert(Alert.AlertType.INFORMATION);
-                            infoAlert.setContentText("The payment is success. Sending your orders.");
-                            infoAlert.showAndWait();
+                            System.out.println("Card Payment selected");
+                            System.out.println("Address: " + enteredAddress);
+                            System.out.println("Promo Code: " + enteredPromoCode);
+                            PromoDTO tempPromo = null;
+                            tempOrder = new OrdersDTO();
+                            for (PromoDTO x : PromoService.getAllPromo(false)) {
+                                if (enteredPromoCode.equals(x.getCodeName())) {
+                                    tempPromo = x;
+                                    break;
+                                }
+                            }
+                            if (tempPromo == null) {
+                                Alert infoAlert = new Alert(Alert.AlertType.INFORMATION);
+                                infoAlert.setContentText("The promo code is invalid. The payment will be proceeded without discount.");
+                                infoAlert.showAndWait();
+                            }
+                            tempOrder.setPromo(tempPromo);
+                            tempOrder.setStatus(OrdersDTO.StatusDTO.PROCESSING);
+                            tempOrder.setAddress(enteredAddress);
+                            LocalDate localDate = LocalDate.now();
+                            tempOrder.setOrderingDate(Date.from(localDate.atStartOfDay(ZoneId.systemDefault()).toInstant()));
+                            tempOrder.setUser(tempCust);
+                            tempOrder.setProductLists(tempCust.getShoppingCart());
+                            if (OrderService.makePayment(tempOrder, method)) {
+                                tempCust.setShoppingCart(new ArrayList<>());
+                                UserService userService = new UserService(tempCust);
+                                userService.updateUser();
+                                OrderService.createOrder(tempOrder);
+                                list = FXCollections.observableArrayList();
+                                for (Pair<ProductsDTO, Integer> x : ((CustomersDTO) UserService.getUser(id)).getShoppingCart()) {
+                                    list.add(new ShoppingCartItem(x));
+                                }
+                                productsTableView.setItems(list);
+                                productsTableView.refresh();
+                                Alert infoAlert = new Alert(Alert.AlertType.INFORMATION);
+                                infoAlert.setContentText("The payment is success. Sending your orders.");
+                                infoAlert.showAndWait();
+                            } else {
+                                Alert infoAlert = new Alert(Alert.AlertType.INFORMATION);
+                                infoAlert.setContentText("The payment failed. Nothing will change, please contact admin if the problem persist.");
+                                infoAlert.showAndWait();
+                            }
                         } else {
                             Alert infoAlert = new Alert(Alert.AlertType.INFORMATION);
-                            infoAlert.setContentText("The payment failed. Nothing will change, please contact admin if the problem persist.");
+                            infoAlert.setContentText("The payment failed. Nothing will change, please enter a valid address.");
                             infoAlert.showAndWait();
                         }
                     } else {
-                        Alert infoAlert = new Alert(Alert.AlertType.INFORMATION);
-                        infoAlert.setContentText("The payment failed. Nothing will change, please enter a valid address.");
-                        infoAlert.showAndWait();
+                        System.out.println("Payment canceled.");
                     }
-                } else {
-                    System.out.println("Payment canceled.");
                 }
+            } else {
+                Alert infoAlert = new Alert(Alert.AlertType.INFORMATION);
+                infoAlert.setContentText("Your shopping cart is empty, please add something.");
+                infoAlert.showAndWait();
             }
         });
 

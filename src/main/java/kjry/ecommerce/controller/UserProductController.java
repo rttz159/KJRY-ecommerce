@@ -15,7 +15,6 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
-import kjry.ecommerce.datamodels.Pair;
 import kjry.ecommerce.dtos.ProductsDTO;
 import kjry.ecommerce.services.ProductService;
 
@@ -27,7 +26,6 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.control.TableCell;
 import javafx.scene.control.cell.PropertyValueFactory;
-import kjry.ecommerce.App;
 
 public class UserProductController implements Initializable {
 

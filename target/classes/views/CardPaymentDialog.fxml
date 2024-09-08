@@ -8,7 +8,7 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="181.0" prefWidth="346.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <Label alignment="CENTER" contentDisplay="CENTER" layoutY="65.0" prefHeight="17.0" prefWidth="149.0" text="Account Number" />
+      <Label alignment="CENTER" contentDisplay="CENTER" layoutX="18.0" layoutY="65.0" prefHeight="17.0" prefWidth="91.0" text="Card Number" />
       <Label alignment="CENTER" layoutY="141.0" prefHeight="17.0" prefWidth="109.0" text="Password" />
       <PasswordField fx:id="pinField" layoutX="149.0" layoutY="137.0" />
       <PasswordField fx:id="csvField" layoutX="149.0" layoutY="98.0" />
