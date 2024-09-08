@@ -1,4 +1,5 @@
 kjry\ecommerce\controller\AdminProductController.class
+kjry\ecommerce\controller\UserShoppingCartController$ShoppingCartItem.class
 kjry\ecommerce\datamodels\Customers$1.class
 kjry\ecommerce\dataaccess\OrderController.class
 kjry\ecommerce\datamodels\Clothing$Size.class
@@ -7,6 +8,7 @@ kjry\ecommerce\dtos\ClothingDTO$TypeDTO.class
 kjry\ecommerce\dataaccess\EntityDTOConverter$1.class
 kjry\ecommerce\controller\AdminArchivedController.class
 kjry\ecommerce\controller\AdminOrderController.class
+kjry\ecommerce\controller\UserOrderHistoryController.class
 kjry\ecommerce\dataaccess\GsonDatabase$3.class
 kjry\ecommerce\services\NotificationService.class
 kjry\ecommerce\controller\AdminUserController$2.class
@@ -20,6 +22,7 @@ kjry\ecommerce\dtos\OrdersDTO$StatusDTO.class
 kjry\ecommerce\dataaccess\GsonDatabase$12.class
 kjry\ecommerce\services\OnlineBankingPaymentMethod.class
 kjry\ecommerce\controller\AdminProductInfoDialogController.class
+kjry\ecommerce\controller\UserShoppingCartController$ShoppingCartItem$3.class
 kjry\ecommerce\dataaccess\EntityDTOConverter.class
 kjry\ecommerce\controller\AdminOrderController$3.class
 kjry\ecommerce\controller\UserMainController.class
@@ -37,6 +40,7 @@ kjry\ecommerce\datamodels\Products.class
 module-info.class
 kjry\ecommerce\datamodels\Pair.class
 kjry\ecommerce\datamodels\Users.class
+kjry\ecommerce\controller\UserOrderHistoryController$1.class
 kjry\ecommerce\controller\UserProductTilesController.class
 kjry\ecommerce\dtos\PromoDTO.class
 kjry\ecommerce\dataaccess\GsonDatabase$10.class
@@ -63,11 +67,14 @@ kjry\ecommerce\dataaccess\ProductController.class
 kjry\ecommerce\dataaccess\DatabaseWrapper.class
 kjry\ecommerce\dataaccess\GsonDatabase$ProductsAdapter.class
 kjry\ecommerce\controller\UserProductController.class
+kjry\ecommerce\controller\UserShoppingCartController.class
 kjry\ecommerce\dataaccess\GsonDatabase$OrdersAdapter.class
 kjry\ecommerce\services\ProductImageManager.class
+kjry\ecommerce\controller\UserShoppingCartController$ShoppingCartItem$1.class
 kjry\ecommerce\controller\AdminUserController$1.class
 kjry\ecommerce\controller\UserDashBoardController.class
 kjry\ecommerce\dtos\AccessoriesDTO.class
+kjry\ecommerce\controller\UserShoppingCartController$ShoppingCartItem$4.class
 kjry\ecommerce\services\ProductService.class
 kjry\ecommerce\dataaccess\GsonDatabase$1.class
 kjry\ecommerce\services\CardPaymentMethod.class
@@ -83,6 +90,7 @@ kjry\ecommerce\services\PaymentMethod.class
 kjry\ecommerce\controller\UserProductInfoDialogController.class
 kjry\ecommerce\controller\UserProductController$1.class
 kjry\ecommerce\dataaccess\GsonDatabase$ProductsListAdapter.class
+kjry\ecommerce\controller\UserOrderHistoryController$2.class
 kjry\ecommerce\datamodels\Clothing.class
 kjry\ecommerce\dataaccess\GsonDatabase$7.class
 kjry\ecommerce\dataaccess\GsonDatabase$13.class
@@ -96,6 +104,7 @@ kjry\ecommerce\dtos\CustomersDTO.class
 kjry\ecommerce\services\DataUpdateService.class
 kjry\ecommerce\services\UserService.class
 kjry\ecommerce\datamodels\Orders.class
+kjry\ecommerce\controller\UserShoppingCartController$ShoppingCartItem$2.class
 kjry\ecommerce\dataaccess\GsonDatabase$14.class
 kjry\ecommerce\dataaccess\GsonDatabase$6.class
 kjry\ecommerce\dataaccess\GsonDatabase$OrdersListAdapter.class

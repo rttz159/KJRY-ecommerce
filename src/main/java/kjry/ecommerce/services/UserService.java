@@ -71,7 +71,21 @@ public class UserService {
     public boolean appendShoppingCart(ProductsDTO dto, int num) {
         if (entityToProcess != null && entityToProcess instanceof CustomersDTO) {
             CustomersDTO temp = (CustomersDTO) entityToProcess;
-            temp.getShoppingCart().add(new Pair(dto, num));
+            int idx = -1;
+            int i = 0;
+            for (Pair<ProductsDTO, Integer> x : temp.getShoppingCart()) {
+                if(x.getKey().getId().equals(dto.getId())){
+                    idx = i;
+                    break;
+                }
+                i++;
+            }
+            if (idx == -1) {
+                temp.getShoppingCart().add(new Pair(dto, num));
+            } else {
+                int value = temp.getShoppingCart().get(idx).getValue() + num;
+                temp.getShoppingCart().get(idx).setValue(value);
+            }
             return dbController.update(entityToProcess);
         } else {
             return false;
@@ -84,9 +98,9 @@ public class UserService {
             for (Pair<ProductsDTO, Integer> x : temp.getShoppingCart()) {
                 if (x.getKey().getId().equals(dto.getId())) {
                     temp.getShoppingCart().remove(x);
+                    break;
                 }
             }
-
             return dbController.update(entityToProcess);
         } else {
             return false;

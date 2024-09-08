@@ -53,6 +53,10 @@ public class CustomersDTO extends UsersDTO{
     public void removeNotificationType(NotificationTypeDTO x){
         this.notificationTypes.remove(x);
     }
+
+    public void setShoppingCart(ArrayList<Pair<ProductsDTO,Integer>>  x){
+        this.shoppingCart = x;
+    }
     
     public ArrayList<Pair<ProductsDTO,Integer>> getShoppingCart(){
         return this.shoppingCart;

@@ -4,8 +4,6 @@ import java.io.IOException;
 import java.net.URL;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.HashMap;
-import java.util.Map;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -27,9 +25,7 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 import kjry.ecommerce.dtos.CustomersDTO;
 import kjry.ecommerce.dtos.EmployeesDTO;
-import kjry.ecommerce.dtos.OrdersDTO;
 import kjry.ecommerce.dtos.UsersDTO;
-import kjry.ecommerce.services.OrderService;
 import kjry.ecommerce.services.UserService;
 
 public class AdminUserController implements Initializable {
@@ -111,8 +107,8 @@ public class AdminUserController implements Initializable {
 
         editButton.setOnAction(
                 event -> {
-                    UsersDTO user = adminUserTableview.getSelectionModel().getSelectedItem();
                     try {
+                        UsersDTO user = adminUserTableview.getSelectionModel().getSelectedItem();
                         System.out.println("Edit button clicked for user: " + user.getName() + " password: " + user.getPassword());
                         if (userPromptDialog(user, true)) {
                             UserService service = new UserService(user);
@@ -173,18 +169,26 @@ public class AdminUserController implements Initializable {
         });
 
         removeButton.setOnAction(event -> {
-            UsersDTO user = adminUserTableview.getSelectionModel().getSelectedItem();
-            Alert warningAlert = new Alert(Alert.AlertType.CONFIRMATION);
-            warningAlert.setHeaderText("User will be ARCHIVED.");
-            warningAlert.showAndWait().ifPresent(result -> {
-                if (result == ButtonType.OK) {
-                    UserService service = new UserService(user);
-                    service.deleteUser();
-                    list = FXCollections.observableArrayList(UserService.getAllUsers(false));
-                    adminUserTableview.setItems(list);
-                    this.adminUserTableview.refresh();
-                }
-            });
+            try {
+                UsersDTO user = adminUserTableview.getSelectionModel().getSelectedItem();
+                Alert warningAlert = new Alert(Alert.AlertType.CONFIRMATION);
+                warningAlert.setHeaderText("User will be ARCHIVED.");
+                warningAlert.showAndWait().ifPresent(result -> {
+                    if (result == ButtonType.OK) {
+                        UserService service = new UserService(user);
+                        service.deleteUser();
+                        list = FXCollections.observableArrayList(UserService.getAllUsers(false));
+                        adminUserTableview.setItems(list);
+                        this.adminUserTableview.refresh();
+                    }
+                });
+            } catch (NullPointerException x) {
+                Alert warningAlert = new Alert(Alert.AlertType.WARNING);
+                warningAlert.setContentText("Please select an user before proceed.");
+                warningAlert.setHeaderText("No User Selected");
+                warningAlert.showAndWait();
+            }
+
         });
 
     }

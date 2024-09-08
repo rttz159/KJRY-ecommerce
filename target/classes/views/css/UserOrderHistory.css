@@ -1,0 +1,7 @@
+#UserOrderParentVBox{
+    -fx-background-color:-primary-color;
+}
+
+#UserOrderParentVBox .label{
+    -fx-text-fill: -secondary-color;
+}

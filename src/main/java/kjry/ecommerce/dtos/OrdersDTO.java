@@ -22,6 +22,8 @@ public class OrdersDTO {
     private PromoDTO promo = null;
     public static final double SERVICETAX = 0.06;
     
+    public OrdersDTO(){}
+    
     public OrdersDTO(String id,String address, UsersDTO user,StatusDTO status,ArrayList<Pair<ProductsDTO,Integer>> productLists,Date orderingDate,PromoDTO promo){
         this.id = id;
         this.address = address;
@@ -72,6 +74,10 @@ public class OrdersDTO {
         this.status = status;
     }
 
+    public void setProductLists(ArrayList<Pair<ProductsDTO, Integer>> x) {
+        this.productLists = x;
+    }
+    
     public ArrayList<Pair<ProductsDTO, Integer>> getProductLists() {
         return productLists;
     }

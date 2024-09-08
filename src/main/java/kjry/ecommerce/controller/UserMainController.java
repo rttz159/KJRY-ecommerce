@@ -30,7 +30,7 @@ public class UserMainController implements Initializable {
     private Button productsButton;
 
     @FXML
-    private Button settingsButton;
+    private Button accountButton;
 
     @FXML
     private Button shoppingCartButton;
@@ -90,6 +90,28 @@ public class UserMainController implements Initializable {
             try {
                 clearContentVBox();
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/UserProducts.fxml"));
+                content = loader.load();
+                parentHBox.getChildren().add(content);
+            } catch (IOException ex) {
+                System.out.println("Error occurs when loading the fxml file");
+            }
+        });
+
+        shoppingCartButton.setOnAction(ev -> {
+            try {
+                clearContentVBox();
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/UserShoppingCart.fxml"));
+                content = loader.load();
+                parentHBox.getChildren().add(content);
+            } catch (IOException ex) {
+                System.out.println("Error occurs when loading the fxml file");
+            }
+        });
+
+        ordersHistoryButton.setOnAction(ev -> {
+            try {
+                clearContentVBox();
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/UserOrderHistory.fxml"));
                 content = loader.load();
                 parentHBox.getChildren().add(content);
             } catch (IOException ex) {

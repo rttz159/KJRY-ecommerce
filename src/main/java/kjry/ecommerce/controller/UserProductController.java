@@ -82,7 +82,6 @@ public class UserProductController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        App.setCurrentUserId("CUST1");
         setupTableColumns();
         setupButtonActions();
 

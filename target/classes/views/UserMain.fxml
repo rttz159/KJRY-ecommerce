@@ -34,7 +34,7 @@
                         <Button fx:id="shoppingCartButton" mnemonicParsing="false" prefHeight="50.0" prefWidth="250.0" text="Shopping Cart" />
                         <Button fx:id="productsButton" mnemonicParsing="false" prefHeight="50.0" prefWidth="250.0" text="Products" />
                         <Button fx:id="ordersHistoryButton" mnemonicParsing="false" prefHeight="50.0" prefWidth="250.0" text="Orders History" />
-                        <Button fx:id="settingsButton" mnemonicParsing="false" prefHeight="50.0" prefWidth="250.0" text="Settings" />
+                        <Button fx:id="accountButton" mnemonicParsing="false" prefHeight="50.0" prefWidth="250.0" text="Account" />
                      </children>
                      <VBox.margin>
                         <Insets top="25.0" />

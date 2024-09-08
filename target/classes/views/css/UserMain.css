@@ -92,12 +92,12 @@
     -fx-background-image: url("/views/css/image/order_history_black.png");    
 }
 
-#sidePanelVBox #settingsButton{
-    -fx-background-image: url("/views/css/image/settings_white.png");
+#sidePanelVBox #accountButton{
+    -fx-background-image: url("/views/css/image/user_white.png");
 }
 
-#sidePanelVBox #settingsButton:hover{
-    -fx-background-image: url("/views/css/image/settings_black.png");    
+#sidePanelVBox #accountButton:hover{
+    -fx-background-image: url("/views/css/image/user_black.png");    
 }
 
 

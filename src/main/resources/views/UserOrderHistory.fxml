@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.net.URL?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<VBox fx:id="UserOrderParentVBox" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="630.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="kjry.ecommerce.controller.UserOrderHistoryController">
+   <children>
+      <Label prefHeight="49.0" prefWidth="630.0" text="Order History" textAlignment="CENTER">
+         <font>
+            <Font name="System Bold" size="24.0" />
+         </font>
+         <VBox.margin>
+            <Insets />
+         </VBox.margin>
+         <padding>
+            <Insets top="10.0" />
+         </padding>
+      </Label>
+      <Label contentDisplay="CENTER" prefHeight="17.0" prefWidth="635.0" text="View your orders from the past" textFill="#4d4d4d">
+         <font>
+            <Font size="14.0" />
+         </font>
+         <padding>
+            <Insets bottom="10.0" />
+         </padding>
+      </Label>
+      <TableView fx:id="orderTableView" prefHeight="434.0" prefWidth="610.0">
+        <columns>
+          <TableColumn fx:id="orderIdTableColumn" prefWidth="75.0" text="Order ID" />
+            <TableColumn fx:id="dateTableColumn" prefWidth="75.0" text="Date" />
+            <TableColumn fx:id="statusTableColumn" prefWidth="75.0" text="Status" />
+            <TableColumn fx:id="amountTableColumn" prefWidth="75.0" text="Amount" />
+        </columns>
+         <columnResizePolicy>
+            <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+         </columnResizePolicy>
+      </TableView>
+   </children>
+   <padding>
+      <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+   </padding>
+   <stylesheets>
+      <URL value="@css/Parent.css" />
+      <URL value="@css/UserOrderHistory.css" />
+      <URL value="@css/Tableview.css" />
+   </stylesheets>
+</VBox>

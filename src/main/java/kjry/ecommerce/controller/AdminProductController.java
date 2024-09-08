@@ -104,8 +104,8 @@ public class AdminProductController implements Initializable {
         });
 
         editButton.setOnAction(event -> {
-            ProductsDTO product = productsTableView.getSelectionModel().getSelectedItem();
             try {
+                ProductsDTO product = productsTableView.getSelectionModel().getSelectedItem();
                 System.out.println("Edit button clicked for product: " + product.getName());
                 if (productPromptDialog(product, true)) {
                     ProductService.updateProduct(product, product.getStockQty());
@@ -164,17 +164,24 @@ public class AdminProductController implements Initializable {
         });
 
         removeButton.setOnAction(event -> {
-            ProductsDTO product = productsTableView.getSelectionModel().getSelectedItem();
-            Alert warningAlert = new Alert(Alert.AlertType.CONFIRMATION);
-            warningAlert.setHeaderText("Product will be ARCHIVED.");
-            warningAlert.showAndWait().ifPresent(result -> {
-                if (result == ButtonType.OK) {
-                    ProductService.removeProduct(product);
-                    list = FXCollections.observableArrayList(ProductService.getAllProducts(false));
-                    productsTableView.setItems(list);
-                    this.productsTableView.refresh();
-                }
-            });
+            try {
+                ProductsDTO product = productsTableView.getSelectionModel().getSelectedItem();
+                Alert warningAlert = new Alert(Alert.AlertType.CONFIRMATION);
+                warningAlert.setHeaderText("Product will be ARCHIVED.");
+                warningAlert.showAndWait().ifPresent(result -> {
+                    if (result == ButtonType.OK) {
+                        ProductService.removeProduct(product);
+                        list = FXCollections.observableArrayList(ProductService.getAllProducts(false));
+                        productsTableView.setItems(list);
+                        this.productsTableView.refresh();
+                    }
+                });
+            } catch (NullPointerException x) {
+                Alert warningAlert = new Alert(Alert.AlertType.WARNING);
+                warningAlert.setContentText("Please select a product before proceed.");
+                warningAlert.setHeaderText("No Product Selected");
+                warningAlert.showAndWait();
+            }
         });
 
         resetButton.setOnAction(ev -> {
