@@ -30,7 +30,7 @@
                                 <HBox prefHeight="100.0" prefWidth="200.0" styleClass="wrapper">
                                     <children>
                                         <Label prefHeight="20.0" prefWidth="100.0" text="ID" />
-                                        <TextField fx:id="iDTextField" editable="false" prefHeight="25.0" prefWidth="190.0" styleClass="text-field" />
+                                        <TextField fx:id="iDTextField" editable="false" prefHeight="25.0" prefWidth="190.0" style="-fx-background-color: #dadada;" styleClass="text-field" />
                                     </children>
                                     <VBox.margin>
                                         <Insets bottom="10.0" />

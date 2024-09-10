@@ -184,6 +184,10 @@ public class SignUpPageController implements Initializable {
         customer.getShoppingCart().clear();
 
         UserService.createUser(user);
+        Alert infoAlert = new Alert(Alert.AlertType.INFORMATION);
+        infoAlert.setContentText("The account has been created, please proceed to login with newly created account.");
+        infoAlert.setHeaderText("Account Created");
+        infoAlert.showAndWait();
     }
 
 }

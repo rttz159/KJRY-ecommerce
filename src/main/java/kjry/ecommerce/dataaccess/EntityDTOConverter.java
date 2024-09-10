@@ -269,7 +269,7 @@ public class EntityDTOConverter {
 
     public static Orders convertDtoToEntity(OrdersDTO orderDto) {
         Users user = null;
-        for (int i = 0; i < DatabaseWrapper.getProductsList().size(); i++) {
+        for (int i = 0; i < DatabaseWrapper.getUsersList().size(); i++) {
             if (DatabaseWrapper.getUsersList().get(i).getId().equals(convertDtoToEntity(orderDto.getUser()).getId())) {
                 user = DatabaseWrapper.getUsersList().get(i);
             }

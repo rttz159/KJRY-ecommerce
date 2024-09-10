@@ -26,7 +26,6 @@ public class OrderController implements DatabaseController<OrdersDTO>{
             Orders temp = EntityDTOConverter.convertDtoToEntity(entity);
             DatabaseWrapper.getOrdersList().add(temp);
 
-            // Adjust stock quantities based on the order
             for (Pair<Products, Integer> pair : temp.getProductLists()) {
                 Products product = pair.getKey();
                 int quantityOrdered = pair.getValue();

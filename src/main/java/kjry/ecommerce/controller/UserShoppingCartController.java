@@ -233,9 +233,7 @@ public class UserShoppingCartController implements Initializable {
                             } else {
                                 method = "Bank";
                             }
-                            System.out.println("Card Payment selected");
-                            System.out.println("Address: " + enteredAddress);
-                            System.out.println("Promo Code: " + enteredPromoCode);
+                            System.out.println(tempCust.getId());
                             PromoDTO tempPromo = null;
                             tempOrder = new OrdersDTO();
                             for (PromoDTO x : PromoService.getAllPromo(false)) {
