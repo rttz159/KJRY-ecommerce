@@ -125,7 +125,7 @@ public class AdminPromoController implements Initializable {
         removeButton.setOnAction(event -> {
             PromoDTO promo = adminPromoTableview.getSelectionModel().getSelectedItem();
             Alert warningAlert = new Alert(Alert.AlertType.CONFIRMATION);
-            warningAlert.setHeaderText("User will be ARCHIVED.");
+            warningAlert.setHeaderText("Promo will be ARCHIVED.");
             warningAlert.showAndWait().ifPresent(result -> {
                 if (result == ButtonType.OK) {
                     PromoService.removePromo(promo.getId());
