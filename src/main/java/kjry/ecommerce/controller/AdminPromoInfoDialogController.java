@@ -154,9 +154,14 @@ public class AdminPromoInfoDialogController {
     }
 
     private void setEditable(boolean editable) {
+        if (promo.getId() != null) {
+            idTextField.setEditable(false);
+            idTextField.setStyle("-fx-background-color:#c3c3c3;");
+        }else{
+            idTextField.setEditable(editable);
+        }
         startingDateTextField.setEditable(editable);
         percentageTextField.setEditable(editable);
-        idTextField.setEditable(editable);
         durationTextField.setEditable(editable);
         descriptionTextField.setEditable(editable);
         codeNameTextField.setEditable(editable);

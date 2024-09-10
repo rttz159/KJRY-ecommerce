@@ -118,7 +118,7 @@ public class AdminProductInfoDialogController implements Initializable {
     public void setProduct(ProductsDTO product, boolean viewOnly) {
         this.product = product;
         this.viewOnly = viewOnly;
-        idTextField.setEditable(false);
+
         if (viewOnly) {
             washableChoiceBox.setDisable(viewOnly);
             sizeChoiceBox.setDisable(viewOnly);
@@ -130,8 +130,15 @@ public class AdminProductInfoDialogController implements Initializable {
             costPriceTextField.setEditable(!viewOnly);
             saveButton.setVisible(!viewOnly);
             saveButton.setManaged(!viewOnly);
-        }else{
+            idTextField.setEditable(!viewOnly);
             idTextField.setStyle("-fx-background-color:#c3c3c3;");
+        } else {
+            if (product.getId() != null) {
+                idTextField.setEditable(false);
+                idTextField.setStyle("-fx-background-color:#c3c3c3;");
+            }else{
+                idTextField.setEditable(true);
+            }
         }
         if (product instanceof ClothingDTO) {
             washableChoiceBox.setVisible(false);
