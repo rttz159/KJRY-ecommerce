@@ -1,5 +1,7 @@
 package kjry.ecommerce.dtos;
 
+import java.time.LocalDate;
+import java.time.ZoneId;
 import java.util.Date;
 
 public class PromoDTO {
@@ -15,7 +17,7 @@ public class PromoDTO {
     public PromoDTO() {
     }
 
-    public PromoDTO(String id, String codeName, Date startingDate, int availableDay, String description, double percentage,boolean isActive) {
+    public PromoDTO(String id, String codeName, Date startingDate, int availableDay, String description, double percentage, boolean isActive) {
         this.id = id;
         this.codeName = codeName;
         this.startingDate = startingDate;
@@ -81,4 +83,11 @@ public class PromoDTO {
         this.percentage = percentage;
     }
 
+    public boolean isValid() {
+        LocalDate today = LocalDate.now();
+        LocalDate startDate = this.startingDate.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+        LocalDate endDate = startDate.plusDays(this.availableDay);
+
+        return this.isActive && (today.isEqual(startDate) || today.isAfter(startDate)) && (today.isEqual(endDate) || today.isBefore(endDate));
+    }
 }

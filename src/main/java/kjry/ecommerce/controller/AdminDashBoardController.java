@@ -153,7 +153,7 @@ public class AdminDashBoardController implements Initializable {
         }
 
         double[] revenue = {0.0, 0.0};
-        for (OrdersDTO x : OrderService.getAllOrder()) {
+        for (OrdersDTO x : OrderService.getAllOrder(false)) {
             double tempPercentage = 0.0;
             if (x.getPromo() != null) {
                 for (PromoDTO z : PromoService.getAllPromo(true)) {
@@ -194,7 +194,7 @@ public class AdminDashBoardController implements Initializable {
         }
 
         int[] orderStatusCount = {0, 0, 0, 0};
-        for (OrdersDTO x : OrderService.getAllOrder()) {
+        for (OrdersDTO x : OrderService.getAllOrder(true)) {
             if (x.getStatus().equals(OrdersDTO.StatusDTO.CANCELLED)) {
                 orderStatusCount[0]++;
             } else if (x.getStatus().equals(OrdersDTO.StatusDTO.DONE)) {
@@ -229,7 +229,7 @@ public class AdminDashBoardController implements Initializable {
         orderStatusBarChart.setLegendVisible(false);
 
         Map<ProductsDTO, Integer> hashMap = new HashMap<>();
-        for (OrdersDTO x : OrderService.getAllOrder()) {
+        for (OrdersDTO x : OrderService.getAllOrder(false)) {
             for (Pair<ProductsDTO, Integer> y : x.getProductLists()) {
                 if (hashMap.get(y.getKey()) != null) {
                     hashMap.put(y.getKey(), hashMap.get(y.getKey()) + y.getValue());

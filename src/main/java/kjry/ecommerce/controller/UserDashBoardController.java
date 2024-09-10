@@ -122,7 +122,7 @@ public class UserDashBoardController implements Initializable {
         });
 
         Map<ProductsDTO, Integer> hashMap = new HashMap<>();
-        for (OrdersDTO x : OrderService.getAllOrder()) {
+        for (OrdersDTO x : OrderService.getAllOrder(false)) {
             for (Pair<ProductsDTO, Integer> y : x.getProductLists()) {
                 if (hashMap.get(y.getKey()) != null) {
                     hashMap.put(y.getKey(), hashMap.get(y.getKey()) + y.getValue());

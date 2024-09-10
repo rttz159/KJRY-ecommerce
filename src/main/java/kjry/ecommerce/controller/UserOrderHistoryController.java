@@ -45,7 +45,7 @@ public class UserOrderHistoryController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
 
-        for (OrdersDTO x : OrderService.getAllOrder()) {
+        for (OrdersDTO x : OrderService.getAllOrder(true)) {
             if (x.getUser().getId().equals(App.getCurrentUserId())) {
                 list.add(x);
             }

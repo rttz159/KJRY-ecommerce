@@ -238,7 +238,9 @@ public class UserShoppingCartController implements Initializable {
                             tempOrder = new OrdersDTO();
                             for (PromoDTO x : PromoService.getAllPromo(false)) {
                                 if (enteredPromoCode.equals(x.getCodeName())) {
-                                    tempPromo = x;
+                                    if (x.isValid()) {
+                                        tempPromo = x;
+                                    }
                                     break;
                                 }
                             }
@@ -270,7 +272,7 @@ public class UserShoppingCartController implements Initializable {
                                 infoAlert.showAndWait();
                             } else {
                                 Alert infoAlert = new Alert(Alert.AlertType.INFORMATION);
-                                infoAlert.setContentText("The payment failed. Nothing will change, please contact admin if the problem persist.");
+                                infoAlert.setContentText("The payment failed or cancelled. Nothing will change, please contact admin if the problem persist.");
                                 infoAlert.showAndWait();
                             }
                         } else {

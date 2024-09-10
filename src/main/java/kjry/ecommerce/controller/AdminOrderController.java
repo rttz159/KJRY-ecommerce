@@ -53,7 +53,7 @@ public class AdminOrderController implements Initializable {
     @FXML
     private TableColumn<OrdersDTO, UsersDTO> usernameTableColumn;
 
-    private ObservableList<OrdersDTO> list = FXCollections.observableArrayList(OrderService.getAllOrder());
+    private ObservableList<OrdersDTO> list = FXCollections.observableArrayList(OrderService.getAllOrder(true));
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -125,7 +125,7 @@ public class AdminOrderController implements Initializable {
                 System.out.println("Edit button clicked for order: " + order.getId());
                 if (orderPromptDialog(order, true)) {
                     OrderService.updateOrder(order);
-                    list = FXCollections.observableArrayList(OrderService.getAllOrder());
+                    list = FXCollections.observableArrayList(OrderService.getAllOrder(true));
                     orderTableView.setItems(list);
                     orderTableView.refresh();
                 }

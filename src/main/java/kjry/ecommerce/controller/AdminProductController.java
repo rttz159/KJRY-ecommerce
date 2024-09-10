@@ -128,7 +128,7 @@ public class AdminProductController implements Initializable {
             Button clothingBtn = new Button("Clothing");
             Button accessoriesBtn = new Button("Accessories");
             VBox vbox = new VBox();
-            Label title = new Label("Choose The User Type");
+            Label title = new Label("Choose The Product Type");
             HBox hbox = new HBox();
             hbox.getChildren().add(clothingBtn);
             hbox.getChildren().add(accessoriesBtn);
