@@ -89,6 +89,8 @@ public class AdminUserInfoDialogController {
         jobRoleChoiceBox.getItems().setAll(EmployeesDTO.JobRoleDTO.values());
         genderChoiceBox.getItems().setAll(FXCollections.observableArrayList(new Character('F'), new Character('M')));
         shoppingCartListView.setEditable(false);
+        iDTextField.setEditable(false);
+        iDTextField.setStyle("-fx-background-color:#c3c3c3;");
     }
 
     public void setUser(UsersDTO user, boolean viewOnly) {
@@ -249,7 +251,6 @@ public class AdminUserInfoDialogController {
     }
 
     private void setEditable(boolean editable) {
-        iDTextField.setEditable(editable);
         passwordTextField.setEditable(editable);
         nameTextField.setEditable(editable);
         emailTextField.setEditable(editable);

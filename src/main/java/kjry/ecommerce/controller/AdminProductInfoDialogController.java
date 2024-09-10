@@ -118,18 +118,20 @@ public class AdminProductInfoDialogController implements Initializable {
     public void setProduct(ProductsDTO product, boolean viewOnly) {
         this.product = product;
         this.viewOnly = viewOnly;
+        idTextField.setEditable(false);
         if (viewOnly) {
             washableChoiceBox.setDisable(viewOnly);
             sizeChoiceBox.setDisable(viewOnly);
             typeChoiceBox.setDisable(viewOnly);
             chooseButton.setDisable(viewOnly);
-            idTextField.setEditable(!viewOnly);
             descriptionTextField.setEditable(!viewOnly);
             stockQtyTextField.setEditable(!viewOnly);
             sellingPriceTextField.setEditable(!viewOnly);
             costPriceTextField.setEditable(!viewOnly);
             saveButton.setVisible(!viewOnly);
             saveButton.setManaged(!viewOnly);
+        }else{
+            idTextField.setStyle("-fx-background-color:#c3c3c3;");
         }
         if (product instanceof ClothingDTO) {
             washableChoiceBox.setVisible(false);
