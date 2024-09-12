@@ -1,4 +1,5 @@
 kjry\ecommerce\controller\AdminProductController.class
+kjry\ecommerce\controller\UserOrderHistoryController$3.class
 kjry\ecommerce\controller\UserShoppingCartController$ShoppingCartItem.class
 kjry\ecommerce\datamodels\Customers$1.class
 kjry\ecommerce\dataaccess\OrderController.class

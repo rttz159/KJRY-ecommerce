@@ -35,6 +35,7 @@
             <TableColumn fx:id="dateTableColumn" prefWidth="75.0" text="Date" />
             <TableColumn fx:id="statusTableColumn" prefWidth="75.0" text="Status" />
             <TableColumn fx:id="amountTableColumn" prefWidth="75.0" text="Amount" />
+            <TableColumn fx:id="actionTableColumn" prefWidth="75.0" text="Action" />
         </columns>
          <columnResizePolicy>
             <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
