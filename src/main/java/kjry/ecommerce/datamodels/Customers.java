@@ -77,5 +77,9 @@ public class Customers extends Users {
     public String toString() {
         return super.toString() + "Customers{" + "shoppingCart=" + shoppingCart + ", notification=" + notification + ", notificationTypes=" + notificationTypes + '}';
     }
-
+    
+    @Override
+    public int compareTo(Object o) {
+        return this.getId().compareTo(((Customers)o).getId());
+    }
 }

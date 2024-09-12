@@ -1,6 +1,6 @@
 package kjry.ecommerce.datamodels;
 
-public abstract class Products {
+public abstract class Products implements Comparable {
 
     protected String id;
     protected String name;
@@ -70,5 +70,10 @@ public abstract class Products {
     @Override
     public String toString() {
         return "Products{" + "id=" + id + ", name=" + name + ", costPrice=" + costPrice + ", sellingPrice=" + sellingPrice + ", imagePath=" + imagePath + ", isActive=" + isActive + '}';
+    }
+
+    @Override
+    public int compareTo(Object o) {
+        return this.getId().compareTo(((Products) o).getId());
     }
 }

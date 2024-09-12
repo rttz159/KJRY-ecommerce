@@ -25,4 +25,8 @@ public class AccessoriesDTO extends ProductsDTO {
         this.washable = washable;
     }
 
+    @Override
+    public int compareTo(Object o) {
+        return this.getId().compareTo(((AccessoriesDTO) o).getId());
+    }
 }

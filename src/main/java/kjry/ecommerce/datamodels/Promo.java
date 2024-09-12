@@ -2,7 +2,7 @@ package kjry.ecommerce.datamodels;
 
 import java.util.Date;
 
-public class Promo {
+public class Promo implements Comparable{
 
     private String id;
     private String codeName;
@@ -80,6 +80,9 @@ public class Promo {
     public void setPercentage(double percentage) {
         this.percentage = percentage;
     }
-    
 
+    @Override
+    public int compareTo(Object o){
+        return this.getId().compareTo(((Promo) o).getId());
+    }
 }

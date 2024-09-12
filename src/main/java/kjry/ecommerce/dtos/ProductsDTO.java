@@ -1,6 +1,6 @@
 package kjry.ecommerce.dtos;
 
-public abstract class ProductsDTO {
+public abstract class ProductsDTO implements Comparable{
 
     protected String id;
     protected String name;
@@ -101,5 +101,9 @@ public abstract class ProductsDTO {
             return "Accesories";
         }
     }
-
+    
+    @Override
+    public int compareTo(Object o) {
+        return this.getId().compareTo(((ProductsDTO) o).getId());
+    }
 }

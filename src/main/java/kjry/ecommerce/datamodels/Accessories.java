@@ -1,14 +1,16 @@
 package kjry.ecommerce.datamodels;
 
-public class Accessories extends Products{
+public class Accessories extends Products {
+
     private boolean washable;
 
     public Accessories(String id, String name, double costPrice, double sellingPrice, boolean washable) {
         super(id, name, costPrice, sellingPrice);
         this.washable = washable;
     }
-    
-    public Accessories(){}
+
+    public Accessories() {
+    }
 
     public boolean isWashable() {
         return washable;
@@ -22,5 +24,9 @@ public class Accessories extends Products{
     public String toString() {
         return super.toString() + "Accessories{" + "washable=" + washable + '}';
     }
-    
+
+    @Override
+    public int compareTo(Object o) {
+        return this.getId().compareTo(((Accessories) o).getId());
+    }
 }

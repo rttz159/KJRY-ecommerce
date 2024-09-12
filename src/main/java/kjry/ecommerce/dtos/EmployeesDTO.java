@@ -27,4 +27,8 @@ public class EmployeesDTO extends UsersDTO{
         this.jobRole = jobRole;
     }
     
+    @Override
+    public int compareTo(Object o) {
+        return this.getId().compareTo(((EmployeesDTO) o).getId());
+    }
 }

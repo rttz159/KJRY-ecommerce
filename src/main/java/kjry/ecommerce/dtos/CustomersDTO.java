@@ -77,5 +77,9 @@ public class CustomersDTO extends UsersDTO{
     public void addNotification(String message){
         this.notification.add(message);
     }
-    
+
+    @Override
+    public int compareTo(Object o) {
+        return this.getId().compareTo(((CustomersDTO) o).getId());
+    }    
 }

@@ -31,5 +31,9 @@ public class Employees extends Users {
     public String toString() {
         return super.toString() + "Employees{" + "jobRole=" + jobRole + '}';
     }
-
+    
+    @Override
+    public int compareTo(Object o) {
+        return this.getId().compareTo(((Employees)o).getId());
+    }
 }

@@ -4,7 +4,7 @@ import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.Date;
 
-public class PromoDTO {
+public class PromoDTO implements Comparable{
 
     private String id;
     private String codeName;
@@ -89,5 +89,10 @@ public class PromoDTO {
         LocalDate endDate = startDate.plusDays(this.availableDay);
 
         return this.isActive && (today.isEqual(startDate) || today.isAfter(startDate)) && (today.isEqual(endDate) || today.isBefore(endDate));
+    }
+    
+    @Override
+    public int compareTo(Object o){
+        return this.getId().compareTo(((PromoDTO) o).getId());
     }
 }

@@ -46,4 +46,8 @@ public class Clothing extends Products {
         return super.toString() + "Clothing{" + "type=" + type + ", size=" + size + '}';
     }
 
+    @Override
+    public int compareTo(Object o) {
+        return this.getId().compareTo(((Clothing)o).getId());
+    }
 }

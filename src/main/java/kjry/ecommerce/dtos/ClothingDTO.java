@@ -54,4 +54,8 @@ public class ClothingDTO extends ProductsDTO {
         return this.type;
     }
 
+    @Override
+    public int compareTo(Object o) {
+        return this.getId().compareTo(((ClothingDTO) o).getId());
+    }
 }

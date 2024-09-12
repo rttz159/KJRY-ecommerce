@@ -2,7 +2,7 @@ package kjry.ecommerce.dtos;
 
 import java.util.Date;
 
-public abstract class UsersDTO {
+public abstract class UsersDTO implements Comparable {
 
     protected String id;
     protected String password;
@@ -12,9 +12,10 @@ public abstract class UsersDTO {
     protected char gender;
     protected Date birthDate;
     protected boolean isActive = true;
-    
-    protected UsersDTO(){}
-    
+
+    protected UsersDTO() {
+    }
+
     protected UsersDTO(String id, String password, String name, String email, String phoneNo, char gender, Date birthDate) {
         this.id = id;
         this.password = password;
@@ -41,14 +42,14 @@ public abstract class UsersDTO {
         this.id = id;
     }
 
-    public void setPassword(String pw){
+    public void setPassword(String pw) {
         this.password = pw;
     }
-    
-    public String getPassword(){
+
+    public String getPassword() {
         return this.password;
     }
-    
+
     public String getName() {
         return name;
     }
@@ -88,12 +89,17 @@ public abstract class UsersDTO {
     public void setBirthDate(Date birthDate) {
         this.birthDate = birthDate;
     }
-    
-    public String getUserRole(){
-        if(this instanceof EmployeesDTO){
+
+    public String getUserRole() {
+        if (this instanceof EmployeesDTO) {
             return "Employee".toUpperCase();
-        }else{
+        } else {
             return "Customer".toUpperCase();
         }
+    }
+
+    @Override
+    public int compareTo(Object o) {
+        return this.getId().compareTo(((UsersDTO) o).getId());
     }
 }

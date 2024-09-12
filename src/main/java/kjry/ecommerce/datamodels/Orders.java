@@ -3,7 +3,7 @@ package kjry.ecommerce.datamodels;
 import java.util.ArrayList;
 import java.util.Date;
 
-public class Orders {
+public class Orders implements Comparable{
 
     private String id;
     private Users user;
@@ -102,5 +102,9 @@ public class Orders {
     public String toString() {
         return "Orders{" + "id=" + id + ", user=" + user.toString() + ", status=" + status + ", productLists=" + productLists + ", orderingDate=" + orderingDate + ", address=" + address + '}';
     }
-
+    
+    @Override
+    public int compareTo(Object o) {
+        return this.getId().compareTo(((Orders)o).getId());
+    }
 }

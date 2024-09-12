@@ -2,7 +2,7 @@ package kjry.ecommerce.datamodels;
 
 import java.util.Date;
 
-public abstract class Users {
+public abstract class Users implements Comparable {
 
     protected String id;
     protected String password;
@@ -93,5 +93,10 @@ public abstract class Users {
     @Override
     public String toString() {
         return "Users{" + "id=" + id + ", password=" + password + ", name=" + name + ", email=" + email + ", phoneNo=" + phoneNo + ", gender=" + gender + ", birthDate=" + birthDate + ", isActive=" + isActive + '}';
+    }
+
+    @Override
+    public int compareTo(Object o) {
+        return this.getId().compareTo(((Users) o).getId());
     }
 }

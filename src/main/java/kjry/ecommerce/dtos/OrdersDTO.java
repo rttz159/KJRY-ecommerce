@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import kjry.ecommerce.datamodels.Pair;
 
-public class OrdersDTO {
+public class OrdersDTO implements Comparable{
     
     public enum StatusDTO{
         DONE,
@@ -100,5 +100,10 @@ public class OrdersDTO {
 
     public void setAddress(String address) {
         this.address = address;
+    }
+    
+    @Override
+    public int compareTo(Object o){
+        return this.getId().compareTo(((OrdersDTO) o).getId());
     }
 }
