@@ -1,5 +1,6 @@
 package kjry.ecommerce.dataaccess;
 
+import kjry.ecommerce.datamodels.DynamicList;
 import kjry.ecommerce.datamodels.Pair;
 import kjry.ecommerce.datamodels.Orders;
 import kjry.ecommerce.datamodels.Products;
@@ -79,10 +80,10 @@ public class OrderController implements DatabaseController<OrdersDTO>{
     }
 
     @Override
-    public OrdersDTO[] getAll() {
-        OrdersDTO[] temp = new OrdersDTO[DatabaseWrapper.getOrdersList().size()];
+    public DynamicList<OrdersDTO> getAll() {
+        DynamicList<OrdersDTO> temp = new DynamicList<>();
         for(int i = 0; i < DatabaseWrapper.getOrdersList().size(); i++){
-            temp[i] = EntityDTOConverter.convertEntityToDto(DatabaseWrapper.getOrdersList().get(i));
+            temp.append(EntityDTOConverter.convertEntityToDto(DatabaseWrapper.getOrdersList().get(i)));
         }
         return temp;
     }

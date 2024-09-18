@@ -1,11 +1,10 @@
 package kjry.ecommerce.services;
 
-import java.util.ArrayList;
-import java.util.Collections;
 import java.util.Iterator;
 import kjry.ecommerce.datamodels.Pair;
 import kjry.ecommerce.dataaccess.DatabaseController;
 import kjry.ecommerce.dataaccess.OrderController;
+import kjry.ecommerce.datamodels.DynamicList;
 import kjry.ecommerce.dtos.OrdersDTO;
 import kjry.ecommerce.dtos.ProductsDTO;
 
@@ -31,8 +30,7 @@ public class OrderService {
     }
 
     public static OrdersDTO[] getAllOrder(boolean withCancelled) {
-        ArrayList<OrdersDTO> temp = new ArrayList<>();
-        Collections.addAll(temp, (OrdersDTO[]) dbController.getAll());
+        DynamicList<OrdersDTO> temp =  dbController.getAll();
         if (!withCancelled) {
             Iterator<OrdersDTO> iterator = temp.iterator();
             while (iterator.hasNext()) {
@@ -43,7 +41,7 @@ public class OrderService {
             }
         }
 
-        OrdersDTO[] tempArr = new OrdersDTO[temp.size()];
+        OrdersDTO[] tempArr = new OrdersDTO[temp.getSize()];
         int i = 0;
         for (OrdersDTO order : temp) {
             tempArr[i] = order;

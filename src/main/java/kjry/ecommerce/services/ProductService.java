@@ -1,10 +1,9 @@
 package kjry.ecommerce.services;
 
-import java.util.ArrayList;
-import java.util.Collections;
 import java.util.Iterator;
 import kjry.ecommerce.dataaccess.DatabaseController;
 import kjry.ecommerce.dataaccess.ProductController;
+import kjry.ecommerce.datamodels.DynamicList;
 import kjry.ecommerce.dtos.ProductsDTO;
 
 public class ProductService {
@@ -12,8 +11,7 @@ public class ProductService {
     private static DatabaseController dbController = new ProductController();
 
     public static ProductsDTO[] getAllProducts(boolean withInactive) {
-        ArrayList<ProductsDTO> temp = new ArrayList<>();
-        Collections.addAll(temp, (ProductsDTO[]) dbController.getAll());
+        DynamicList<ProductsDTO> temp = dbController.getAll();
         if (!withInactive) {
             Iterator<ProductsDTO> iterator = temp.iterator();
             while (iterator.hasNext()) {
@@ -23,7 +21,7 @@ public class ProductService {
                 }
             }
         }
-        ProductsDTO[] tempArr = new ProductsDTO[temp.size()];
+        ProductsDTO[] tempArr = new ProductsDTO[temp.getSize()];
         int i = 0;
         for (ProductsDTO prod : temp) {
             tempArr[i] = prod;

@@ -1,5 +1,6 @@
 package kjry.ecommerce.dataaccess;
 
+import kjry.ecommerce.datamodels.DynamicList;
 import kjry.ecommerce.datamodels.Users;
 import kjry.ecommerce.dtos.UsersDTO;
 
@@ -57,10 +58,10 @@ public class UserController implements DatabaseController<UsersDTO> {
     }
     
     @Override
-    public UsersDTO[] getAll() {
-        UsersDTO[] temp = new UsersDTO[DatabaseWrapper.getUsersList().size()];
+    public DynamicList<UsersDTO> getAll() {
+        DynamicList<UsersDTO> temp = new DynamicList<>();
         for(int i = 0; i < DatabaseWrapper.getUsersList().size(); i++){
-            temp[i] = EntityDTOConverter.convertEntityToDto(DatabaseWrapper.getUsersList().get(i));
+            temp.append(EntityDTOConverter.convertEntityToDto(DatabaseWrapper.getUsersList().get(i)));
         }
         return temp;
     }

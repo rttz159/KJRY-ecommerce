@@ -1,11 +1,11 @@
 package kjry.ecommerce.services;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.Iterator;
 import kjry.ecommerce.datamodels.Pair;
 import kjry.ecommerce.dataaccess.DatabaseController;
 import kjry.ecommerce.dataaccess.UserController;
+import kjry.ecommerce.datamodels.DynamicList;
 import kjry.ecommerce.dtos.CustomersDTO;
 import kjry.ecommerce.dtos.ProductsDTO;
 import kjry.ecommerce.dtos.UsersDTO;
@@ -123,8 +123,7 @@ public class UserService {
 
     public static UsersDTO[] getAllUsers(boolean withInactive) {
         DatabaseController dbController2 = new UserController();
-        ArrayList<UsersDTO> temp = new ArrayList<>();
-        Collections.addAll(temp, (UsersDTO[]) dbController2.getAll());
+        DynamicList<UsersDTO> temp = dbController2.getAll();
         if (!withInactive) {
             Iterator<UsersDTO> iterator = temp.iterator();
             while (iterator.hasNext()) {
@@ -135,7 +134,7 @@ public class UserService {
             }
         }
 
-        UsersDTO[] tempArr = new UsersDTO[temp.size()];
+        UsersDTO[] tempArr = new UsersDTO[temp.getSize()];
         int i = 0;
         for (UsersDTO user : temp) {
             tempArr[i] = user;

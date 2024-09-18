@@ -1,6 +1,7 @@
 package kjry.ecommerce.dataaccess;
 
 import java.util.ArrayList;
+import kjry.ecommerce.datamodels.DynamicList;
 import kjry.ecommerce.datamodels.Products;
 import kjry.ecommerce.dtos.ProductsDTO;
 
@@ -81,10 +82,10 @@ public class ProductController implements DatabaseController<ProductsDTO>{
     }
     
     @Override
-    public ProductsDTO[] getAll() {
-        ProductsDTO[] temp = new ProductsDTO[DatabaseWrapper.getProductsList().size()];
+    public DynamicList<ProductsDTO> getAll() {
+        DynamicList<ProductsDTO> temp = new DynamicList<>();
         for(int i = 0; i < DatabaseWrapper.getProductsList().size(); i++){
-            temp[i] = EntityDTOConverter.convertEntityToDto(DatabaseWrapper.getProductsList().get(i));
+            temp.append(EntityDTOConverter.convertEntityToDto(DatabaseWrapper.getProductsList().get(i)));
         }
         return temp;
     }

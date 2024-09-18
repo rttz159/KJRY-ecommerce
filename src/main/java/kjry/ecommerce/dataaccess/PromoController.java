@@ -1,5 +1,6 @@
 package kjry.ecommerce.dataaccess;
 
+import kjry.ecommerce.datamodels.DynamicList;
 import kjry.ecommerce.datamodels.Promo;
 import kjry.ecommerce.dtos.PromoDTO;
 
@@ -59,10 +60,10 @@ public class PromoController implements DatabaseController<PromoDTO> {
     }
 
     @Override
-    public PromoDTO[] getAll() {
-        PromoDTO[] temp = new PromoDTO[DatabaseWrapper.getPromoCodeList().size()];
+    public DynamicList<PromoDTO> getAll() {
+        DynamicList<PromoDTO> temp = new DynamicList<>();
         for (int i = 0; i < DatabaseWrapper.getPromoCodeList().size(); i++) {
-            temp[i] = EntityDTOConverter.convertEntityToDto(DatabaseWrapper.getPromoCodeList().get(i));
+            temp.append(EntityDTOConverter.convertEntityToDto(DatabaseWrapper.getPromoCodeList().get(i)));
         }
         return temp;
     }

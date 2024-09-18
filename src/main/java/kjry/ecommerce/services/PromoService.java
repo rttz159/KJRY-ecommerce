@@ -1,10 +1,9 @@
 package kjry.ecommerce.services;
 
-import java.util.ArrayList;
-import java.util.Collections;
 import java.util.Iterator;
 import kjry.ecommerce.dataaccess.DatabaseController;
 import kjry.ecommerce.dataaccess.PromoController;
+import kjry.ecommerce.datamodels.DynamicList;
 import kjry.ecommerce.dtos.PromoDTO;
 
 public class PromoService {
@@ -12,8 +11,7 @@ public class PromoService {
     private static DatabaseController dbController = new PromoController();
 
     public static PromoDTO[] getAllPromo(boolean withInactive) {
-        ArrayList<PromoDTO> temp = new ArrayList<>();
-        Collections.addAll(temp, (PromoDTO[]) dbController.getAll());
+        DynamicList<PromoDTO> temp = dbController.getAll();
         if (!withInactive) {
             Iterator<PromoDTO> iterator = temp.iterator();
             while (iterator.hasNext()) {
@@ -23,7 +21,7 @@ public class PromoService {
                 }
             }
         }
-        PromoDTO[] tempArr = new PromoDTO[temp.size()];
+        PromoDTO[] tempArr = new PromoDTO[temp.getSize()];
         int i = 0;
         for (PromoDTO promo : temp) {
             tempArr[i] = promo;
