@@ -59,6 +59,11 @@ public class OrderController implements DatabaseController<OrdersDTO>{
         for(int i = 0; i < DatabaseWrapper.getOrdersList().size(); i++){
             if(DatabaseWrapper.getOrdersList().get(i).getId().equals(entity.getId())){
                 DatabaseWrapper.getOrdersList().set(i, EntityDTOConverter.convertDtoToEntity(entity));
+                Orders temp = DatabaseWrapper.getOrdersList().get(i);
+                for(Pair<Products,Integer> x: temp.getProductLists()){
+                    int stock = DatabaseWrapper.getProductStock().get(x.getKey());
+                    DatabaseWrapper.getProductStock().put(x.getKey(), (x.getValue() + stock));
+                }
                 error = false;
                 break;
             }
